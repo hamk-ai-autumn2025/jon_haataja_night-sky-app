@@ -3,5 +3,26 @@
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
+  ],
+  "compilerOptions": {
+    "typeRoots": ["./node_modules/@types", "./src/types"],
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "composite": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "baseUrl": "./",
+    "paths": {
+      "*": ["node_modules/*"],
+      "src/*": ["./src/*"]
+    },
+  },
+  "include": [
+    "src",
+    "__tests__",
+    "vite.config.ts",
+    "vite.setup.ts",
+    "vitest.config.ts",
+    "fontsource.d.ts"
   ]
 }
