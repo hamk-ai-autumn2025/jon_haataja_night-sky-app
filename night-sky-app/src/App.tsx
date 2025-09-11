@@ -1,18 +1,16 @@
-// import { useState } from 'react'
 // Supports weights 200-800
 //@ts-expect-error ts can't find font but it still works
 import '@fontsource-variable/plus-jakarta-sans';
 import './App.css'
-import ErrorBoundary from './ErrorBoundary';
+import Button from './components/button';
 
 
 function App() {
   return (
-    <ErrorBoundary>
       <div>
         <h1>Night Sky App</h1>
+        <Button title="Click Me" disabled={false} buttonType='btn-secondary'/>
       </div>
-    </ErrorBoundary>
   );
 }
 
