@@ -2,7 +2,7 @@
 //@ts-expect-error ts can't find font but it still works
 import '@fontsource-variable/plus-jakarta-sans';
 import './App.css'
-import Button from './components/button';
+import Button from './components/Button';
 
 
 function App() {
