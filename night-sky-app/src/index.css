@@ -86,3 +86,22 @@ h1 {
 .btn-secondary:focus {  
   outline: 3px solid #ffff00;
 } 
+
+.search-form {
+  margin: 1rem 0;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.event-list {
+  display: grid;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.event-card {
+  background: #1a1a40;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}

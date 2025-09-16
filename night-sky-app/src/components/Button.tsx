@@ -2,15 +2,17 @@ import '../index.css';
 
 interface ButtonProps {
   title: string;
+  type: 'button' | 'submit' | 'reset';
   disabled: boolean;
-  buttonType: 'btn-primary' | 'btn-secondary';
+  styleType: 'btn-primary' | 'btn-secondary';
 }
 
-function Button({ title, disabled, buttonType }: ButtonProps) {
+export function Button({ title, type, disabled, styleType }: ButtonProps) {
   return (
     <button 
+    type={type}
     disabled={disabled} 
-    className={buttonType}>
+    className={styleType}>
         {title}
     </button>
   );
