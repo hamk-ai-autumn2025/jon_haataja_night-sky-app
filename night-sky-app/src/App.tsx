@@ -3,6 +3,7 @@
 import '@fontsource-variable/plus-jakarta-sans';
 import './App.css'
 import './index.css'
+import nightyLogo from './assets/nighty-logo.svg'
 import { useState } from "react";
 import { SearchForm } from "./components/SearchForm";
 import EventList from "./components/EventList";
@@ -43,18 +44,48 @@ function App() {
 
   return (
     <div className="app">
-      <h1>Never Miss a Meteor Shower Again.</h1>
-      <p>
-        Nighty is an AI powered service that will tell you what’s happening in
-        the night sky of your country.
-      </p>
 
-      <SearchForm onSearch={handleSearch} />
+    <nav>
+        <input type="checkbox" id="check"></input>
+        <label htmlFor="check" className="checkbtn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-list" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+          </svg>        
+        </label>
+        <label className="logo">
+        <img src={nightyLogo} alt="Nighty Logo" className='logo' />
+        </label>
+        <ul>
+            <li><a className="active" href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
 
-      {loading && <p>Loading events...</p>}
-      {error && <p className="error">{error}</p>}
+    <main className="home-container">
+      <section className="home-search-section">
 
-      {!loading && events.length > 0 && <EventList events={events} />}
+        <div className='h1-p-container'>
+          <h1>Never Miss a Meteor Shower Again.</h1>
+          <p className='hero-p'>
+            Nighty is an AI powered service that will tell you what’s happening in
+            the night sky of your country.
+          </p>
+        </div>
+
+        <div className="glass-card">
+          <SearchForm onSearch={handleSearch} />
+
+          {loading && <p>Loading events...</p>}
+          {error && <p className="error">{error}</p>}
+
+          {!loading && events.length > 0 && <EventList events={events} />}
+        </div>
+
+      </section>
+
+    </main>
+
     </div>
   );
 }

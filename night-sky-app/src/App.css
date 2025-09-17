@@ -1,23 +1,62 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+  padding: 0;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  background: #0C0024;
+  background-image: url('./assets/home-hero-bg.png');
+  background-size: cover;
   min-height: 100vh;
 }
 
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+main {
+  display: flex;
+  flex-direction: column;
+  height: 60vh;
 }
 
+.h1-p-container {
+  width: 50vw;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  color: #FFF;
+  text-align: center;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.35), 0 4px 4px rgba(0, 0, 0, 0.15), 0 6px 16px rgba(0, 0, 0, 0.15);
+  font-size: 5.65rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -1.52px;
+  padding: 0;
+  margin: 0;
+}
+
+.hero-p {
+  color: #ebebeb;
+  text-align: center;
+  font-size: 1.6rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  width: 30vw;
+  margin: auto;
+}
+
+/* Button Styles */
 .btn-primary {
   background: #D9D9D9;
   color: #090022;
@@ -76,13 +115,16 @@ h1 {
 }
 .btn-secondary:focus {  
   outline: 3px solid #ffff00;
-} 
+}
 
+/* Search form styles */
 .search-form {
   margin: 1rem 0;
   display: flex;
   gap: 1rem;
   align-items: center;
+  justify-content: center;
+  text-align: start;
 }
 
 .event-list {
@@ -121,4 +163,193 @@ h1 {
 
 .input-field:focus {
   border-bottom: 2px solid #c1c1ff;
+}
+
+/* Navbar styles */
+  .logo {
+    height: auto;
+    width: 6em;
+  }
+
+nav {
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 5rem;
+  width: 90vw;
+  margin: auto;
+}
+
+.logo {
+  font-size: 1.5rem;
+}
+
+ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul li {
+  margin-right: 20px;
+}
+
+ul li a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+  font-size: 1.4rem;
+}
+
+ul li a:hover {
+  color: #c1c1ff;
+}
+
+.checkbtn {
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+  display: none;
+}
+
+#check {
+  display: none;
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 90vw;
+  margin: auto;
+}
+
+/* Glassmorphism card styles */
+.glass-card {
+  width: 68vw;
+  height: auto;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(21px);
+  -webkit-backdrop-filter: blur(21px);
+  border-radius: 25px;
+  box-shadow: 
+    0 8px 32px rgba(255, 255, 255, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 0 20px 10px rgba(255, 255, 255, 0.08);
+  position: relative;
+  margin-top: 5em;
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.08),
+    transparent
+  );
+}
+
+.glass-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.08),
+    transparent,
+    rgba(255, 255, 255, 0.08)
+  );
+}
+
+
+/* Media queries */
+@media (max-width: 768px) {
+
+  .logo {
+    height: auto;
+    width: 4.5em;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  .h1-p-container {
+    width: 100%;
+    margin: auto;
+  }
+
+  .hero-p {
+    font-size: 1rem;
+    width: auto;
+    padding-top: 1em;
+  }
+
+  main {
+    height: auto;
+  }
+
+  .app {
+    width: 100vw;
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  nav {
+    padding: 1rem 1rem;
+  }
+
+  .checkbtn {
+    display: block;
+    order: 1;
+    margin-right: 20px;
+  }
+
+  ul {
+    position: fixed;
+    top: 80px;
+    right: -100%;
+    background-color: #0C0024;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s;
+  }
+
+  ul li {
+    margin: 20px 0;
+  }
+
+  ul li a {
+    font-size: 1.1rem;
+  }
+
+  #check:checked ~ ul {
+    right: 0;
+  }
+
+  .glass-card {
+    width: 90vw;
+    height: auto;
+    margin-top: 2rem;
+  }
 }
