@@ -47,13 +47,13 @@ function App() {
 
     <nav>
         <input type="checkbox" id="check"></input>
-        <label htmlFor="check" className="checkbtn">
+        <div className="checkbtn">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-list" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
           </svg>        
-        </label>
+        </div>
         <label className="logo">
-        <img src={nightyLogo} alt="Nighty Logo" className='logo' />
+        <img src={nightyLogo} alt="Nighty Logo" className='Nighty logo' />
         </label>
         <ul>
             <li><a className="active" href="#">Home</a></li>
@@ -75,7 +75,9 @@ function App() {
 
         <div className="glass-card">
           <SearchForm onSearch={handleSearch} />
+        </div>
 
+        <div>
           {loading && <p>Loading events...</p>}
           {error && <p className="error">{error}</p>}
 

@@ -16,6 +16,8 @@ p {
   background: #0C0024;
   background-image: url('./assets/home-hero-bg.png');
   background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   min-height: 100vh;
 }
 
@@ -30,6 +32,8 @@ main {
   margin: auto;
   display: flex;
   flex-direction: column;
+  padding-top: 7em;
+  margin-bottom: 9em;
 }
 
 h1 {
@@ -54,6 +58,7 @@ h1 {
   line-height: normal;
   width: 30vw;
   margin: auto;
+  padding-top: 1em;
 }
 
 /* Button Styles */
@@ -127,6 +132,10 @@ h1 {
   text-align: start;
 }
 
+.search-form > .form-group {
+  margin-right: 1.5em;
+}
+
 .event-list {
   display: grid;
   gap: 1rem;
@@ -148,6 +157,7 @@ h1 {
 .input-label {
   margin-bottom: 1rem;
   font-weight: 500;
+  font-size: 1rem;
 }
 
 .input-field {
@@ -156,7 +166,7 @@ h1 {
   border-top: none;
   border-left: none;
   border-right: none;
-  font-size: 1rem;
+  font-size: 1.2rem;
   background: none;
   outline: none;
 }
@@ -176,7 +186,10 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem 5rem;
+  padding-top: 3em;
+  padding-bottom: 1em;
+  padding-left: 5em;
+  padding-right: 5em;
   width: 90vw;
   margin: auto;
 }
@@ -221,7 +234,6 @@ ul li a:hover {
 .home-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   text-align: center;
   width: 90vw;
@@ -230,8 +242,6 @@ ul li a:hover {
 
 /* Glassmorphism card styles */
 .glass-card {
-  width: 68vw;
-  height: auto;
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(21px);
   -webkit-backdrop-filter: blur(21px);
@@ -243,39 +253,16 @@ ul li a:hover {
     inset 0 0 20px 10px rgba(255, 255, 255, 0.08);
   position: relative;
   margin-top: 5em;
-  padding-top: 2em;
-  padding-bottom: 2em;
+  padding-top: 3em;
+  padding-bottom: 3em;
+  width: 68vw;
+  height: auto;
+  display: flex;
+  justify-content: space-evenly;
+  align-content: space-evenly;
 }
 
-.glass-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.08),
-    transparent
-  );
-}
 
-.glass-card::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1px;
-  height: 100%;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.08),
-    transparent,
-    rgba(255, 255, 255, 0.08)
-  );
-}
 
 
 /* Media queries */
@@ -309,6 +296,7 @@ ul li a:hover {
     width: 100vw;
     padding-right: 1rem;
     padding-left: 1rem;
+    background-position: center;
   }
 
   nav {
@@ -351,5 +339,15 @@ ul li a:hover {
     width: 90vw;
     height: auto;
     margin-top: 2rem;
+    flex-direction: column;
   }
+
+  .search-form {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .search-form > .form-group {
+  margin-right: 0em;
+}
 }

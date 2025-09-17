@@ -7,9 +7,10 @@ interface InputProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   htmlFor: string;
   id: string;
+  placeholder?: string;
 }
 
-const Input: React.FC<InputProps> = ({ label, type, value, onChange, htmlFor, id }) => (
+const Input: React.FC<InputProps> = ({ label, type, value, onChange, htmlFor, id, placeholder }) => (
     <div className="form-group">
         <label 
         htmlFor={htmlFor}
@@ -21,7 +22,8 @@ const Input: React.FC<InputProps> = ({ label, type, value, onChange, htmlFor, id
         value={value} 
         onChange={onChange}
         id={id}
-        className="input-field">
+        className="input-field"
+        placeholder={placeholder}>
         </input>
     </div>
 );
