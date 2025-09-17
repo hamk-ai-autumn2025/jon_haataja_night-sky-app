@@ -96,3 +96,29 @@ h1 {
   padding: 1rem;
   border-radius: 0.5rem;
 }
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: .5rem;
+}
+
+.input-label {
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.input-field {
+  padding: .5rem;
+  border-bottom: 1px solid #ccc;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  font-size: 1rem;
+  background: none;
+  outline: none;
+}
+
+.input-field:focus {
+  border-bottom: 2px solid #c1c1ff;
+}

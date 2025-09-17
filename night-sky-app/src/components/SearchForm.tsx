@@ -1,5 +1,6 @@
 import { useState } from "react";
-import Button from '../components/Button';
+import Button from "../components/Button";
+import Input from "../components/Input";
 
 interface SearchFormProps {
   onSearch: (country: string, month: string, year: string) => void;
@@ -16,36 +17,33 @@ export function SearchForm({ onSearch }: SearchFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="search-form">
-      <label>
-        Country:
-        <input
+      <form onSubmit={handleSubmit} className="search-form">
+        <Input
+          label="Country:"
           type="text"
           value={country}
           onChange={(e) => setCountry(e.target.value)}
+          htmlFor="country" 
+          id="country"
         />
-      </label>
-
-      <label>
-        Month:
-        <input
+        <Input
+          label="Month:"
           type="text"
           value={month}
           onChange={(e) => setMonth(e.target.value)}
+          htmlFor="month"
+          id="month"
         />
-      </label>
-
-      <label>
-        Year:
-        <input
+        <Input
+          label="Year:"
           type="number"
           value={year}
           onChange={(e) => setYear(e.target.value)}
+          htmlFor="year"
+          id="year"
         />
-      </label>
-
-        <Button title="Search" disabled={false} type='submit' styleType='btn-primary'/>
-    </form>
+        <Button title="Search" disabled={false} type="submit" styleType="btn-primary" />
+      </form>
   );
 }
 
