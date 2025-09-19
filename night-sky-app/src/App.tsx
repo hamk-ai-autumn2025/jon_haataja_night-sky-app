@@ -25,10 +25,14 @@ function App() {
     setLoading(true);
     setError("");
     try {
-      const data: AstronomyEvent[] = await getAstronomyEvents(country, month, year);
+      const data = await getAstronomyEvents(country, month, year);
       if (Array.isArray(data)) {
         setEvents(data);
-      } else {
+      }
+      else if (data && Array.isArray(data.events)) {
+        setEvents(data.events);
+      }
+      else {
         setEvents([]);
       }
     } catch (err) {
