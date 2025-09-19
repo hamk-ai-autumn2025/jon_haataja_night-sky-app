@@ -6,7 +6,7 @@ interface EventCardProps {
 
 function EventCard({ event }: EventCardProps) {
   return (
-    <div className="event-card">
+    <div className="event-card col-4">
       <p className="date">{event.date}</p>
       <h3>{event.title}</h3>
       <p>{event.description}</p>

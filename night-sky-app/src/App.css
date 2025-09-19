@@ -32,15 +32,15 @@ main {
   margin: auto;
   display: flex;
   flex-direction: column;
-  padding-top: 7em;
-  margin-bottom: 9em;
+  padding-top: 6em;
+  margin-bottom: 7em;
 }
 
 h1 {
   color: #FFF;
   text-align: center;
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.35), 0 4px 4px rgba(0, 0, 0, 0.15), 0 6px 16px rgba(0, 0, 0, 0.15);
-  font-size: 5.65rem;
+  font-size: 4.65rem;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
@@ -132,15 +132,40 @@ h1 {
   text-align: start;
 }
 
+/* Responsive Grid Container & Columns */
+.container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
+  width: 100%;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 0 1rem;
+}
+
+/* Column classes */
+.col-1 { grid-column: span 1; }
+.col-2 { grid-column: span 2; }
+.col-3 { grid-column: span 3; }
+.col-4 { grid-column: span 4; }
+.col-5 { grid-column: span 5; }
+.col-6 { grid-column: span 6; }
+.col-7 { grid-column: span 7; }
+.col-8 { grid-column: span 8; }
+.col-9 { grid-column: span 9; }
+.col-10 { grid-column: span 10; }
+.col-11 { grid-column: span 11; }
+.col-12 { grid-column: span 12; }
+
 .search-form > .form-group {
   margin-right: 1.5em;
 }
 
-.event-list {
+/* .event-list {
   display: grid;
   gap: 1rem;
   margin-top: 2rem;
-}
+} */
 
 .event-card {
   background: #1a1a40;
@@ -251,7 +276,6 @@ ul li a:hover {
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
     inset 0 -1px 0 rgba(255, 255, 255, 0.08),
     inset 0 0 20px 10px rgba(255, 255, 255, 0.08);
-  position: relative;
   margin-top: 5em;
   padding-top: 3em;
   padding-bottom: 3em;
@@ -260,12 +284,24 @@ ul li a:hover {
   display: flex;
   justify-content: space-evenly;
   align-content: space-evenly;
+  margin: auto;
 }
 
 
 
 
 /* Media queries */
+
+
+@media (max-width: 900px) {
+  .container {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
+    grid-column: span 6;
+  }
+}
+
 @media (max-width: 768px) {
 
   .logo {
@@ -350,4 +386,14 @@ ul li a:hover {
   .search-form > .form-group {
   margin-right: 0em;
 }
+}
+
+@media (max-width: 600px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+  .col-1, .col-2, .col-3, .col-4, .col-5, .col-6,
+  .col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
+    grid-column: span 1;
+  }
 }
