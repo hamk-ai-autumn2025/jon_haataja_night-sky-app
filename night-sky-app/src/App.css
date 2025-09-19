@@ -55,7 +55,7 @@ h1 {
   line-height: normal;
   width: 30vw;
   margin: auto;
-  padding-top: 1em;
+  padding-top: 1.2em;
 }
 
 /* Button Styles */
@@ -65,8 +65,8 @@ h1 {
   cursor: pointer;
   border: none;
   outline: none;
-  border-radius: 31px;
-  padding: 0.6em 1.2em;
+  border-radius: 200px;
+  padding: 1em 2.3em;
   font-size: 1.2rem;
   font-weight: 500;
   font-family: inherit;
@@ -96,7 +96,7 @@ h1 {
   border: 2px solid #D9D9D9;
   outline: none;
   border-radius: 31px;
-  padding: 0.6em 1.2em;
+  padding: 1em 2.3em;
   font-size: 1.2rem;
   font-weight: 500;
   font-family: inherit;
@@ -224,7 +224,7 @@ ul li a {
   color: white;
   text-decoration: none;
   transition: color 0.3s;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 }
 
 ul li a:hover {
@@ -254,8 +254,8 @@ ul li a:hover {
     inset 0 -1px 0 rgba(255, 255, 255, 0.08),
     inset 0 0 20px 10px rgba(255, 255, 255, 0.08);
 
-  padding-top: 3em;
-  padding-bottom: 3em;
+  padding-top: 4em;
+  padding-bottom: 4em;
   padding-left: 5em;
 }
 
