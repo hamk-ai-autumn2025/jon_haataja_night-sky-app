@@ -5,7 +5,7 @@ const model = "openai/gpt-4.1-mini";
 const client = new OpenAI({
   baseURL: endpoint,
   apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-  dangerouslyAllowBrowser: true // ⚠️ only for dev; ideally use a backend proxy
+  dangerouslyAllowBrowser: true // ⚠️ only for dev; ideally use a backend proxy (cannot add it yet because don't have enough repo rights & therefore can't deploy to vercel yet)
 });
 
 async function getAstronomyEvents(country: string, month: string, year: string) {

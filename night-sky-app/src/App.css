@@ -9,6 +9,10 @@ body {
   padding: 0;
 }
 
+.pt-3 {
+  padding-top: 3rem;
+}
+
 .app {
   background: #0C0024;
   background-image: url('./assets/home-hero-bg.png');
@@ -133,9 +137,8 @@ h1 {
   grid-template-columns: repeat(12, 1fr);
   gap: 1rem;
   width: 100%;
-  margin: 0 auto;
+  margin: 1rem auto;
   max-width: 1200px;
-  padding: 0 1rem;
 }
 
 /* Column classes */
@@ -254,8 +257,8 @@ ul li a:hover {
     inset 0 -1px 0 rgba(255, 255, 255, 0.08),
     inset 0 0 20px 10px rgba(255, 255, 255, 0.08);
 
-  padding-top: 4em;
-  padding-bottom: 4em;
+  padding-top: 3em;
+  padding-bottom: 3em;
   padding-left: 5em;
 }
 
