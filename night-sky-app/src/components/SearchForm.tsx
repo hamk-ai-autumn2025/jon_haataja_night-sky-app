@@ -1,4 +1,5 @@
 import { useState } from "react";
+import CountrySelect from "./CountrySelect";
 import Button from "../components/Button";
 import Input from "../components/Input";
 
@@ -18,17 +19,7 @@ export function SearchForm({ onSearch }: SearchFormProps) {
 
   return (
       <form onSubmit={handleSubmit} className="search-form container">
-        <div className="col-3">
-          <Input
-            label="Country"
-            type="text"
-            value={country}
-            onChange={(e) => setCountry(e.target.value)}
-            htmlFor="country" 
-            id="country"
-            placeholder="Enter country name"
-          />
-        </div>
+        <CountrySelect value={country} onChange={(e) => setCountry(e.target.value)} />
         <div className="col-3">
           <Input
             label="Month"
