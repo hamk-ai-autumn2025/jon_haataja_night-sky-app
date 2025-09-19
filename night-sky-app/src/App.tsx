@@ -25,12 +25,9 @@ function App() {
     setLoading(true);
     setError("");
     try {
-      const data = await getAstronomyEvents(country, month, year);
-      // Handle both array and object response formats
+      const data: AstronomyEvent[] = await getAstronomyEvents(country, month, year);
       if (Array.isArray(data)) {
         setEvents(data);
-      } else if (data && Array.isArray(data.events)) {
-        setEvents(data.events);
       } else {
         setEvents([]);
       }
