@@ -9,6 +9,14 @@ body {
   padding: 0;
 }
 
+.mt-4 {
+  margin-top: 4rem;
+}
+
+.mb-4 {
+  margin-bottom: 4rem;
+}
+
 .app {
   background: #0C0024;
   background-image: url('./assets/home-hero-bg.png');
@@ -29,7 +37,7 @@ main {
   margin: auto;
   display: flex;
   flex-direction: column;
-  padding-top: 6em;
+  padding-top: 8em;
   margin-bottom: 7em;
 }
 
@@ -133,8 +141,9 @@ h1 {
   grid-template-columns: repeat(12, 1fr);
   gap: 1rem;
   width: 100%;
-  margin: 0 auto;
-  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1400px;
   padding: 0 1rem;
 }
 

@@ -75,12 +75,11 @@ function App() {
 
         <div className="glass-card">
           <SearchForm onSearch={handleSearch} />
+          {error && <p className="error">{error}</p>}
+          {loading && <p>Loading events...</p>}
         </div>
 
         <div>
-          {loading && <p>Loading events...</p>}
-          {error && <p className="error">{error}</p>}
-
           {!loading && events.length > 0 && <EventList events={events} />}
         </div>
 
