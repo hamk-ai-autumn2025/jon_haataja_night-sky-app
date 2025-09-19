@@ -62,8 +62,8 @@ function App() {
         </ul>
     </nav>
 
-    <main className="home-container">
-      <section className="home-search-section">
+    <main className="container">
+      <section className="col-12">
 
         <div className='h1-p-container'>
           <h1>Never Miss a Meteor Shower Again.</h1>

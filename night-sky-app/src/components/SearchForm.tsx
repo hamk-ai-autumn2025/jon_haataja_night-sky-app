@@ -17,25 +17,30 @@ export function SearchForm({ onSearch }: SearchFormProps) {
   }
 
   return (
-      <form onSubmit={handleSubmit} className="search-form">
-        <Input
-          label="Country"
-          type="text"
-          value={country}
-          onChange={(e) => setCountry(e.target.value)}
-          htmlFor="country" 
-          id="country"
-          placeholder="Enter country name"
-        />
-        <Input
-          label="Month"
-          type="text"
-          value={month}
-          onChange={(e) => setMonth(e.target.value)}
-          htmlFor="month"
-          id="month"
-          placeholder="Enter month name"
-        />
+      <form onSubmit={handleSubmit} className="search-form container">
+        <div className="col-3">
+          <Input
+            label="Country"
+            type="text"
+            value={country}
+            onChange={(e) => setCountry(e.target.value)}
+            htmlFor="country" 
+            id="country"
+            placeholder="Enter country name"
+          />
+        </div>
+        <div className="col-3">
+          <Input
+            label="Month"
+            type="text"
+            value={month}
+            onChange={(e) => setMonth(e.target.value)}
+            htmlFor="month"
+            id="month"
+            placeholder="Enter month name"
+          />
+        </div>
+        <div className="col-3">
         <Input
           label="Year"
           type="number"
@@ -45,7 +50,10 @@ export function SearchForm({ onSearch }: SearchFormProps) {
           id="year"
           placeholder="Enter year"
         />
-        <Button title="Search" disabled={false} type="submit" styleType="btn-primary" />
+        </div>
+        <div className="col-3">
+          <Button title="Search" disabled={false} type="submit" styleType="btn-primary" />
+        </div>
       </form>
   );
 }

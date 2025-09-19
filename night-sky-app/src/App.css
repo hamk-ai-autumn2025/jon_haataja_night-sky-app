@@ -1,13 +1,10 @@
 * {
   box-sizing: border-box;
-}
-
-body {
   margin: 0;
   padding: 0;
 }
 
-p {
+body {
   margin: 0;
   padding: 0;
 }
@@ -124,12 +121,10 @@ h1 {
 
 /* Search form styles */
 .search-form {
-  margin: 1rem 0;
-  display: flex;
-  gap: 1rem;
   align-items: center;
   justify-content: center;
   text-align: start;
+  align-content: space-evenly;
 }
 
 /* Responsive Grid Container & Columns */
@@ -157,16 +152,6 @@ h1 {
 .col-11 { grid-column: span 11; }
 .col-12 { grid-column: span 12; }
 
-.search-form > .form-group {
-  margin-right: 1.5em;
-}
-
-/* .event-list {
-  display: grid;
-  gap: 1rem;
-  margin-top: 2rem;
-} */
-
 .event-card {
   background: #1a1a40;
   padding: 1rem;
@@ -177,6 +162,7 @@ h1 {
   display: flex;
   flex-direction: column;
   margin-bottom: .5rem;
+  padding-right: 1.4em;
 }
 
 .input-label {
@@ -201,10 +187,10 @@ h1 {
 }
 
 /* Navbar styles */
-  .logo {
-    height: auto;
-    width: 6em;
-  }
+.logo {
+  height: auto;
+  width: 6em;
+}
 
 nav {
   color: white;
@@ -256,15 +242,6 @@ ul li a:hover {
   display: none;
 }
 
-.home-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  width: 90vw;
-  margin: auto;
-}
-
 /* Glassmorphism card styles */
 .glass-card {
   background: rgba(255, 255, 255, 0.08);
@@ -276,23 +253,13 @@ ul li a:hover {
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
     inset 0 -1px 0 rgba(255, 255, 255, 0.08),
     inset 0 0 20px 10px rgba(255, 255, 255, 0.08);
-  margin-top: 5em;
+
   padding-top: 3em;
   padding-bottom: 3em;
-  width: 68vw;
-  height: auto;
-  display: flex;
-  justify-content: space-evenly;
-  align-content: space-evenly;
-  margin: auto;
+  padding-left: 5em;
 }
 
-
-
-
 /* Media queries */
-
-
 @media (max-width: 900px) {
   .container {
     grid-template-columns: repeat(6, 1fr);
@@ -376,21 +343,25 @@ ul li a:hover {
     height: auto;
     margin-top: 2rem;
     flex-direction: column;
+    padding-left: 1em;
   }
 
   .search-form {
     flex-direction: column;
     gap: 0.5rem;
+    padding-left: 1rem;
   }
 
   .search-form > .form-group {
   margin-right: 0em;
+      width: 100%;
 }
 }
 
 @media (max-width: 600px) {
   .container {
     grid-template-columns: 1fr;
+    padding: 0rem;
   }
   .col-1, .col-2, .col-3, .col-4, .col-5, .col-6,
   .col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
