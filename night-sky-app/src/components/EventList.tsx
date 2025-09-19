@@ -7,7 +7,7 @@ interface EventListProps {
 
 function EventList({ events }: EventListProps) {
   return (
-    <div className="container mt-4 mb-4">
+    <div className="container">
       {events.map((ev, idx) => (
         <EventCard key={idx} event={ev} />
       ))}
