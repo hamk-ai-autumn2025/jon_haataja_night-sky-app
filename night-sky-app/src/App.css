@@ -227,18 +227,18 @@ input::placeholder {
   rotate: 180deg!important;
 }
 
-.select-field-option {
+option, .select-field-option {
   background: #090022;
-  width: 4rem;
   display: flex;
   justify-content: flex-start;
   transition: 0.4s;
+  width: auto;
 }
 
 /* Navbar styles */
 .logo {
   height: auto;
-  width: 6em;
+  width: 4.3em;
 }
 
 nav {

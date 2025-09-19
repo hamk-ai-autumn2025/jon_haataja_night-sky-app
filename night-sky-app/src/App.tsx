@@ -3,7 +3,7 @@
 import '@fontsource-variable/plus-jakarta-sans';
 import './App.css'
 import './index.css'
-import nightyLogo from './assets/nighty-logo.svg'
+import skaiLogo from './assets/skai-logo.svg'
 import { useState } from "react";
 import { SearchForm } from "./components/SearchForm";
 import EventList from "./components/EventList";
@@ -54,7 +54,7 @@ function App() {
           </svg>        
         </div>
         <label className="logo" htmlFor="check">
-        <img src={nightyLogo} alt="Nighty Logo" className='Nighty logo' />
+        <img src={skaiLogo} alt="Skai Logo" className='logo' />
         </label>
         <ul>
             <li><a className="active" href="#">Home</a></li>
@@ -69,7 +69,7 @@ function App() {
         <div className='h1-p-container'>
           <h1>Never Miss a Meteor Shower Again.</h1>
           <p className='hero-p'>
-            Nighty is an AI powered service that will tell you what’s happening in
+            Skai is an AI powered service that will tell you what’s happening in
             the night sky of your country.
           </p>
         </div>
