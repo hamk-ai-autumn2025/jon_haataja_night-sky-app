@@ -12,10 +12,8 @@
   },
   "dependencies": {
     "@fontsource-variable/plus-jakarta-sans": "^5.2.6",
-    "@vercel/node": "^2.3.0",
     "axios": "^1.11.0",
     "openai": "^5.19.1",
-    "path-to-regexp": "^8.0.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },
