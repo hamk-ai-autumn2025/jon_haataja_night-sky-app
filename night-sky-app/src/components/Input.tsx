@@ -10,22 +10,28 @@ interface InputProps {
   placeholder?: string;
 }
 
-const Input: React.FC<InputProps> = ({ label, type, value, onChange, htmlFor, id, placeholder }) => (
-    <div className="form-group">
-        <label 
-        htmlFor={htmlFor}
-        className="input-label">
-            {label}
-        </label>
-        <input 
-        type={type} 
-        value={value} 
-        onChange={onChange}
-        id={id}
-        className="input-field"
-        placeholder={placeholder}>
-        </input>
-    </div>
+const Input: React.FC<InputProps> = ({
+  label,
+  type,
+  value,
+  onChange,
+  htmlFor,
+  id,
+  placeholder,
+}) => (
+  <div className="form-group">
+    <label htmlFor={htmlFor} className="input-label">
+      {label}
+    </label>
+    <input
+      type={type}
+      value={value}
+      onChange={onChange}
+      id={id}
+      className="input-field"
+      placeholder={placeholder}
+    ></input>
+  </div>
 );
 
 export default Input;

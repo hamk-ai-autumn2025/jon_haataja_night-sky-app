@@ -8,16 +8,29 @@ interface SearchFormProps {
 }
 
 export function SearchForm({ onSearch }: SearchFormProps) {
-
   const [country, setCountry] = useState("");
   const [month, setMonth] = useState("");
   const [year, setYear] = useState("");
-  const [errors, setErrors] = useState<{ country?: string; month?: string; year?: string }>({});
+  const [errors, setErrors] = useState<{
+    country?: string;
+    month?: string;
+    year?: string;
+  }>({});
 
   // Helper to validate month (accepts full month names, case-insensitive)
   const validMonths = [
-    "january", "february", "march", "april", "may", "june",
-    "july", "august", "september", "october", "november", "december"
+    "january",
+    "february",
+    "march",
+    "april",
+    "may",
+    "june",
+    "july",
+    "august",
+    "september",
+    "october",
+    "november",
+    "december",
   ];
 
   function validate() {
@@ -44,7 +57,10 @@ export function SearchForm({ onSearch }: SearchFormProps) {
 
   return (
     <form onSubmit={handleSubmit} className="search-form container" noValidate>
-      <CountrySelect value={country} onChange={(e) => setCountry(e.target.value)} />
+      <CountrySelect
+        value={country}
+        onChange={(e) => setCountry(e.target.value)}
+      />
       {errors.country && <div className="error-message">{errors.country}</div>}
       <div className="col-3">
         <Input

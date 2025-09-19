@@ -10,7 +10,9 @@ const countryNames = countries.map((c) => c.name.common).sort();
 export function CountrySelect({ value, onChange }: CountrySelectProps) {
   return (
     <div className="col-3">
-      <label htmlFor="country" className="select-label">Country</label>
+      <label htmlFor="country" className="select-label">
+        Country
+      </label>
       <select
         id="country"
         value={value}
@@ -18,7 +20,9 @@ export function CountrySelect({ value, onChange }: CountrySelectProps) {
         className="select-field"
         autoComplete="true"
       >
-        <option value="" className="default-option">Select a country</option>
+        <option value="" className="default-option">
+          Select a country
+        </option>
         {countryNames.map((name) => (
           <option key={name} value={name} className="select-field-option">
             {name}

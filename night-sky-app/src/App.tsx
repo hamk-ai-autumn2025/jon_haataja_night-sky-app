@@ -1,14 +1,14 @@
 // Supports weights 200-800
 //@ts-expect-error ts can't find font but it still works
-import '@fontsource-variable/plus-jakarta-sans';
-import './App.css'
-import './index.css'
-import skaiLogo from './assets/skai-logo.svg'
+import "@fontsource-variable/plus-jakarta-sans";
+import "./App.css";
+import "./index.css";
+import skaiLogo from "./assets/skai-logo.svg";
 import { useState } from "react";
 import { SearchForm } from "./components/SearchForm";
 import EventList from "./components/EventList";
 import getAstronomyEvents from "./services/openaiService";
-import Footer from './components/Footer';
+import Footer from "./components/Footer";
 
 export interface AstronomyEvent {
   date: string;
@@ -29,11 +29,9 @@ function App() {
       const data = await getAstronomyEvents(country, month, year);
       if (Array.isArray(data)) {
         setEvents(data);
-      }
-      else if (data && Array.isArray(data.events)) {
+      } else if (data && Array.isArray(data.events)) {
         setEvents(data.events);
-      }
-      else {
+      } else {
         setEvents([]);
       }
     } catch (err) {
@@ -47,62 +45,73 @@ function App() {
   return (
     <div className="app">
       <main className="">
-
-      <div className="nav-hero-container">
-        <nav>
+        <div className="nav-hero-container">
+          <nav>
             <input type="checkbox" id="check"></input>
             <div className="checkbtn">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-list" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
-              </svg>        
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                className="bi bi-list"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
+                />
+              </svg>
             </div>
             <label className="logo" htmlFor="check">
-            <img src={skaiLogo} alt="Skai Logo" className='logo' />
+              <img src={skaiLogo} alt="Skai Logo" className="logo" />
             </label>
             <ul>
-                <li><a className="active" href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
+              <li>
+                <a className="active" href="#">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="#">About</a>
+              </li>
+              <li>
+                <a href="#">Contact</a>
+              </li>
             </ul>
-        </nav>
+          </nav>
+
+          <section className="container">
+            <div className="col-12">
+              <div className="h1-p-container">
+                <h1>Never Miss a Meteor Shower Again.</h1>
+                <p className="hero-p">
+                  Skai is an AI powered service that will tell you what’s
+                  happening in the night sky of your country.
+                </p>
+              </div>
+
+              <div className="glass-card">
+                <SearchForm onSearch={handleSearch} />
+              </div>
+            </div>
+          </section>
+        </div>
 
         <section className="container">
           <div className="col-12">
+            {loading && <p>Loading events...</p>}
+            {error && <p className="error">{error}</p>}
 
-            <div className='h1-p-container'>
-              <h1>Never Miss a Meteor Shower Again.</h1>
-              <p className='hero-p'>
-                Skai is an AI powered service that will tell you what’s happening in
-                the night sky of your country.
-              </p>
-            </div>
-
-            <div className="glass-card">
-              <SearchForm onSearch={handleSearch} />
-            </div>
-
-            </div>
+            {!loading && events.length > 0 && <EventList events={events} />}
+          </div>
         </section>
-    
-      </div>
 
-    <section className='container'>
-        <div className='col-12'>
-          {loading && <p>Loading events...</p>}
-          {error && <p className="error">{error}</p>}
-
-          {!loading && events.length > 0 && <EventList events={events} />}
-        </div>
-
-    </section>
-
-    <section className="footer">
-        <Footer/>
-    </section>
-
-  
-  </main>
-  </div>
+        <section className="footer">
+          <Footer />
+        </section>
+      </main>
+    </div>
   );
 }
 
