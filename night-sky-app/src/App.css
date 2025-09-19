@@ -15,17 +15,16 @@ body {
 
 .app {
   background: #0C0024;
+  min-height: 100vh;
+}
+
+.nav-hero-container {
+  background: #0C0024;
   background-image: url('./assets/home-hero-bg.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   min-height: 100vh;
-}
-
-main {
-  display: flex;
-  flex-direction: column;
-  height: 60vh;
 }
 
 .h1-p-container {
@@ -302,10 +301,32 @@ ul li a:hover {
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
     inset 0 -1px 0 rgba(255, 255, 255, 0.08),
     inset 0 0 20px 10px rgba(255, 255, 255, 0.08);
-
   padding-top: 3em;
   padding-bottom: 3em;
   padding-left: 5em;
+}
+
+.footer {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(21px);
+  -webkit-backdrop-filter: blur(21px);
+    box-shadow: 
+    0 8px 32px rgba(255, 255, 255, 0.08);
+  padding-top: 3em;
+  padding-bottom: 3em;
+  width: 100%;
+  margin-top: 40em;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.footer-saturn {
+  vertical-align: middle;
+  height: 1.2em;
 }
 
 /* Media queries */
