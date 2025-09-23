@@ -1,4 +1,5 @@
 import "../index.css";
+import leftArrow from "../assets/left-arrow.svg";
 
 interface ButtonProps {
   title: string;
@@ -10,6 +11,7 @@ interface ButtonProps {
 export function Button({ title, type, disabled, styleType }: ButtonProps) {
   return (
     <button type={type} disabled={disabled} className={styleType}>
+      <img src={leftArrow} alt="Left Arrow" height={21} width={22} className="left-arrow" />
       {title}
     </button>
   );

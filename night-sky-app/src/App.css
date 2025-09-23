@@ -296,9 +296,6 @@ option::checkmark {
   width: 100%;
   color: #ffffff !important;
   margin-top: 1.5rem;
-  /*
-  padding-bottom: 0.5rem;
-  margin-bottom: 0.5rem; */
 }
 
 .select-field:focus {
@@ -374,6 +371,12 @@ ul li a:hover {
 
 #check {
   display: none;
+}
+
+/*Left arrow*/
+.left-arrow {
+  margin-right: 0.9em;
+  vertical-align: middle;
 }
 
 /* Glassmorphism card styles */
