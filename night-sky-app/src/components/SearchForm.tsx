@@ -9,9 +9,10 @@ interface SearchFormProps {
 }
 
 export function SearchForm({ onSearch }: SearchFormProps) {
+  const currentYear = new Date().getFullYear();
   const [country, setCountry] = useState("");
   const [month, setMonth] = useState("");
-  const [year, setYear] = useState("");
+  const [year, setYear] = useState(currentYear.toString());
   const [errors, setErrors] = useState<{
     country?: string;
     month?: string;
@@ -76,10 +77,17 @@ export function SearchForm({ onSearch }: SearchFormProps) {
           label="Year"
           type="number"
           value={year}
-          onChange={(e) => setYear(e.target.value)}
+          onChange={(e) => {
+            const val = e.target.value;
+            // Only allow non-negative numbers
+            if (/^\d*$/.test(val)) {
+              setYear(val);
+            }
+          }}
           htmlFor="year"
           id="year"
-          placeholder="Enter year"
+          placeholder={currentYear.toString()}
+          min={0}
         />
         {errors.year && <div className="error-message">{errors.year}</div>}
       </div>

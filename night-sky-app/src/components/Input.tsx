@@ -8,6 +8,7 @@ interface InputProps {
   htmlFor: string;
   id: string;
   placeholder?: string;
+  min?: number;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -18,6 +19,7 @@ const Input: React.FC<InputProps> = ({
   htmlFor,
   id,
   placeholder,
+  min,
 }) => (
   <div className="form-group">
     <label htmlFor={htmlFor} className="input-label">
@@ -30,6 +32,7 @@ const Input: React.FC<InputProps> = ({
       id={id}
       className="input-field"
       placeholder={placeholder}
+      {...(min !== undefined ? { min } : {})}
     ></input>
   </div>
 );
