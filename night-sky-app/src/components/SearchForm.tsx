@@ -2,6 +2,7 @@ import { useState } from "react";
 import CountrySelect from "./CountrySelect";
 import Button from "../components/Button";
 import Input from "../components/Input";
+import MonthSelect from "./MonthSelect";
 
 interface SearchFormProps {
   onSearch: (country: string, month: string, year: string) => void;
@@ -63,14 +64,10 @@ export function SearchForm({ onSearch }: SearchFormProps) {
       />
       {errors.country && <div className="error-message">{errors.country}</div>}
       <div className="col-3">
-        <Input
-          label="Month"
-          type="text"
+        <MonthSelect
           value={month}
           onChange={(e) => setMonth(e.target.value)}
-          htmlFor="month"
-          id="month"
-          placeholder="Enter month name"
+          required
         />
         {errors.month && <div className="error-message">{errors.month}</div>}
       </div>
