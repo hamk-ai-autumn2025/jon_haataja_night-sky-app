@@ -148,6 +148,22 @@ h1 {
   max-width: 1200px;
 }
 
+/*Error message*/
+.error-message {
+  margin-top: .5em;
+  color: #fd2121;
+  font-weight: 500;
+}
+
+/*Flex classes*/
+.display-flex {
+  display: flex;
+}
+
+.flex-direction-column {
+  flex-direction: column;
+}
+
 /* Column classes */
 .col-1 {
   grid-column: span 1;
@@ -199,14 +215,11 @@ h1 {
   padding-right: 1.4em;
 }
 
-.input-label {
-  margin-bottom: 1rem;
-  font-weight: 500;
-  font-size: 1rem;
-}
-
 .input-field {
-  padding: 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-bottom: 0.5rem;
+  margin-top: 2rem;
   border-bottom: 1px solid #ccc;
   border-top: none;
   border-left: none;
@@ -231,6 +244,46 @@ input::placeholder {
   color: #ffffff;
 }
 
+select,
+::picker(select) {
+  appearance: base-select;
+}
+
+select {
+  border-radius: 0;
+  transition: 0.4s;
+  cursor: pointer;
+}
+
+select::picker-icon {
+  transition: 0.4s rotate;
+  content: url('./assets/down-arrow.svg');
+}
+
+::picker(select) {
+  border: none;
+  top: calc(anchor(bottom) + 1px);
+}
+
+option {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 1.1rem;
+    width: 100%;
+}
+
+option:hover {
+  background: #404040;
+}
+
+option:checked {
+  font-weight: bold;
+}
+
+option::checkmark {
+  content: "✔️";
+}
+
 .select-field {
   border-bottom: 1px solid #ccc;
   border-top: none;
@@ -243,8 +296,9 @@ input::placeholder {
   width: 100%;
   color: #ffffff !important;
   margin-top: 1.5rem;
+  /*
   padding-bottom: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem; */
 }
 
 .select-field:focus {

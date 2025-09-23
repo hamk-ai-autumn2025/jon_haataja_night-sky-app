@@ -59,11 +59,14 @@ export function SearchForm({ onSearch }: SearchFormProps) {
 
   return (
     <form onSubmit={handleSubmit} className="search-form container" noValidate>
+      <div className="col-3">
       <CountrySelect
         value={country}
         onChange={(e) => setCountry(e.target.value)}
       />
+      
       {errors.country && <div className="error-message">{errors.country}</div>}
+      </div>
       <div className="col-3">
         <MonthSelect
           value={month}

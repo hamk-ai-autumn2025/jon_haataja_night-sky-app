@@ -21,10 +21,9 @@ const Input: React.FC<InputProps> = ({
   placeholder,
   min,
 }) => (
-  <div className="form-group">
-    <label htmlFor={htmlFor} className="input-label">
+  <div>
+    <label htmlFor={htmlFor}>
       {label}
-    </label>
     <input
       type={type}
       value={value}
@@ -34,6 +33,7 @@ const Input: React.FC<InputProps> = ({
       placeholder={placeholder}
       {...(min !== undefined ? { min } : {})}
     ></input>
+        </label>
   </div>
 );
 
