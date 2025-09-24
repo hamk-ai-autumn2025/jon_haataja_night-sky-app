@@ -1,4 +1,4 @@
-import "../index.css";
+import "../styles/index.css";
 import leftArrow from "../assets/left-arrow.svg";
 
 interface ButtonProps {

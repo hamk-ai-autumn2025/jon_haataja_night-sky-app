@@ -58,7 +58,7 @@ export function SearchForm({ onSearch }: SearchFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="search-form container" noValidate>
+    <form onSubmit={handleSubmit} className="search-form container gap-3" noValidate>
       <div className="col-3">
       <CountrySelect
         value={country}

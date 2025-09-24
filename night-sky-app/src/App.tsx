@@ -1,8 +1,8 @@
 // Supports weights 200-800
 //@ts-expect-error ts can't find font but it still works
 import "@fontsource-variable/plus-jakarta-sans";
-import "./App.css";
-import "./index.css";
+import "./styles/App.css";
+import "./styles/index.css";
 import skaiLogo from "./assets/skai-logo.svg";
 import { useState } from "react";
 import { SearchForm } from "./components/SearchForm";
