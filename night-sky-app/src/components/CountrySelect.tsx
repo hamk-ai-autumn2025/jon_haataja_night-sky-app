@@ -12,22 +12,20 @@ export function CountrySelect({ value, onChange }: CountrySelectProps) {
     <div>
       <label>
         Country
-      <select
-        id="country"
-        value={value}
-        onChange={onChange}
-        className="select-field"
-        autoComplete="true"
-      >
-        <option value="">
-          Select a country
-        </option>
-        {countryNames.map((name) => (
-          <option key={name} value={name}>
-            {name}
-          </option>
-        ))}
-      </select>
+        <select
+          id="country"
+          value={value}
+          onChange={onChange}
+          className="select-field"
+          autoComplete="true"
+        >
+          <option value="">Select a country</option>
+          {countryNames.map((name) => (
+            <option key={name} value={name}>
+              {name}
+            </option>
+          ))}
+        </select>
       </label>
     </div>
   );

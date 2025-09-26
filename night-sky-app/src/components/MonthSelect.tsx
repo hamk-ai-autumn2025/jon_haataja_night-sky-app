@@ -8,14 +8,26 @@ interface MonthSelectProps {
   required?: boolean;
 }
 
-const MonthSelect: React.FC<MonthSelectProps> = ({ value, onChange, label = "Month", required = false }) => (
+const MonthSelect: React.FC<MonthSelectProps> = ({
+  value,
+  onChange,
+  label = "Month",
+  required = false,
+}) => (
   <div className="month-select">
     <label>
       {label}
-      <select value={value} onChange={onChange} required={required} className="select-field">
+      <select
+        value={value}
+        onChange={onChange}
+        required={required}
+        className="select-field"
+      >
         <option value="">Select a month</option>
         {months.map((month) => (
-          <option key={month} value={month}>{month}</option>
+          <option key={month} value={month}>
+            {month}
+          </option>
         ))}
       </select>
     </label>

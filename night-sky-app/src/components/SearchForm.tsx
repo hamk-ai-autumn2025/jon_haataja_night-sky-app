@@ -58,14 +58,20 @@ export function SearchForm({ onSearch }: SearchFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="search-form container gap-3" noValidate>
+    <form
+      onSubmit={handleSubmit}
+      className="search-form container gap-3"
+      noValidate
+    >
       <div className="col-3">
-      <CountrySelect
-        value={country}
-        onChange={(e) => setCountry(e.target.value)}
-      />
-      
-      {errors.country && <div className="error-message">{errors.country}</div>}
+        <CountrySelect
+          value={country}
+          onChange={(e) => setCountry(e.target.value)}
+        />
+
+        {errors.country && (
+          <div className="error-message">{errors.country}</div>
+        )}
       </div>
       <div className="col-3">
         <MonthSelect

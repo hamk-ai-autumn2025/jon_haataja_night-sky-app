@@ -1,7 +1,7 @@
-import { describe, it, expect, vi } from 'vitest';
-import getAstronomyEvents from '../services/openaiService';
+import { describe, it, expect, vi } from "vitest";
+import getAstronomyEvents from "../services/openaiService";
 
-vi.mock('openai', () => {
+vi.mock("openai", () => {
   return {
     default: vi.fn().mockImplementation(() => ({
       chat: {
@@ -12,10 +12,11 @@ vi.mock('openai', () => {
                 message: {
                   content: JSON.stringify([
                     {
-                      date: '2025-09-23',
-                      title: 'Saturn at Opposition',
-                      description: 'Saturn is opposite the Sun and fully illuminated.',
-                      visibility: 'telescope',
+                      date: "2025-09-23",
+                      title: "Saturn at Opposition",
+                      description:
+                        "Saturn is opposite the Sun and fully illuminated.",
+                      visibility: "telescope",
                     },
                   ]),
                 },
@@ -28,15 +29,15 @@ vi.mock('openai', () => {
   };
 });
 
-describe('getAstronomyEvents', () => {
-  it('returns parsed astronomy events from OpenAI response', async () => {
-    const events = await getAstronomyEvents('Finland', 'September', '2025');
+describe("getAstronomyEvents", () => {
+  it("returns parsed astronomy events from OpenAI response", async () => {
+    const events = await getAstronomyEvents("Finland", "September", "2025");
     expect(Array.isArray(events)).toBe(true);
     expect(events[0]).toMatchObject({
-      date: '2025-09-23',
-      title: 'Saturn at Opposition',
+      date: "2025-09-23",
+      title: "Saturn at Opposition",
       description: expect.any(String),
-      visibility: 'telescope',
+      visibility: "telescope",
     });
   });
 });

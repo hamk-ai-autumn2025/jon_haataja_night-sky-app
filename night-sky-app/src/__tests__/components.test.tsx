@@ -10,9 +10,7 @@ import Input from "../components/Input";
 describe("CountrySelect", () => {
   it("renders and allows selection", () => {
     const handleChange = vi.fn();
-    render(
-      <CountrySelect value="FI" onChange={handleChange} />
-    );
+    render(<CountrySelect value="FI" onChange={handleChange} />);
     // Should render a select element
     const select = screen.getByRole("combobox");
     expect(select).toBeInTheDocument();
@@ -25,9 +23,7 @@ describe("CountrySelect", () => {
 describe("MonthSelect", () => {
   it("renders and allows selection", () => {
     const handleChange = vi.fn();
-    render(
-      <MonthSelect value="January" onChange={handleChange} required />
-    );
+    render(<MonthSelect value="January" onChange={handleChange} required />);
     const select = screen.getByRole("combobox");
     expect(select).toBeInTheDocument();
     fireEvent.change(select, { target: { value: "February" } });
@@ -48,7 +44,7 @@ describe("Input", () => {
         id="year"
         placeholder="2025"
         min={0}
-      />
+      />,
     );
     const input = screen.getByLabelText("Year");
     expect(input).toBeInTheDocument();

@@ -24,16 +24,16 @@ const Input: React.FC<InputProps> = ({
   <div>
     <label htmlFor={htmlFor}>
       {label}
-    <input
-      type={type}
-      value={value}
-      onChange={onChange}
-      id={id}
-      className="input-field"
-      placeholder={placeholder}
-      {...(min !== undefined ? { min } : {})}
-    ></input>
-        </label>
+      <input
+        type={type}
+        value={value}
+        onChange={onChange}
+        id={id}
+        className="input-field"
+        placeholder={placeholder}
+        {...(min !== undefined ? { min } : {})}
+      ></input>
+    </label>
   </div>
 );
 
