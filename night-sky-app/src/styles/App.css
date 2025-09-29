@@ -9,6 +9,50 @@ body {
   padding: 0;
 }
 
+.position-relative {
+  position: relative;
+}
+
+.position-absolute {
+  position: absolute;
+}
+
+.event-card-img {
+  width: 100%;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+}
+
+.event-card-symbols {
+  top: 1em;
+    right: 1.5em;
+    z-index: 1000;
+    background: #0C0024;
+    border-radius: 100%;
+    padding-top: 0.5em;
+    padding-bottom: .1em;
+    padding-left: .5em;
+    padding-right: .5em;
+}
+
+.date-wrapper {
+  width: 2rem;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-self: center;
+}
+
+.date{
+    width: min-intrinsic;
+    width: -webkit-min-content;
+    width: -moz-min-content;
+    width: min-content;
+    display: table-caption;
+    display: -ms-grid;
+    -ms-grid-columns: min-content;
+}
+
 .flex {
   display: flex;
 }
@@ -264,9 +308,23 @@ h4 {
 }
 
 .event-card {
-  background: #1a1a40;
-  padding: 1rem;
-  border-radius: 0.5rem;
+  /* display: flex;
+  flex-direction: column; */
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(21px);
+  border-radius: 25px;
+  height: 100%;
+
+}
+
+.event-card img {
+  width: 100%;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+}
+
+.event-card-content {
+  padding: 1em;
 }
 
 .form-group {
@@ -389,9 +447,11 @@ option,
 
 .symbol-eye {
   margin-right: 0.7em;
+  vertical-align: middle;
 }
 
 .symbol-telescope {
+  vertical-align: middle;
   margin-right: 0.7em;
 }
 

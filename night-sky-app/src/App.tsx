@@ -11,6 +11,8 @@ import SortSelect, { SortOption } from "./components/SortSelect";
 import sortEvents from "./components/sortEvents";
 import getAstronomyEvents from "./services/openaiService";
 import Footer from "./components/Footer";
+import EyeIcon from "./assets/eye.svg";
+import TelescopeIcon from "./assets/telescope.svg";
 
 export interface AstronomyEvent {
   date: string;
@@ -116,11 +118,15 @@ function App() {
                     <h2 className="symbols-h2">September 2025 events in Finland</h2>
                     <h3>Symbol  explanations:</h3>
                     <p className="symbol-explanations">
-                      <span className="symbol-eye">👁️</span> 
+                      <span className="symbol-eye">
+                        <img src={EyeIcon} alt="Naked Eye" />
+                      </span> 
                       Visible with the naked eye
                     </p>
                     <p>
-                      <span className="symbol-telescope">🔭</span>
+                      <span className="symbol-telescope">
+                        <img src={TelescopeIcon} alt="Telescope" />
+                      </span>
                       Requires a telescope
                     </p>
                   </div>
