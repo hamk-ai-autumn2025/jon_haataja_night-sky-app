@@ -21,17 +21,25 @@ export interface AstronomyEvent {
   visibility: "naked_eye" | "telescope";
 }
 
+
 function App() {
   const [events, setEvents] = useState<AstronomyEvent[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [sort, setSort] = useState<SortOption>("");
+  // State to store the last searched country, month, and year
+  const [searchedCountry, setSearchedCountry] = useState<string>("");
+  const [searchedMonth, setSearchedMonth] = useState<string>("");
+  const [searchedYear, setSearchedYear] = useState<string>("");
 
   const displayedEvents = useMemo(() => sortEvents(events, sort), [events, sort]);
 
   async function handleSearch(country: string, month: string, year: string) {
     setLoading(true);
     setError("");
+    setSearchedCountry(country);
+    setSearchedMonth(month);
+    setSearchedYear(year);
     try {
       const data = await getAstronomyEvents(country, month, year);
       if (Array.isArray(data)) {
@@ -112,10 +120,13 @@ function App() {
 
             {!loading && events.length > 0 && (
               <div className="col-12">
-
                 <div className="flex">
                   <div className="col-7 w-100">
-                    <h2 className="symbols-h2">September 2025 events in Finland</h2>
+                    <h2 className="symbols-h2">
+                      {searchedMonth && searchedYear && searchedCountry
+                        ? `${searchedMonth} ${searchedYear} events in ${searchedCountry}`
+                        : "Astronomy Events"}
+                    </h2>
                     <h3>Symbol  explanations:</h3>
                     <p className="symbol-explanations">
                       <span className="symbol-eye">

@@ -54,7 +54,7 @@ function EventCard({ event }: EventCardProps) {
         formattedDate = `${monthNames[d.getMonth()]} ${d.getDate()}`;
       }
     }
-  } catch (e) {
+  } catch {
     // fallback silently keeps original event.date
   }
   return (
