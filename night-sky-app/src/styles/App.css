@@ -177,16 +177,24 @@ h4 {
   font-size: 1.2rem;
   font-weight: 500;
   font-family: inherit;
-  transition:
-    background-color 0.25s,
-    color 0.25s;
+  transition: transform 400ms ease-out 100ms;
 }
 .btn-primary:hover {
   background-color: #c1c1ff;
   border: none;
   outline: none;
   color: #000;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  transition: transform 300ms ease-out;
+  transform: scale(1.02);
+  transition-delay: 50ms
 }
+
+.btn-primary:active {
+  transform: scale(0.98);
+  transition: transform 100ms ease-in;
+}
+
 .btn-primary:disabled {
   background-color: #c2c2c2;
   color: #090022;
@@ -209,16 +217,17 @@ h4 {
   font-size: 1.2rem;
   font-weight: 500;
   font-family: inherit;
-  transition:
-    background-color 0.25s,
-    color 0.25s,
-    border-color 0.25s;
+  transition: transform 400ms ease-out 100ms;
 }
 .btn-secondary:hover {
   background-color: #c1c1ff;
   border: 2px solid #c1c1ff;
   outline: none;
   color: #000;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  transition: transform 300ms ease-out;
+  transform: scale(1.02);
+  transition-delay: 50ms
 }
 .btn-secondary:disabled {
   background-color: transparent;
@@ -229,6 +238,11 @@ h4 {
 }
 .btn-secondary:focus {
   outline: 3px solid #ffff00;
+}
+
+.btn-secondary:active {
+  transform: scale(0.98);
+  transition: transform 100ms ease-in;
 }
 
 /* Search form styles */
@@ -319,6 +333,14 @@ h4 {
   border-radius: 25px;
   height: 100%;
 
+}
+
+.event-card:hover {
+  cursor: pointer;
+box-shadow: rgba(255, 255, 255, 0.2) 0px 8px 24px;
+transition: transform 300ms ease-out;
+  transform: scale(1.02);
+  transition-delay: 50ms
 }
 
 .event-card img {
@@ -580,6 +602,10 @@ ul li a:hover {
   -webkit-overflow-scrolling: none!important;
   overflow: hidden!important;
   overscroll-behavior: contain!important;
+}
+
+.modal-overlay:focus {
+  outline: none;
 }
 
 .modal-content {
