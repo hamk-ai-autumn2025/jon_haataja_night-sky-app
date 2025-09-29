@@ -140,7 +140,7 @@ function App() {
                   <div className="col-7 w-100">
                     <h2 className="symbols-h2">
                       {searchedMonth && searchedYear && searchedCountry
-                        ? `${searchedMonth} ${searchedYear} events in ${searchedCountry}`
+                        ? `${searchedMonth} ${searchedYear} events in ${searchedCountry}:`
                         : "Astronomy Events"}
                     </h2>
                     <h3>Symbol  explanations:</h3>

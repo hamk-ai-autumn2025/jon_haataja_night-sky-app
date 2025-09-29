@@ -55,6 +55,8 @@ body {
     display: table-caption;
     display: -ms-grid;
     -ms-grid-columns: min-content;
+    font-size: 1.2rem;
+    font-weight: 600;
 }
 
 .flex {
@@ -261,6 +263,10 @@ h4 {
   width: 100%;
   margin: 1rem auto;
   max-width: 1200px;
+}
+
+.gap-2 {
+  gap: 2em!important;
 }
 
 /*Error message*/

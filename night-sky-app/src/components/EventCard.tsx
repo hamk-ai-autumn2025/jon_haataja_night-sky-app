@@ -78,12 +78,12 @@ function EventCard({ event, onClick }: EventCardProps) {
         </span>
       </div>
       <div className="event-card-content">
-        <div className="container flex">
+        <div className="container flex gap-2">
           <div className="col-3 date-wrapper">
             <p className="date">{formattedDate}</p>
           </div>
           <div className="col-9 w-100">
-            <h4>{event.title}</h4>
+            <h4 className="event-card-title">{event.title}</h4>
           </div>
         </div>
       </div>
