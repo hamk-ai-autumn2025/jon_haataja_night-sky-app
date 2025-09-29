@@ -21,6 +21,7 @@ export interface AstronomyEvent {
   title: string;
   description: string;
   visibility: "naked_eye" | "telescope";
+  tips?: string;
 }
 
 
@@ -181,6 +182,7 @@ function App() {
               <p><strong>Date:</strong> {selectedEvent.date}</p>
               <p><strong>Description:</strong> {selectedEvent.description}</p>
               <p><strong>Visibility:</strong> {selectedEvent.visibility === "naked_eye" ? "Naked Eye" : "Telescope"}</p>
+              <p><strong>Tips for Best Viewing:</strong> {selectedEvent.tips}</p>
             </div>
 
             <div className="col-5">
