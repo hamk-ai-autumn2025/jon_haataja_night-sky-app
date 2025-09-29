@@ -67,3 +67,17 @@ export default tseslint.config([
   },
 ]);
 ```
+
+## Event Sorting
+
+The application now provides a sorting control ("Sort By") above the list of astronomy events once results are loaded. Available options:
+
+- Date (Oldest → Newest)
+- Date (Newest → Oldest)
+- Title (A → Z)
+- Title (Z → A)
+- Visibility (Naked Eye First)
+- Visibility (Telescope First)
+
+Selecting an option reorders the rendered event cards client‑side without additional API calls.
+

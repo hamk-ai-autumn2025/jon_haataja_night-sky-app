@@ -325,6 +325,10 @@ option,
   width: auto;
 }
 
+.border-bottom-none {
+  border-bottom: none !important;
+}
+
 /* Navbar styles */
 .logo {
   height: auto;

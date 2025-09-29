@@ -4,9 +4,11 @@ import "@fontsource-variable/plus-jakarta-sans";
 import "./styles/App.css";
 import "./styles/index.css";
 import skaiLogo from "./assets/skai-logo.svg";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { SearchForm } from "./components/SearchForm";
 import EventList from "./components/EventList";
+import SortSelect, { SortOption } from "./components/SortSelect";
+import sortEvents from "./components/sortEvents";
 import getAstronomyEvents from "./services/openaiService";
 import Footer from "./components/Footer";
 
@@ -21,6 +23,9 @@ function App() {
   const [events, setEvents] = useState<AstronomyEvent[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [sort, setSort] = useState<SortOption>("");
+
+  const displayedEvents = useMemo(() => sortEvents(events, sort), [events, sort]);
 
   async function handleSearch(country: string, month: string, year: string) {
     setLoading(true);
@@ -103,7 +108,14 @@ function App() {
             {loading && <p>Loading events...</p>}
             {error && <p className="error">{error}</p>}
 
-            {!loading && events.length > 0 && <EventList events={events} />}
+            {!loading && events.length > 0 && (
+              <div className="col-12">
+                <div className="display-flex gap-2" style={{ alignItems: "flex-end", justifyContent: "space-between", flexWrap: "wrap" }}>
+                  <SortSelect value={sort} onChange={setSort} />
+                </div>
+                <EventList events={displayedEvents} />
+              </div>
+            )}
           </div>
         </section>
 
