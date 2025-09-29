@@ -9,6 +9,26 @@ body {
   padding: 0;
 }
 
+.flex {
+  display: flex;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.w-50 {
+  width: 50%;
+}
+
+.justify-end {
+  justify-content: end;
+}
+
+.align-items-end {
+  align-items: end;
+}
+
 .pt-3 {
   padding-top: 3rem;
 }
@@ -44,6 +64,39 @@ h1 {
     0 4px 4px rgba(0, 0, 0, 0.15),
     0 6px 16px rgba(0, 0, 0, 0.15);
   font-size: 3.65rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -1.52px;
+  padding: 0;
+  margin: 0;
+}
+
+h2 {
+  color: #fff;
+  font-size: 2.5rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -1.52px;
+  padding: 0;
+  margin: 0;
+}
+
+h3 {
+  color: #F3F3F3;
+  font-size: 1.9rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -1.52px;
+  padding: 0;
+  margin: 0;
+}
+
+h4 {
+  color: #F3F3F3;
+  font-size: 1.6rem;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
@@ -329,6 +382,24 @@ option,
   border-bottom: none !important;
 }
 
+/* Symbol styles */
+.symbols-h2 {
+  margin-bottom: 1.2em;
+}
+
+.symbol-eye {
+  margin-right: 0.7em;
+}
+
+.symbol-telescope {
+  margin-right: 0.7em;
+}
+
+.symbol-explanations {
+  margin-top: .9em;
+  margin-bottom: .55em;
+}
+
 /* Navbar styles */
 .logo {
   height: auto;
@@ -452,6 +523,18 @@ ul li a:hover {
 
   h1 {
     font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 1.9rem;
+  }
+
+  h3 {
+    font-size: 1.6rem;
+  }
+
+  h4 {
+    font-size: 1.4rem;
   }
 
   .h1-p-container {

@@ -110,9 +110,25 @@ function App() {
 
             {!loading && events.length > 0 && (
               <div className="col-12">
-                <div className="display-flex gap-2" style={{ alignItems: "flex-end", justifyContent: "space-between", flexWrap: "wrap" }}>
-                  <SortSelect value={sort} onChange={setSort} />
+
+                <div className="flex">
+                  <div className="col-7 w-100">
+                    <h2 className="symbols-h2">September 2025 events in Finland</h2>
+                    <h3>Symbol  explanations:</h3>
+                    <p className="symbol-explanations">
+                      <span className="symbol-eye">👁️</span> 
+                      Visible with the naked eye
+                    </p>
+                    <p>
+                      <span className="symbol-telescope">🔭</span>
+                      Requires a telescope
+                    </p>
+                  </div>
+                  <div className="col-5 flex justify-end align-items-end w-50">
+                      <SortSelect value={sort} onChange={setSort} />
+                  </div>
                 </div>
+
                 <EventList events={displayedEvents} />
               </div>
             )}
