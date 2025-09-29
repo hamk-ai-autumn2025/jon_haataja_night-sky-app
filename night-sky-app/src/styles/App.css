@@ -9,6 +9,10 @@ body {
   padding: 0;
 }
 
+.margin-0 {
+  margin: 0 !important;
+}
+
 .position-relative {
   position: relative;
 }
@@ -559,6 +563,72 @@ ul li a:hover {
   vertical-align: middle;
   height: 1.2em;
 }
+
+/* Modal styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  touch-action: none!important;
+  -webkit-overflow-scrolling: none!important;
+  overflow: hidden!important;
+  overscroll-behavior: contain!important;
+}
+
+.modal-content {
+  background: #1F1436;
+  color: #fff;
+  border-radius: 20px;
+  max-width: 77.4375rem;
+  max-height: 69.3125rem;
+  width: 50vw;
+  height: 85vh;
+  position: relative;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  touch-action: none!important;
+  -webkit-overflow-scrolling: none!important;
+  overflow: hidden!important;
+  overscroll-behavior: contain!important;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.modal-image {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  padding: 0;
+  margin: 0;
+}
+
+.modal-text {
+  padding: 2rem;
+  overflow-y: auto;
+  height: calc(100% - 4rem);
+}
+
+.modal-text > h2 {
+  margin-top: 0;
+  margin-bottom: .7em;
+  font-size: 2rem;
+}
+
 
 /* Media queries */
 @media (max-width: 900px) {

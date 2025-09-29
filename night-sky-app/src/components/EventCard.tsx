@@ -5,9 +5,10 @@ import TelescopeIcon from "../assets/telescope.svg";
 
 interface EventCardProps {
   event: AstronomyEvent;
+  onClick?: (event: AstronomyEvent) => void;
 }
 
-function EventCard({ event }: EventCardProps) {
+function EventCard({ event, onClick }: EventCardProps) {
   // Expect event.date to be an ISO-like string (YYYY-MM-DD) or parseable by Date.
   // We display it as 'MMM D' in uppercase (e.g., 'SEP 7').
   let formattedDate = event.date;
@@ -58,7 +59,18 @@ function EventCard({ event }: EventCardProps) {
     // fallback silently keeps original event.date
   }
   return (
-    <div className="event-card col-4">
+    <div
+      className="event-card col-4"
+      style={{ cursor: onClick ? "pointer" : undefined }}
+      onClick={() => onClick && onClick(event)}
+      tabIndex={onClick ? 0 : undefined}
+      role={onClick ? "button" : undefined}
+      onKeyDown={e => {
+        if (onClick && (e.key === "Enter" || e.key === " ")) {
+          onClick(event);
+        }
+      }}
+    >
       <div className="position-relative">
         <img src={MoonImage} alt={event.title} className=" event-card-img"/>
         <span className="position-absolute event-card-symbols">
@@ -72,11 +84,8 @@ function EventCard({ event }: EventCardProps) {
           </div>
           <div className="col-9 w-100">
             <h4>{event.title}</h4>
-            <p>{event.description}</p>
           </div>
-
         </div>
-
       </div>
     </div>
   );

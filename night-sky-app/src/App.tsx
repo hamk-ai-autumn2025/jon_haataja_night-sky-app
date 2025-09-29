@@ -5,6 +5,7 @@ import "./styles/App.css";
 import "./styles/index.css";
 import skaiLogo from "./assets/skai-logo.svg";
 import { useMemo, useState } from "react";
+import Modal from "./components/Modal";
 import { SearchForm } from "./components/SearchForm";
 import EventList from "./components/EventList";
 import SortSelect, { SortOption } from "./components/SortSelect";
@@ -13,6 +14,7 @@ import getAstronomyEvents from "./services/openaiService";
 import Footer from "./components/Footer";
 import EyeIcon from "./assets/eye.svg";
 import TelescopeIcon from "./assets/telescope.svg";
+import TallMoonImage from "./assets/skai-moon-tall.png";
 
 export interface AstronomyEvent {
   date: string;
@@ -31,6 +33,20 @@ function App() {
   const [searchedCountry, setSearchedCountry] = useState<string>("");
   const [searchedMonth, setSearchedMonth] = useState<string>("");
   const [searchedYear, setSearchedYear] = useState<string>("");
+
+  // Modal state for selected event
+  const [selectedEvent, setSelectedEvent] = useState<AstronomyEvent | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleCardClick = (event: AstronomyEvent) => {
+    setSelectedEvent(event);
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+    setSelectedEvent(null);
+  };
 
   const displayedEvents = useMemo(() => sortEvents(events, sort), [events, sort]);
 
@@ -146,7 +162,7 @@ function App() {
                   </div>
                 </div>
 
-                <EventList events={displayedEvents} />
+                <EventList events={displayedEvents} onCardClick={handleCardClick} />
               </div>
             )}
           </div>
@@ -155,7 +171,26 @@ function App() {
         <section className="footer">
           <Footer />
         </section>
-      </main>
+      {/* Modal for event details */}
+      <Modal isOpen={isModalOpen} onClose={handleModalClose}>
+        {selectedEvent && (
+          <div className="container margin-0">
+
+            <div className="col-7 modal-text">
+              <h2>{selectedEvent.title}</h2>
+              <p><strong>Date:</strong> {selectedEvent.date}</p>
+              <p><strong>Description:</strong> {selectedEvent.description}</p>
+              <p><strong>Visibility:</strong> {selectedEvent.visibility === "naked_eye" ? "Naked Eye" : "Telescope"}</p>
+            </div>
+
+            <div className="col-5">
+              <img src={TallMoonImage} alt="Tall Moon Image" className="modal-image"/>
+            </div>
+
+          </div>
+        )}
+      </Modal>
+    </main>
     </div>
   );
 }
