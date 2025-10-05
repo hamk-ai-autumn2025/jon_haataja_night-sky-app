@@ -9,6 +9,14 @@ body {
   padding: 0;
 }
 
+.justify-center {
+  justify-content: center;
+  align-self: center;
+  text-align: center;
+  justify-items: center;
+  align-content: center;
+}
+
 .margin-0 {
   margin: 0 !important;
 }
@@ -676,6 +684,37 @@ ul li a:hover {
   font-weight: 400;
 }
 
+/*Loader*/
+.loader {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-block;
+  border-top: 4px solid #FFF;
+  border-right: 4px solid transparent;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+.loader::after {
+  content: '';  
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border-bottom: 4px solid #b472ff;
+  border-left: 4px solid transparent;
+}
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} 
 
 /* Media queries */
 @media (max-width: 900px) {

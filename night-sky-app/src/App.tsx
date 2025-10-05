@@ -149,7 +149,13 @@ function App() {
 
         <section className="container">
           <div className="col-12">
-            {loading && <p>Loading events...</p>}
+            {loading && 
+            <div className="container">
+              <div className="col-12 justify-center">
+                <span className="loader"></span>
+              </div>
+            </div>
+            }
             {error && <p className="error">{error}</p>}
 
             {!loading && events.length > 0 && (
