@@ -19,7 +19,7 @@ async function getAstronomyEvents(
       {
         role: "system",
         content:
-          "You are an astronomy assistant. Generate a list of upcoming astronomy events in structured JSON. Each event must include date, title, description, visibility ('naked_eye' or 'telescope') and tips for best viewing.",
+          "You are an astronomy assistant. Generate a list of upcoming astronomy events in structured JSON. Each event must include date, title, a detailed description, visibility ('naked_eye' or 'telescope') and tips for best viewing.",
       },
       {
         role: "user",

@@ -51,6 +51,21 @@ function App() {
 
   const displayedEvents = useMemo(() => sortEvents(events, sort), [events, sort]);
 
+  // Helper to format a date string as DD.MM.YYYY for modal display only
+  const formatDateForModal = (dateStr: string | undefined | null) => {
+    if (!dateStr) return "";
+    // Try to parse ISO-like or common date strings
+    const date = new Date(dateStr);
+    if (isNaN(date.getTime())) {
+      // If parsing failed, return original string as fallback
+      return dateStr;
+    }
+    const dd = String(date.getDate()).padStart(2, "0");
+    const mm = String(date.getMonth() + 1).padStart(2, "0");
+    const yyyy = date.getFullYear();
+    return `${dd}.${mm}.${yyyy}`;
+  };
+
   async function handleSearch(country: string, month: string, year: string) {
     setLoading(true);
     setError("");
@@ -179,10 +194,37 @@ function App() {
 
             <div className="col-7 modal-text">
               <h2>{selectedEvent.title}</h2>
-              <p><strong>Date:</strong> {selectedEvent.date}</p>
-              <p><strong>Description:</strong> {selectedEvent.description}</p>
-              <p><strong>Visibility:</strong> {selectedEvent.visibility === "naked_eye" ? "Naked Eye" : "Telescope"}</p>
-              <p><strong>Tips for Best Viewing:</strong> {selectedEvent.tips}</p>
+              <div className="container">
+
+                <div className="col-6">
+                  <h3 className="modal-subtitle">Date</h3> 
+                  <p className="modal-paragraph">
+                    {formatDateForModal(selectedEvent.date)}
+                  </p>
+                </div>
+
+                <div className="col-6">
+                  <h3 className="modal-subtitle">Visibility</h3>
+                  <p className="modal-paragraph">
+                    {selectedEvent.visibility === "naked_eye" ? "Naked Eye" : "Telescope"}
+                  </p>
+                </div>
+              
+              <div className="col-12">
+                <h3 className="modal-subtitle">Description</h3>
+                <p className="modal-paragraph">
+                  {selectedEvent.description}
+                </p>
+              </div>
+
+              <div className="col-12">
+                <h3 className="modal-subtitle">Tips for Best Viewing</h3>
+                <p className="modal-paragraph">
+                  {selectedEvent.tips}
+                </p>
+              </div>
+
+              </div>
             </div>
 
             <div className="col-5">

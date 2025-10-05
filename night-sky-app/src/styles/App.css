@@ -660,6 +660,22 @@ ul li a:hover {
   font-size: 2rem;
 }
 
+.modal-subtitle {
+  font-size: .9rem;
+  margin-bottom: .6em;
+  color: #F3F3F3;
+  letter-spacing: 0.15rem;
+  font-weight: 400;
+}
+
+.modal-paragraph {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #F3F3F3;
+  margin-bottom: 1em;
+  font-weight: 400;
+}
+
 
 /* Media queries */
 @media (max-width: 900px) {
