@@ -14,7 +14,9 @@ import getAstronomyEvents from "./services/openaiService";
 import Footer from "./components/Footer";
 import EyeIcon from "./assets/eye.svg";
 import TelescopeIcon from "./assets/telescope.svg";
-import TallMoonImage from "./assets/skai-moon-tall.png";
+
+import { getEventImageTall } from './components/EventCard';
+
 
 export interface AstronomyEvent {
   date: string;
@@ -228,7 +230,7 @@ function App() {
             </div>
 
             <div className="col-5">
-              <img src={TallMoonImage} alt="Tall Moon Image" className="modal-image"/>
+              <img src={getEventImageTall(selectedEvent.title)} alt={`Tall ${selectedEvent.title} Image`} className="modal-image"/>
             </div>
 
           </div>
