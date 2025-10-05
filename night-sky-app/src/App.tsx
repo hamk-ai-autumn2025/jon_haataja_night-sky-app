@@ -15,7 +15,7 @@ import Footer from "./components/Footer";
 import EyeIcon from "./assets/eye.svg";
 import TelescopeIcon from "./assets/telescope.svg";
 
-import { getEventImageTall } from './components/EventCard';
+import { getEventImageTall } from './components/eventImages';
 
 
 export interface AstronomyEvent {
@@ -170,7 +170,7 @@ function App() {
                     </p>
                     <p>
                       <span className="symbol-telescope">
-                        <img src={TelescopeIcon} alt="Telescope" />
+                        <img src={TelescopeIcon} />
                       </span>
                       Requires a telescope
                     </p>
