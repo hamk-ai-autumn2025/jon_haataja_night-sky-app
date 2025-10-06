@@ -18,6 +18,8 @@ export function CountrySelect({ value, onChange }: CountrySelectProps) {
           onChange={onChange}
           className="select-field"
           autoComplete="true"
+          aria-describedby="country-error"
+          aria-required="true"
         >
           <option value="">Select a country</option>
           {countryNames.map((name) => (

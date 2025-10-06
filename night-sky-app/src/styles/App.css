@@ -283,6 +283,15 @@ h4 {
   font-weight: 500;
 }
 
+.aria-error-message {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+}
+
 /*Flex classes*/
 .display-flex {
   display: flex;
@@ -704,7 +713,7 @@ ul li a:hover {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  border-bottom: 4px solid #b472ff;
+  border-bottom: 4px solid #ffff00;
   border-left: 4px solid transparent;
 }
 @keyframes rotation {

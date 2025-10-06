@@ -22,6 +22,8 @@ const MonthSelect: React.FC<MonthSelectProps> = ({
         onChange={onChange}
         required={required}
         className="select-field"
+        aria-describedby="month-error"
+        aria-required="true"
       >
         <option value="">Select a month</option>
         {months.map((month) => (
