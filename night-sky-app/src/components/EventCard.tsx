@@ -68,16 +68,20 @@ function EventCard({ event, onClick }: EventCardProps) {
       onClick={() => onClick && onClick(event)}
       tabIndex={onClick ? 0 : undefined}
       role={onClick ? "button" : undefined}
-      onKeyDown={e => {
+      onKeyDown={(e) => {
         if (onClick && (e.key === "Enter" || e.key === " ")) {
           onClick(event);
         }
       }}
     >
       <div className="position-relative">
-        <img src={eventImage} alt={event.title} className=" event-card-img"/>
+        <img src={eventImage} alt={event.title} className=" event-card-img" />
         <span className="position-absolute event-card-symbols">
-          {event.visibility === "naked_eye" ? <img src={EyeIcon} alt="Naked Eye" /> : <img src={TelescopeIcon} alt="Telescope" />}
+          {event.visibility === "naked_eye" ? (
+            <img src={EyeIcon} alt="Naked Eye" />
+          ) : (
+            <img src={TelescopeIcon} alt="Telescope" />
+          )}
         </span>
       </div>
       <div className="event-card-content">

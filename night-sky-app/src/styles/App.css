@@ -37,14 +37,14 @@ body {
 
 .event-card-symbols {
   top: 1em;
-    right: 1.5em;
-    z-index: 1000;
-    background: #0C0024;
-    border-radius: 100%;
-    padding-top: 0.5em;
-    padding-bottom: .1em;
-    padding-left: .5em;
-    padding-right: .5em;
+  right: 1.5em;
+  z-index: 1000;
+  background: #0c0024;
+  border-radius: 100%;
+  padding-top: 0.5em;
+  padding-bottom: 0.1em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
 }
 
 .date-wrapper {
@@ -55,16 +55,16 @@ body {
   justify-self: center;
 }
 
-.date{
-    width: min-intrinsic;
-    width: -webkit-min-content;
-    width: -moz-min-content;
-    width: min-content;
-    display: table-caption;
-    display: -ms-grid;
-    -ms-grid-columns: min-content;
-    font-size: 1.2rem;
-    font-weight: 600;
+.date {
+  width: min-intrinsic;
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+  display: table-caption;
+  display: -ms-grid;
+  -ms-grid-columns: min-content;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
 .flex {
@@ -141,7 +141,7 @@ h2 {
 }
 
 h3 {
-  color: #F3F3F3;
+  color: #f3f3f3;
   font-size: 1.9rem;
   font-style: normal;
   font-weight: 600;
@@ -152,7 +152,7 @@ h3 {
 }
 
 h4 {
-  color: #F3F3F3;
+  color: #f3f3f3;
   font-size: 1.6rem;
   font-style: normal;
   font-weight: 600;
@@ -196,7 +196,7 @@ h4 {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   transition: transform 300ms ease-out;
   transform: scale(1.02);
-  transition-delay: 50ms
+  transition-delay: 50ms;
 }
 
 .btn-primary:active {
@@ -236,7 +236,7 @@ h4 {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   transition: transform 300ms ease-out;
   transform: scale(1.02);
-  transition-delay: 50ms
+  transition-delay: 50ms;
 }
 .btn-secondary:disabled {
   background-color: transparent;
@@ -273,7 +273,7 @@ h4 {
 }
 
 .gap-2 {
-  gap: 2em!important;
+  gap: 2em !important;
 }
 
 /*Error message*/
@@ -354,15 +354,14 @@ h4 {
   backdrop-filter: blur(21px);
   border-radius: 25px;
   height: 100%;
-
 }
 
 .event-card:hover {
   cursor: pointer;
-box-shadow: rgba(255, 255, 255, 0.2) 0px 8px 24px;
-transition: transform 300ms ease-out;
+  box-shadow: rgba(255, 255, 255, 0.2) 0px 8px 24px;
+  transition: transform 300ms ease-out;
   transform: scale(1.02);
-  transition-delay: 50ms
+  transition-delay: 50ms;
 }
 
 .event-card img {
@@ -504,8 +503,8 @@ option,
 }
 
 .symbol-explanations {
-  margin-top: .9em;
-  margin-bottom: .55em;
+  margin-top: 0.9em;
+  margin-bottom: 0.55em;
 }
 
 /* Navbar styles */
@@ -620,10 +619,10 @@ ul li a:hover {
   align-items: center;
   justify-content: center;
   z-index: 2000;
-  touch-action: none!important;
-  -webkit-overflow-scrolling: none!important;
-  overflow: hidden!important;
-  overscroll-behavior: contain!important;
+  touch-action: none !important;
+  -webkit-overflow-scrolling: none !important;
+  overflow: hidden !important;
+  overscroll-behavior: contain !important;
 }
 
 .modal-overlay:focus {
@@ -631,7 +630,7 @@ ul li a:hover {
 }
 
 .modal-content {
-  background: #1F1436;
+  background: #1f1436;
   color: #fff;
   border-radius: 20px;
   max-width: 77.4375rem;
@@ -639,11 +638,11 @@ ul li a:hover {
   width: 50vw;
   height: 85vh;
   position: relative;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
-  touch-action: none!important;
-  -webkit-overflow-scrolling: none!important;
-  overflow: hidden!important;
-  overscroll-behavior: contain!important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  touch-action: none !important;
+  -webkit-overflow-scrolling: none !important;
+  overflow: hidden !important;
+  overscroll-behavior: contain !important;
 }
 
 .modal-close {
@@ -673,14 +672,14 @@ ul li a:hover {
 
 .modal-text > h2 {
   margin-top: 0;
-  margin-bottom: .7em;
+  margin-bottom: 0.7em;
   font-size: 2rem;
 }
 
 .modal-subtitle {
-  font-size: .9rem;
-  margin-bottom: .6em;
-  color: #F3F3F3;
+  font-size: 0.9rem;
+  margin-bottom: 0.6em;
+  color: #f3f3f3;
   letter-spacing: 0.15rem;
   font-weight: 400;
 }
@@ -688,7 +687,7 @@ ul li a:hover {
 .modal-paragraph {
   font-size: 1.2rem;
   line-height: 1.6;
-  color: #F3F3F3;
+  color: #f3f3f3;
   margin-bottom: 1em;
   font-weight: 400;
 }
@@ -699,13 +698,13 @@ ul li a:hover {
   height: 48px;
   border-radius: 50%;
   display: inline-block;
-  border-top: 4px solid #FFF;
+  border-top: 4px solid #fff;
   border-right: 4px solid transparent;
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
 }
 .loader::after {
-  content: '';  
+  content: "";
   box-sizing: border-box;
   position: absolute;
   left: 0;
@@ -723,7 +722,7 @@ ul li a:hover {
   100% {
     transform: rotate(360deg);
   }
-} 
+}
 
 /* Media queries */
 @media (max-width: 900px) {

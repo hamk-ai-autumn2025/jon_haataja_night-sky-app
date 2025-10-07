@@ -20,13 +20,16 @@ import SolarEclipseImageTall from "../assets/skai-solar-eclipse-tall.png";
  */
 export function getEventImage(title: string): string {
   const titleLower = title.toLowerCase();
-  
+
   // Check for specific keywords in the title
   if (titleLower.includes("blood moon")) {
     return BloodMoonImage;
   } else if (titleLower.includes("full moon")) {
     return FullMoonImage;
-  } else if (titleLower.includes("meteor") || titleLower.includes("meteor shower")) {
+  } else if (
+    titleLower.includes("meteor") ||
+    titleLower.includes("meteor shower")
+  ) {
     return MeteorShowerImage;
   } else if (titleLower.includes("winter solstice")) {
     return WinterSolsticeImage;
@@ -35,7 +38,7 @@ export function getEventImage(title: string): string {
   } else if (titleLower.includes("solar eclipse")) {
     return SolarEclipseImage;
   }
-  
+
   // Default fallback image
   return SolarSystemImage;
 }
@@ -47,13 +50,16 @@ export function getEventImage(title: string): string {
  */
 export function getEventImageTall(title: string): string {
   const titleLower = title.toLowerCase();
-  
+
   // Check for specific keywords in the title
   if (titleLower.includes("blood moon")) {
     return BloodMoonImageTall;
   } else if (titleLower.includes("full moon")) {
     return FullMoonImageTall;
-  } else if (titleLower.includes("meteor") || titleLower.includes("meteor shower")) {
+  } else if (
+    titleLower.includes("meteor") ||
+    titleLower.includes("meteor shower")
+  ) {
     return MeteorShowerImageTall;
   } else if (titleLower.includes("winter solstice")) {
     return WinterSolsticeImageTall;
@@ -62,7 +68,7 @@ export function getEventImageTall(title: string): string {
   } else if (titleLower.includes("solar eclipse")) {
     return SolarEclipseImageTall;
   }
-  
+
   // Default fallback image
   return SolarSystemImageTall;
 }

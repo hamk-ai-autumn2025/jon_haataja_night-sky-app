@@ -80,4 +80,3 @@ The application now provides a sorting control ("Sort By") above the list of ast
 - Visibility (Telescope First)
 
 Selecting an option reorders the rendered event cards client‑side without additional API calls.
-

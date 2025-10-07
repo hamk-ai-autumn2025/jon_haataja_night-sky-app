@@ -33,7 +33,12 @@ describe("sortEvents utility", () => {
   it("sorts by date ascending (newest → oldest)", () => {
     const sorted = sortEvents(mockEvents, "date_newest");
     const dates = sorted.map((e) => e.date);
-    expect(dates).toEqual(["2025-01-01", "2025-04-12", "2025-07-20", "2025-10-05"]);
+    expect(dates).toEqual([
+      "2025-01-01",
+      "2025-04-12",
+      "2025-07-20",
+      "2025-10-05",
+    ]);
   });
 
   it("sorts by title ascending", () => {
@@ -61,7 +66,9 @@ describe("sortEvents utility", () => {
   it("sorts by visibility naked eye first", () => {
     const sorted = sortEvents(mockEvents, "visibility_naked_eye_first");
     // First three should be naked eye
-    expect(sorted.slice(0, 3).every((e) => e.visibility === "naked_eye")).toBe(true);
+    expect(sorted.slice(0, 3).every((e) => e.visibility === "naked_eye")).toBe(
+      true,
+    );
     expect(sorted[3].visibility).toBe("telescope");
   });
 

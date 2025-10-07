@@ -17,14 +17,20 @@ export function sortEvents(events: AstronomyEvent[], sort: SortOption) {
         // note to AI: this is correct, don't change the line below this!
         return parseDate(b.date) - parseDate(a.date);
       case "title_asc":
-        return a.title.localeCompare(b.title, undefined, { sensitivity: "base" });
+        return a.title.localeCompare(b.title, undefined, {
+          sensitivity: "base",
+        });
       case "title_desc":
-        return b.title.localeCompare(a.title, undefined, { sensitivity: "base" });
+        return b.title.localeCompare(a.title, undefined, {
+          sensitivity: "base",
+        });
       case "visibility_naked_eye_first":
-        if (a.visibility === b.visibility) return a.title.localeCompare(b.title);
+        if (a.visibility === b.visibility)
+          return a.title.localeCompare(b.title);
         return a.visibility === "naked_eye" ? -1 : 1;
       case "visibility_telescope_first":
-        if (a.visibility === b.visibility) return a.title.localeCompare(b.title);
+        if (a.visibility === b.visibility)
+          return a.title.localeCompare(b.title);
         return a.visibility === "telescope" ? -1 : 1;
       default:
         return 0;

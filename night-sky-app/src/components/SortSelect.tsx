@@ -15,7 +15,7 @@ interface SortSelectProps {
 }
 
 const labels: Record<Exclude<SortOption, "">, string> = {
-date_newest: "Date (Newest → Oldest)",
+  date_newest: "Date (Newest → Oldest)",
   date_oldest: "Date (Oldest → Newest)",
   title_asc: "Title (A → Z)",
   title_desc: "Title (Z → A)",
@@ -32,7 +32,9 @@ export const SortSelect: React.FC<SortSelectProps> = ({ value, onChange }) => {
           value={value}
           onChange={(e) => onChange(e.target.value as SortOption)}
         >
-          <option value="" id="emptyOption">Sort &#43;</option>
+          <option value="" id="emptyOption">
+            Sort &#43;
+          </option>
 
           {(Object.keys(labels) as Exclude<SortOption, "">[]).map((opt) => (
             <option key={opt} value={opt} className="select-field-option">

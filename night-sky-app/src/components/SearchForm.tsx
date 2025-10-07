@@ -70,9 +70,13 @@ export function SearchForm({ onSearch }: SearchFormProps) {
         />
 
         {errors.country && (
-          <div className="error-message" aria-hidden="true">{errors.country}</div>
+          <div className="error-message" aria-hidden="true">
+            {errors.country}
+          </div>
         )}
-        <p id="country-error" className="aria-error-message">{errors.country}</p>
+        <p id="country-error" className="aria-error-message">
+          {errors.country}
+        </p>
       </div>
       <div className="col-3">
         <MonthSelect
@@ -80,9 +84,14 @@ export function SearchForm({ onSearch }: SearchFormProps) {
           onChange={(e) => setMonth(e.target.value)}
           required
         />
-        {errors.month && <div className="error-message" id="month-error" aria-hidden="true">{errors.month}</div>}
-        <p id="month-error" className="aria-error-message">{errors.month}</p>
-
+        {errors.month && (
+          <div className="error-message" id="month-error" aria-hidden="true">
+            {errors.month}
+          </div>
+        )}
+        <p id="month-error" className="aria-error-message">
+          {errors.month}
+        </p>
       </div>
       <div className="col-3">
         <Input
@@ -103,10 +112,14 @@ export function SearchForm({ onSearch }: SearchFormProps) {
           aria-describedby="year-error"
           aria-required="true"
         />
-        {errors.year && 
-        <div className="error-message" aria-hidden="true">{errors.year}</div>
-        }
-        <p id="year-error" className="aria-error-message">{errors.year}</p>
+        {errors.year && (
+          <div className="error-message" aria-hidden="true">
+            {errors.year}
+          </div>
+        )}
+        <p id="year-error" className="aria-error-message">
+          {errors.year}
+        </p>
       </div>
       <div className="col-3">
         <Button
