@@ -6,6 +6,7 @@ import "@testing-library/jest-dom";
 import CountrySelect from "../components/CountrySelect";
 import MonthSelect from "../components/MonthSelect";
 import Input from "../components/Input";
+import EventCard from "../components/EventCard";
 
 describe("CountrySelect", () => {
   it("renders and allows selection", () => {
@@ -50,5 +51,18 @@ describe("Input", () => {
     expect(input).toBeInTheDocument();
     fireEvent.change(input, { target: { value: "2024" } });
     expect(handleChange).toHaveBeenCalled();
+  });
+});
+
+describe("EventCard", () => {
+  it("formats ISO date to 'MMM D' uppercase without year", () => {
+    const event = {
+      date: "2025-09-07",
+      title: "Test Event",
+      description: "A sample astronomy event.",
+      visibility: "naked_eye" as const,
+    };
+    render(<EventCard event={event} />);
+    expect(screen.getByText("SEP 7")).toBeInTheDocument();
   });
 });
