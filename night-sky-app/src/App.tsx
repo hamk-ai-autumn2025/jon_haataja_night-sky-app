@@ -171,19 +171,6 @@ function App() {
             <label className="logo" htmlFor="check">
               <img src={skaiLogo} alt="Skai Logo" className="logo" />
             </label>
-            <ul>
-              <li>
-                <a className="active" href="#">
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="#">About</a>
-              </li>
-              <li>
-                <a href="#">Contact</a>
-              </li>
-            </ul>
           </nav>
 
           <section className="container">
