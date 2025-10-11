@@ -8,20 +8,11 @@
     "typeRoots": ["./node_modules/@types", "./src/types"],
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "composite": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "baseUrl": "./",
     "paths": {
       "@/*": ["./src/*"]
     }
-  },
-  "include": [
-    "src",
-    "__tests__",
-    "vite.config.ts",
-    "vite.setup.ts",
-    "vitest.config.ts",
-    "fontsource.d.ts"
-  ]
+  }
 }
