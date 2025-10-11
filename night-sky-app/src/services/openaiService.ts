@@ -17,7 +17,7 @@ const CACHE_PREFIX = "astronomy_events_";
 const CACHE_DURATION = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
 
 interface CachedData {
-  data: any;
+  data: unknown;
   timestamp: number;
 }
 
@@ -29,7 +29,7 @@ function getFromCache(
   country: string,
   month: string,
   year: string,
-): any | null {
+): unknown | null {
   try {
     const cacheKey = getCacheKey(country, month, year);
     const cached = localStorage.getItem(cacheKey);
@@ -55,7 +55,7 @@ function getFromCache(
   }
 }
 
-function saveToCache(country: string, month: string, year: string, data: any) {
+function saveToCache(country: string, month: string, year: string, data: unknown) {
   try {
     const cacheKey = getCacheKey(country, month, year);
     const cachedData: CachedData = {

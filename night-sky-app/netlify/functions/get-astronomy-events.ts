@@ -1,4 +1,4 @@
-import type { Handler, HandlerEvent, HandlerContext } from "@netlify/functions";
+import type { Handler, HandlerEvent } from "@netlify/functions";
 import OpenAI from "openai";
 
 const endpoint = "https://models.github.ai/inference";
@@ -8,7 +8,7 @@ const model = "openai/gpt-4.1-mini";
 const cache = new Map<
   string,
   {
-    data: any;
+    data: unknown;
     timestamp: number;
   }
 >();
@@ -21,7 +21,6 @@ function getCacheKey(country: string, month: string, year: string): string {
 
 const handler: Handler = async (
   event: HandlerEvent,
-  context: HandlerContext,
 ) => {
   // Enable CORS
   const headers = {
