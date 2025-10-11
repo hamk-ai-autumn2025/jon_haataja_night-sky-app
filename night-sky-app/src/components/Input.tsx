@@ -21,7 +21,7 @@ const Input: React.FC<InputProps> = ({
   placeholder,
   min,
 }) => (
-  <div>
+  <div className="input-component">
     <label htmlFor={htmlFor}>
       {label}
       <input

@@ -9,7 +9,7 @@ const countryNames = countries.map((c) => c.name.common).sort();
 
 export function CountrySelect({ value, onChange }: CountrySelectProps) {
   return (
-    <div>
+    <div className="country-select">
       <label>
         Country
         <select
