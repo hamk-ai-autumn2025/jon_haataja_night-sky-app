@@ -22,7 +22,7 @@ export interface AstronomyEvent {
   title: string;
   description: string;
   visibility: "naked_eye" | "telescope";
-  tips?: string;
+  tips: string;
 }
 
 function App() {
@@ -52,7 +52,10 @@ function App() {
   };
 
   const displayedEvents = useMemo(
-    () => sortEvents(events, sort),
+    () => {
+      const sorted = sortEvents(events, sort);
+      return sorted;
+    },
     [events, sort],
   );
 
@@ -79,6 +82,7 @@ function App() {
     setSearchedYear(year);
     try {
       const data = await getAstronomyEvents(country, month, year);
+      
       if (Array.isArray(data)) {
         setEvents(data);
       } else if (data && Array.isArray(data.events)) {
@@ -110,7 +114,7 @@ function App() {
                 viewBox="0 0 16 16"
               >
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
                 />
               </svg>
