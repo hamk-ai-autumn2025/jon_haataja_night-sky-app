@@ -244,13 +244,13 @@ function App() {
                     <h3>Symbol explanations:</h3>
                     <p className="symbol-explanations">
                       <span className="symbol-eye">
-                        <img src={EyeIcon} alt="Naked Eye" />
+                        <img src={EyeIcon} alt="Naked Eye Icon" />
                       </span>
                       Visible with the naked eye
                     </p>
                     <p>
                       <span className="symbol-telescope">
-                        <img src={TelescopeIcon} />
+                        <img src={TelescopeIcon} alt="Telescope Icon" />
                       </span>
                       Requires a telescope
                     </p>
@@ -266,6 +266,12 @@ function App() {
                 />
               </div>
             )}
+          </div>
+        </section>
+
+        <section className="container">
+          <div className="col-12 text-center ai-mistake-message-container">
+            <p>AI can make mistakes. Check important information.</p>
           </div>
         </section>
 
