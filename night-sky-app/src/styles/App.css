@@ -689,9 +689,9 @@ ul li a:hover {
   position: relative;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
   touch-action: none !important;
-  -webkit-overflow-scrolling: none !important;
-  overflow: hidden !important;
-  overscroll-behavior: contain !important;
+  -webkit-overflow-scrolling: none;
+  overflow: hidden;
+  overscroll-behavior: contain;
 }
 
 .modal-close {
@@ -1079,6 +1079,10 @@ ul li a:hover {
     vertical-align: middle;
   }
 
+  .modal-overlay {
+    overflow-y: scroll;
+  }
+
 }
 
 @media (max-width: 600px) {
@@ -1134,15 +1138,39 @@ ul li a:hover {
     vertical-align: middle;
   }
 
-      .search-results-area {
+    .search-results-area {
     padding-left: 1em;
     padding-right: 1em;
+  }
+
+    .modal-content {
+    width: 95vw;
+    height: 95vh;
+    overflow-y: scroll;
+  }
+
+    .modal-image {
+    width: 100%;
   }
 }
 
 @media (min-width: 600px) and (max-width: 901px) {
   .event-card {
     grid-column: span 3;
+  }
+
+  .modal-content {
+    width: 70vw;
+    height: 95vh;
+    overflow-y: scroll;
+  }
+
+  .modal-image {
+    width: 100%;
+  }
+
+    .modal-image {
+    width: 100vw;
   }
 
 }
@@ -1178,6 +1206,16 @@ ul li a:hover {
       margin-right: 2em;
       padding-left: 2em;
       padding-right: 2em;
+  }
+
+  .modal-content {
+    width: 70vw;
+    height: 95vh;
+    overflow-y: hidden;
+  }
+
+    .modal-image {
+    width: 100%;
   }
 
 }
