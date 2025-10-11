@@ -16,6 +16,7 @@ import EyeIcon from "./assets/eye.svg";
 import TelescopeIcon from "./assets/telescope.svg";
 
 import { getEventImageTall } from "./components/eventImages";
+import AddToCalendar from "./components/AddToCalendar";
 
 export interface AstronomyEvent {
   date: string;
@@ -238,6 +239,13 @@ function App() {
                   <div className="col-12">
                     <h3 className="modal-subtitle">Tips for Best Viewing</h3>
                     <p className="modal-paragraph">{selectedEvent.tips}</p>
+                  </div>
+
+                  <div className="col-12">
+                    <AddToCalendar
+                      event={selectedEvent}
+                      location={searchedCountry || "Your location"}
+                    />
                   </div>
                 </div>
               </div>

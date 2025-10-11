@@ -8,24 +8,28 @@ const mockEvents: AstronomyEvent[] = [
     title: "Zeta Meteor Shower",
     description: "Peak of the Zeta meteor shower.",
     visibility: "naked_eye",
+    tips: "Best viewed after midnight.",
   },
   {
     date: "2025-04-12",
     title: "Aurora Display",
     description: "Strong auroras visible.",
     visibility: "naked_eye",
+    tips: "Find a dark location away from city lights.",
   },
   {
     date: "2025-01-01",
     title: "Comet Observation",
     description: "Comet visible with telescope.",
     visibility: "telescope",
+    tips: "Use a telescope with at least 50x magnification.",
   },
   {
     date: "2025-07-20",
     title: "Lunar Eclipse",
     description: "Partial lunar eclipse.",
     visibility: "naked_eye",
+    tips: "Visible from most locations.",
   },
 ];
 
