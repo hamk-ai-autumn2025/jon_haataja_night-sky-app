@@ -12,6 +12,8 @@ import SolarSystemImageTall from "../assets/skai-solar-system-tall.png";
 import WinterSolsticeImageTall from "../assets/skai-winter-tall.png";
 import SummerSolsticeImageTall from "../assets/skai-summer-tall.png";
 import SolarEclipseImageTall from "../assets/skai-solar-eclipse-tall.png";
+import CometImage from "../assets/skai-comet.png";
+import CometImageTall from "../assets/skai-comet-tall.png";
 
 /**
  * Selects an appropriate image based on the event title content
@@ -37,6 +39,9 @@ export function getEventImage(title: string): string {
     return SummerSolsticeImage;
   } else if (titleLower.includes("solar eclipse")) {
     return SolarEclipseImage;
+  }
+  else if (titleLower.includes("comet")) {
+    return CometImage;
   }
 
   // Default fallback image
@@ -67,6 +72,9 @@ export function getEventImageTall(title: string): string {
     return SummerSolsticeImageTall;
   } else if (titleLower.includes("solar eclipse")) {
     return SolarEclipseImageTall;
+  }
+  else if (titleLower.includes("comet")) {
+    return CometImageTall;
   }
 
   // Default fallback image

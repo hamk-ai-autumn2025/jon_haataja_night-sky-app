@@ -19,11 +19,11 @@ async function getAstronomyEvents(
       {
         role: "system",
         content:
-          "You are an astronomy assistant. Generate a list of upcoming astronomy events in structured JSON. Each event must include date, title, a detailed description, visibility ('naked_eye' or 'telescope') and tips for best viewing.",
+          "You are an astronomy assistant. Generate a comprehensive list of astronomy events in structured JSON. Each event must include date, title, a detailed description, visibility ('naked_eye' or 'telescope') and tips for best viewing. Include ALL significant astronomical events for the requested period, including but not limited to: meteor showers, full moons, new moons, planetary conjunctions, planetary visibility peaks, eclipses, equinoxes/solstices, and other notable celestial phenomena. Aim to provide at least 10-15 events when available for the given month.",
       },
       {
         role: "user",
-        content: `Generate astronomy events for ${country} in ${month} ${year}.`,
+        content: `Generate a comprehensive list of all astronomy events for ${country} in ${month} ${year}. Include all types of events: meteor showers, moon phases, comets, planetary events, conjunctions, eclipses, and any other celestial phenomena visible from this location during this time period.`,
       },
     ],
     response_format: { type: "json_object" },
