@@ -91,11 +91,11 @@ const handler: Handler = async (
         {
           role: "system",
           content:
-            "Generate astronomy events as JSON. Each event: date, title, description, visibility ('naked_eye' or 'telescope'), tips. Include major events: meteor showers, moon phases, planets, conjunctions, eclipses, solstices/equinoxes.",
+            "Generate astronomy events as JSON. Each event: date, title, description, visibility ('naked_eye' or 'telescope'), tips. Include major events: meteor showers, moon phases, planets, conjunctions, comets, eclipses, solstices/equinoxes.",
         },
         {
           role: "user",
-          content: `List 8-12 notable astronomy events for ${country} in ${month} ${year}. Include: meteor showers, key moon phases, planetary visibility, conjunctions, eclipses, seasonal events.`,
+          content: `List 8-12 notable astronomy events for ${country} in ${month} ${year}. Include: meteor showers, key moon phases, comets, planetary visibility, conjunctions, eclipses, seasonal events.`,
         },
       ],
       response_format: { type: "json_object" },

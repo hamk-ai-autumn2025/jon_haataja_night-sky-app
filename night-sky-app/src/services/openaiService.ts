@@ -112,7 +112,7 @@ async function fetchFromDirectAPI(
       {
         role: "system",
         content:
-          "Generate astronomy events as JSON. Each event: date, title, description, visibility ('naked_eye' or 'telescope'), tips. Include major events: meteor showers, moon phases, planets, conjunctions, eclipses, solstices/equinoxes.",
+          "Generate astronomy events as JSON. Each event: date, title, description, visibility ('naked_eye' or 'telescope'), tips. Include major events: meteor showers, comets, moon phases, planets, conjunctions, eclipses, solstices/equinoxes.",
       },
       {
         role: "user",

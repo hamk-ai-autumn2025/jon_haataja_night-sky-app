@@ -214,7 +214,7 @@ function App() {
                   </div>
                 </div>
                 <div className="container pt-3">
-                  <SkeletonEventCard count={8} />
+                  <SkeletonEventCard count={9} />
                 </div>
               </div>
             )}
