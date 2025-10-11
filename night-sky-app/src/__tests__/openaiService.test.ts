@@ -31,8 +31,17 @@ vi.mock("openai", () => {
 
 describe("getAstronomyEvents", () => {
   it("returns parsed astronomy events from OpenAI response", async () => {
-    const events = await getAstronomyEvents("Finland", "September", "2025");
-    expect(Array.isArray(events)).toBe(true);
+    const response = await getAstronomyEvents("Finland", "September", "2025");
+    expect(Array.isArray(response.data)).toBe(true);
+    
+    interface AstronomyEvent {
+      date: string;
+      title: string;
+      description: string;
+      visibility: string;
+    }
+    
+    const events = response.data as AstronomyEvent[];
     expect(events[0]).toMatchObject({
       date: "2025-09-23",
       title: "Saturn at Opposition",

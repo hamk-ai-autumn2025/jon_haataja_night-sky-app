@@ -283,6 +283,43 @@ h4 {
   font-weight: 500;
 }
 
+/* Cache indicator badge */
+.cache-indicator {
+  display: inline-block;
+  background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
+  color: #0c0024;
+  padding: 0.5em 1em;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9em;
+  margin-bottom: 1em;
+  box-shadow: 0 2px 8px rgba(74, 222, 128, 0.3);
+  animation: slideInFromTop 0.3s ease-out;
+}
+
+.cache-indicator .cache-age {
+  opacity: 0.8;
+  font-weight: 400;
+}
+
+.loading-subtext {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9em;
+  margin-top: 0.5em;
+  margin-bottom: 1.5em;
+}
+
+@keyframes slideInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .aria-error-message {
   position: absolute;
   left: -9999px;
@@ -960,5 +997,61 @@ ul li a:hover {
   .col-11,
   .col-12 {
     grid-column: span 1;
+  }
+}
+
+/* Skeleton Loading Styles */
+.skeleton-card {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+  border-radius: 8px;
+}
+
+.skeleton-image {
+  width: 100%;
+  height: 200px;
+  border-radius: 25px 25px 0 0;
+  margin-bottom: 1em;
+}
+
+.skeleton-title {
+  width: 70%;
+  height: 24px;
+  margin-bottom: 0.8em;
+}
+
+.skeleton-date {
+  width: 40%;
+  height: 16px;
+  margin-bottom: 1em;
+}
+
+.skeleton-description {
+  width: 100%;
+  height: 14px;
+  margin-bottom: 0.5em;
+}
+
+.skeleton-description.short {
+  width: 60%;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
   }
 }

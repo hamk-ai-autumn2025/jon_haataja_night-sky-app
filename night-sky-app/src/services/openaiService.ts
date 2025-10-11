@@ -21,6 +21,13 @@ interface CachedData {
   timestamp: number;
 }
 
+export interface AstronomyEventsResponse {
+  data: unknown;
+  fromCache: boolean;
+  cacheAge?: number;
+  source?: 'serverless' | 'direct' | 'localStorage';
+}
+
 function getCacheKey(country: string, month: string, year: string): string {
   return `${CACHE_PREFIX}${country}_${month}_${year}`.toLowerCase();
 }
@@ -72,26 +79,32 @@ async function fetchFromServerless(
   country: string,
   month: string,
   year: string,
-) {
+  signal?: AbortSignal
+): Promise<{ data: unknown; fromServerCache: boolean }> {
   const response = await fetch("/.netlify/functions/get-astronomy-events", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ country, month, year }),
+    signal, // Pass abort signal to fetch
   });
 
   if (!response.ok) {
     throw new Error(`Serverless function error: ${response.status}`);
   }
 
-  return await response.json();
+  const data = await response.json();
+  const fromServerCache = response.headers.get("X-Cache") === "HIT";
+  
+  return { data, fromServerCache };
 }
 
 async function fetchFromDirectAPI(
   country: string,
   month: string,
   year: string,
+  signal?: AbortSignal
 ) {
   const response = await client.chat.completions.create({
     model: model,
@@ -99,14 +112,16 @@ async function fetchFromDirectAPI(
       {
         role: "system",
         content:
-          "You are an astronomy assistant. Generate a comprehensive list of astronomy events in structured JSON. Each event must include date, title, a detailed description, visibility ('naked_eye' or 'telescope') and tips for best viewing. Include ALL significant astronomical events for the requested period, including but not limited to: meteor showers, full moons, new moons, comets, planetary conjunctions, planetary visibility peaks, eclipses, equinoxes/solstices, and other notable celestial phenomena. Aim to provide at least 10-15 events when available for the given month.",
+          "Generate astronomy events as JSON. Each event: date, title, description, visibility ('naked_eye' or 'telescope'), tips. Include major events: meteor showers, moon phases, planets, conjunctions, eclipses, solstices/equinoxes.",
       },
       {
         role: "user",
-        content: `Generate a comprehensive list of all astronomy events for ${country} in ${month} ${year}. Include all types of events: meteor showers, moon phases, comets, planetary events, conjunctions, eclipses, and any other celestial phenomena visible from this location during this time period.`,
+        content: `List 8-12 notable astronomy events for ${country} in ${month} ${year}. Include: meteor showers, key moon phases, planetary visibility, conjunctions, eclipses, seasonal events.`,
       },
     ],
     response_format: { type: "json_object" },
+  }, {
+    signal, // Pass abort signal to OpenAI client
   });
 
   const raw = response.choices[0].message.content ?? "[]";
@@ -117,26 +132,45 @@ async function getAstronomyEvents(
   country: string,
   month: string,
   year: string,
-) {
-  // Check cache first
+  signal?: AbortSignal
+): Promise<AstronomyEventsResponse> {
+  // Check localStorage cache first
   const cachedResult = getFromCache(country, month, year);
   if (cachedResult) {
-    return cachedResult;
+    const cacheKey = getCacheKey(country, month, year);
+    const cached = localStorage.getItem(cacheKey);
+    const cachedData: CachedData = cached ? JSON.parse(cached) : null;
+    const cacheAge = cachedData ? Date.now() - cachedData.timestamp : 0;
+    
+    return {
+      data: cachedResult,
+      fromCache: true,
+      cacheAge,
+      source: 'localStorage'
+    };
   }
 
   let parsedData;
+  let fromServerCache = false;
 
   // Use serverless function in production, direct API in development
   if (USE_SERVERLESS) {
-    parsedData = await fetchFromServerless(country, month, year);
+    const result = await fetchFromServerless(country, month, year, signal);
+    parsedData = result.data;
+    fromServerCache = result.fromServerCache;
   } else {
-    parsedData = await fetchFromDirectAPI(country, month, year);
+    parsedData = await fetchFromDirectAPI(country, month, year, signal);
   }
 
-  // Save to cache
+  // Save to localStorage cache
   saveToCache(country, month, year, parsedData);
 
-  return parsedData;
+  return {
+    data: parsedData,
+    fromCache: fromServerCache,
+    cacheAge: 0,
+    source: USE_SERVERLESS ? 'serverless' : 'direct'
+  };
 }
 
 export default getAstronomyEvents;
