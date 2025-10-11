@@ -149,7 +149,7 @@ function App() {
 
   return (
     <div className="app">
-      <main className="">
+      <main>
         <div className="nav-hero-container">
           <nav>
             <input type="checkbox" id="check"></input>

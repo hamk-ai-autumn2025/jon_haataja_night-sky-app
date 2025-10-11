@@ -33,6 +33,7 @@ body {
   width: 100%;
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
+  aspect-ratio: 389 / 203;
 }
 
 .event-card-symbols {
@@ -98,7 +99,7 @@ body {
 
 .nav-hero-container {
   background: #0c0024;
-  background-image: url("../assets/home-hero-bg.png");
+  background-image: url("../assets/home-hero-bg.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -699,6 +700,7 @@ ul li a:hover {
   object-fit: cover;
   padding: 0;
   margin: 0;
+  aspect-ratio: 97 / 149;
 }
 
 .modal-text {

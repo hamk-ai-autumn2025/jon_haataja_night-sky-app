@@ -75,7 +75,7 @@ function EventCard({ event, onClick }: EventCardProps) {
       }}
     >
       <div className="position-relative">
-        <img src={eventImage} alt={event.title} className=" event-card-img" />
+        <img src={eventImage} alt={event.title} className="event-card-img" />
         <span className="position-absolute event-card-symbols">
           {event.visibility === "naked_eye" ? (
             <img src={EyeIcon} alt="Naked Eye" />

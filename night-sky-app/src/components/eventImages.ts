@@ -1,19 +1,19 @@
-import BloodMoonImage from "../assets/skai-blood-moon.png";
-import FullMoonImage from "../assets/skai-full-moon.png";
-import MeteorShowerImage from "../assets/skai-meteor-shower.png";
-import SolarSystemImage from "../assets/skai-solar-system.png";
-import WinterSolsticeImage from "../assets/skai-winter.png";
-import SummerSolsticeImage from "../assets/skai-summer.png";
-import SolarEclipseImage from "../assets/skai-solar-eclipse.png";
-import BloodMoonImageTall from "../assets/skai-blood-moon-tall.png";
-import FullMoonImageTall from "../assets/skai-full-moon-tall.png";
-import MeteorShowerImageTall from "../assets/skai-meteor-shower-tall.png";
-import SolarSystemImageTall from "../assets/skai-solar-system-tall.png";
-import WinterSolsticeImageTall from "../assets/skai-winter-tall.png";
-import SummerSolsticeImageTall from "../assets/skai-summer-tall.png";
-import SolarEclipseImageTall from "../assets/skai-solar-eclipse-tall.png";
-import CometImage from "../assets/skai-comet.png";
-import CometImageTall from "../assets/skai-comet-tall.png";
+import BloodMoonImage from "../assets/skai-blood-moon.webp";
+import FullMoonImage from "../assets/skai-full-moon.webp";
+import MeteorShowerImage from "../assets/skai-meteor-shower.webp";
+import SolarSystemImage from "../assets/skai-solar-system.webp";
+import WinterSolsticeImage from "../assets/skai-winter.webp";
+import SummerSolsticeImage from "../assets/skai-summer.webp";
+import SolarEclipseImage from "../assets/skai-solar-eclipse.webp";
+import BloodMoonImageTall from "../assets/skai-blood-moon-tall.webp";
+import FullMoonImageTall from "../assets/skai-full-moon-tall.webp";
+import MeteorShowerImageTall from "../assets/skai-meteor-shower-tall.webp";
+import SolarSystemImageTall from "../assets/skai-solar-system-tall.webp";
+import WinterSolsticeImageTall from "../assets/skai-winter-tall.webp";
+import SummerSolsticeImageTall from "../assets/skai-summer-tall.webp";
+import SolarEclipseImageTall from "../assets/skai-solar-eclipse-tall.webp";
+import CometImage from "../assets/skai-comet.webp";
+import CometImageTall from "../assets/skai-comet-tall.webp";
 
 /**
  * Selects an appropriate image based on the event title content
