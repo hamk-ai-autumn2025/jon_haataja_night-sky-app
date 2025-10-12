@@ -166,10 +166,10 @@ describe("calendarLinks utility functions", () => {
 
     it("generates unique UID for each event", async () => {
       const icsUrl1 = generateICalendarFile(mockCalendarEvent);
-      
+
       // Wait a bit to ensure different timestamp
       await new Promise((resolve) => setTimeout(resolve, 10));
-      
+
       const icsUrl2 = generateICalendarFile(mockCalendarEvent);
 
       const content1 = decodeURIComponent(icsUrl1.split(",")[1]);

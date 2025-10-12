@@ -80,11 +80,7 @@ describe("getAstronomyEvents", () => {
 
   describe("Basic functionality", () => {
     it("returns parsed astronomy events from OpenAI response", async () => {
-      const response = await getAstronomyEvents(
-        "Finland",
-        "September",
-        "2025",
-      );
+      const response = await getAstronomyEvents("Finland", "September", "2025");
 
       expect(response.data).toBeDefined();
       expect(response.fromCache).toBe(false);
@@ -92,11 +88,7 @@ describe("getAstronomyEvents", () => {
     });
 
     it("includes required response metadata", async () => {
-      const response = await getAstronomyEvents(
-        "Finland",
-        "September",
-        "2025",
-      );
+      const response = await getAstronomyEvents("Finland", "September", "2025");
 
       expect(response).toHaveProperty("data");
       expect(response).toHaveProperty("fromCache");
@@ -105,11 +97,7 @@ describe("getAstronomyEvents", () => {
     });
 
     it("returns correct data structure", async () => {
-      const response = await getAstronomyEvents(
-        "Finland",
-        "September",
-        "2025",
-      );
+      const response = await getAstronomyEvents("Finland", "September", "2025");
 
       expect(response.data).toEqual(mockEventsResponse);
     });
@@ -154,11 +142,7 @@ describe("getAstronomyEvents", () => {
       await new Promise((resolve) => setTimeout(resolve, 50));
 
       // Second call from cache
-      const response = await getAstronomyEvents(
-        "Finland",
-        "September",
-        "2025",
-      );
+      const response = await getAstronomyEvents("Finland", "September", "2025");
 
       expect(response.fromCache).toBe(true);
       expect(response.cacheAge).toBeGreaterThan(0);
@@ -191,11 +175,7 @@ describe("getAstronomyEvents", () => {
       localStorageMock.setItem(cacheKey, JSON.stringify(expiredData));
 
       // Should not use expired cache
-      const response = await getAstronomyEvents(
-        "Finland",
-        "September",
-        "2025",
-      );
+      const response = await getAstronomyEvents("Finland", "September", "2025");
 
       expect(response.fromCache).toBe(false);
       expect(mockCreate).toHaveBeenCalledTimes(1);
@@ -206,11 +186,7 @@ describe("getAstronomyEvents", () => {
       localStorageMock.setItem(cacheKey, "invalid JSON");
 
       // Should fall back to API call
-      const response = await getAstronomyEvents(
-        "Finland",
-        "September",
-        "2025",
-      );
+      const response = await getAstronomyEvents("Finland", "September", "2025");
 
       expect(response.fromCache).toBe(false);
       expect(mockCreate).toHaveBeenCalledTimes(1);
@@ -253,11 +229,7 @@ describe("getAstronomyEvents", () => {
         ],
       });
 
-      const response = await getAstronomyEvents(
-        "Finland",
-        "September",
-        "2025",
-      );
+      const response = await getAstronomyEvents("Finland", "September", "2025");
 
       // The service returns [] when content is null
       expect(response.data).toEqual([]);
@@ -299,11 +271,7 @@ describe("getAstronomyEvents", () => {
 
     it("can be called without abort signal", async () => {
       // Should work fine without signal
-      const response = await getAstronomyEvents(
-        "Finland",
-        "September",
-        "2025",
-      );
+      const response = await getAstronomyEvents("Finland", "September", "2025");
 
       expect(response).toBeDefined();
     });
@@ -331,21 +299,13 @@ describe("getAstronomyEvents", () => {
         ],
       });
 
-      const response = await getAstronomyEvents(
-        "Finland",
-        "September",
-        "2025",
-      );
+      const response = await getAstronomyEvents("Finland", "September", "2025");
 
       expect(Array.isArray(response.data)).toBe(true);
     });
 
     it("handles object with events array format", async () => {
-      const response = await getAstronomyEvents(
-        "Finland",
-        "September",
-        "2025",
-      );
+      const response = await getAstronomyEvents("Finland", "September", "2025");
 
       expect(response.data).toHaveProperty("events");
       const data = response.data as { events: unknown[] };
