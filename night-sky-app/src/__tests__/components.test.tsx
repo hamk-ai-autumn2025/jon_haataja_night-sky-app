@@ -61,6 +61,7 @@ describe("EventCard", () => {
       title: "Test Event",
       description: "A sample astronomy event.",
       visibility: "naked_eye" as const,
+      tips: "Best viewed after midnight.",
     };
     render(<EventCard event={event} />);
     expect(screen.getByText("SEP 7")).toBeInTheDocument();

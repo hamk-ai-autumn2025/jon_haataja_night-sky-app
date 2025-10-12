@@ -4,25 +4,30 @@ import "@fontsource-variable/plus-jakarta-sans";
 import "./styles/App.css";
 import "./styles/index.css";
 import skaiLogo from "./assets/skai-logo.svg";
-import { useMemo, useState } from "react";
-import Modal from "./components/Modal";
+import { lazy, Suspense, useCallback, useMemo, useRef, useState } from "react";
+import { useDebouncedCallback } from "./hooks/useDebounce";
+const Modal = lazy(() => import("./components/Modal"));
 import { SearchForm } from "./components/SearchForm";
 import EventList from "./components/EventList";
 import SortSelect, { SortOption } from "./components/SortSelect";
 import sortEvents from "./components/sortEvents";
-import getAstronomyEvents from "./services/openaiService";
+import getAstronomyEvents, {
+  AstronomyEventsResponse,
+} from "./services/openaiService";
 import Footer from "./components/Footer";
 import EyeIcon from "./assets/eye.svg";
 import TelescopeIcon from "./assets/telescope.svg";
 
 import { getEventImageTall } from "./components/eventImages";
+import AddToCalendar from "./components/AddToCalendar";
+import SkeletonEventCard from "./components/SkeletonEventCard";
 
 export interface AstronomyEvent {
   date: string;
   title: string;
   description: string;
   visibility: "naked_eye" | "telescope";
-  tips?: string;
+  tips: string;
 }
 
 function App() {
@@ -34,6 +39,16 @@ function App() {
   const [searchedCountry, setSearchedCountry] = useState<string>("");
   const [searchedMonth, setSearchedMonth] = useState<string>("");
   const [searchedYear, setSearchedYear] = useState<string>("");
+
+  // Cache metadata state
+  const [cacheInfo, setCacheInfo] = useState<{
+    fromCache: boolean;
+    cacheAge?: number;
+    source?: string;
+  } | null>(null);
+
+  // Ref to store the current AbortController
+  const abortControllerRef = useRef<AbortController | null>(null);
 
   // Modal state for selected event
   const [selectedEvent, setSelectedEvent] = useState<AstronomyEvent | null>(
@@ -51,10 +66,10 @@ function App() {
     setSelectedEvent(null);
   };
 
-  const displayedEvents = useMemo(
-    () => sortEvents(events, sort),
-    [events, sort],
-  );
+  const displayedEvents = useMemo(() => {
+    const sorted = sortEvents(events, sort);
+    return sorted;
+  }, [events, sort]);
 
   // Helper to format a date string as DD.MM.YYYY for modal display only
   const formatDateForModal = (dateStr: string | undefined | null) => {
@@ -72,21 +87,55 @@ function App() {
   };
 
   async function handleSearch(country: string, month: string, year: string) {
+    // Cancel any previous ongoing request
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+    }
+
+    // Create new AbortController for this request
+    abortControllerRef.current = new AbortController();
+
     setLoading(true);
     setError("");
+    setCacheInfo(null);
     setSearchedCountry(country);
     setSearchedMonth(month);
     setSearchedYear(year);
     try {
-      const data = await getAstronomyEvents(country, month, year);
+      const response: AstronomyEventsResponse = await getAstronomyEvents(
+        country,
+        month,
+        year,
+        abortControllerRef.current.signal,
+      );
+
+      // Store cache metadata
+      setCacheInfo({
+        fromCache: response.fromCache,
+        cacheAge: response.cacheAge,
+        source: response.source,
+      });
+
+      const data = response.data;
+
       if (Array.isArray(data)) {
         setEvents(data);
-      } else if (data && Array.isArray(data.events)) {
+      } else if (
+        data &&
+        typeof data === "object" &&
+        "events" in data &&
+        Array.isArray(data.events)
+      ) {
         setEvents(data.events);
       } else {
         setEvents([]);
       }
-    } catch (err) {
+    } catch (err: unknown) {
+      // Don't show error if request was aborted (user started a new search)
+      if (err instanceof Error && err.name === "AbortError") {
+        console.log("Search request was cancelled");
+        return;
+      }
       console.error(err);
       setError("Failed to fetch astronomy events. Please try again.");
     } finally {
@@ -94,12 +143,20 @@ function App() {
     }
   }
 
+  // Create debounced version of handleSearch with 300ms delay
+  const debouncedHandleSearch = useDebouncedCallback(
+    useCallback((country: string, month: string, year: string) => {
+      handleSearch(country, month, year);
+    }, []),
+    300,
+  );
+
   return (
     <div className="app">
-      <main className="">
+      <main>
         <div className="nav-hero-container">
           <nav>
-            <input type="checkbox" id="check"></input>
+            {/* <input type="checkbox" id="check"></input>
             <div className="checkbtn">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -110,27 +167,20 @@ function App() {
                 viewBox="0 0 16 16"
               >
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
                 />
               </svg>
+            </div> */}
+            <div className="logo">
+              <img
+                src={skaiLogo}
+                alt="Skai Logo"
+                className="logo"
+                rel="preload"
+                fetchPriority="high"
+              />
             </div>
-            <label className="logo" htmlFor="check">
-              <img src={skaiLogo} alt="Skai Logo" className="logo" />
-            </label>
-            <ul>
-              <li>
-                <a className="active" href="#">
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="#">About</a>
-              </li>
-              <li>
-                <a href="#">Contact</a>
-              </li>
-            </ul>
           </nav>
 
           <section className="container">
@@ -144,18 +194,23 @@ function App() {
               </div>
 
               <div className="glass-card">
-                <SearchForm onSearch={handleSearch} />
+                <SearchForm onSearch={debouncedHandleSearch} />
               </div>
             </div>
           </section>
         </div>
 
-        <section className="container">
+        <section className="container search-results-area">
           <div className="col-12">
             {loading && (
-              <div className="container">
-                <div className="col-12 justify-center">
-                  <span className="loader"></span>
+              <div className="col-12">
+                <div className="flex">
+                  <div className="col-12 w-100 text-center justify-center align-items-center">
+                    <span className="loader"></span>
+                  </div>
+                </div>
+                <div className="container pt-3">
+                  <SkeletonEventCard count={9} />
                 </div>
               </div>
             )}
@@ -163,6 +218,22 @@ function App() {
 
             {!loading && events.length > 0 && (
               <div className="col-12">
+                {/* Cache indicator badge */}
+                {cacheInfo && cacheInfo.fromCache && (
+                  <div className="cache-indicator">
+                    ⚡ Instant results from cache
+                    {cacheInfo.cacheAge && cacheInfo.cacheAge > 0 && (
+                      <span className="cache-age">
+                        {" "}
+                        • Cached {Math.floor(
+                          cacheInfo.cacheAge / 1000 / 60,
+                        )}{" "}
+                        minutes ago
+                      </span>
+                    )}
+                  </div>
+                )}
+
                 <div className="flex">
                   <div className="col-7 w-100">
                     <h2 className="symbols-h2">
@@ -173,13 +244,13 @@ function App() {
                     <h3>Symbol explanations:</h3>
                     <p className="symbol-explanations">
                       <span className="symbol-eye">
-                        <img src={EyeIcon} alt="Naked Eye" />
+                        <img src={EyeIcon} alt="Naked Eye Icon" />
                       </span>
                       Visible with the naked eye
                     </p>
                     <p>
                       <span className="symbol-telescope">
-                        <img src={TelescopeIcon} />
+                        <img src={TelescopeIcon} alt="Telescope Icon" />
                       </span>
                       Requires a telescope
                     </p>
@@ -198,56 +269,71 @@ function App() {
           </div>
         </section>
 
+        <section className="container">
+          <div className="col-12 text-center ai-mistake-message-container">
+            <p>AI can make mistakes. Check important information.</p>
+          </div>
+        </section>
+
         <section className="footer">
           <Footer />
         </section>
         {/* Modal for event details */}
-        <Modal isOpen={isModalOpen} onClose={handleModalClose}>
-          {selectedEvent && (
-            <div className="container margin-0">
-              <div className="col-7 modal-text">
-                <h2>{selectedEvent.title}</h2>
-                <div className="container">
-                  <div className="col-6">
-                    <h3 className="modal-subtitle">Date</h3>
-                    <p className="modal-paragraph">
-                      {formatDateForModal(selectedEvent.date)}
-                    </p>
-                  </div>
+        <Suspense fallback={<div />}>
+          <Modal isOpen={isModalOpen} onClose={handleModalClose}>
+            {selectedEvent && (
+              <div className="container margin-0">
+                <div className="col-7 modal-text">
+                  <h2>{selectedEvent.title}</h2>
+                  <div className="container">
+                    <div className="col-6">
+                      <h3 className="modal-subtitle">Date</h3>
+                      <p className="modal-paragraph">
+                        {formatDateForModal(selectedEvent.date)}
+                      </p>
+                    </div>
 
-                  <div className="col-6">
-                    <h3 className="modal-subtitle">Visibility</h3>
-                    <p className="modal-paragraph">
-                      {selectedEvent.visibility === "naked_eye"
-                        ? "Naked Eye"
-                        : "Telescope"}
-                    </p>
-                  </div>
+                    <div className="col-6">
+                      <h3 className="modal-subtitle">Visibility</h3>
+                      <p className="modal-paragraph">
+                        {selectedEvent.visibility === "naked_eye"
+                          ? "Naked Eye"
+                          : "Telescope"}
+                      </p>
+                    </div>
 
-                  <div className="col-12">
-                    <h3 className="modal-subtitle">Description</h3>
-                    <p className="modal-paragraph">
-                      {selectedEvent.description}
-                    </p>
-                  </div>
+                    <div className="col-12">
+                      <h3 className="modal-subtitle">Description</h3>
+                      <p className="modal-paragraph">
+                        {selectedEvent.description}
+                      </p>
+                    </div>
 
-                  <div className="col-12">
-                    <h3 className="modal-subtitle">Tips for Best Viewing</h3>
-                    <p className="modal-paragraph">{selectedEvent.tips}</p>
+                    <div className="col-12">
+                      <h3 className="modal-subtitle">Tips for Best Viewing</h3>
+                      <p className="modal-paragraph">{selectedEvent.tips}</p>
+                    </div>
+
+                    <div className="col-12">
+                      <AddToCalendar
+                        event={selectedEvent}
+                        location={searchedCountry || "Your location"}
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="col-5">
-                <img
-                  src={getEventImageTall(selectedEvent.title)}
-                  alt={`Tall ${selectedEvent.title} Image`}
-                  className="modal-image"
-                />
+                <div className="col-5">
+                  <img
+                    src={getEventImageTall(selectedEvent.title)}
+                    alt={`Tall ${selectedEvent.title} Image`}
+                    className="modal-image"
+                  />
+                </div>
               </div>
-            </div>
-          )}
-        </Modal>
+            )}
+          </Modal>
+        </Suspense>
       </main>
     </div>
   );

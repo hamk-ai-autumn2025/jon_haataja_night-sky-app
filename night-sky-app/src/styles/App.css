@@ -33,6 +33,7 @@ body {
   width: 100%;
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
+  aspect-ratio: 389 / 203;
 }
 
 .event-card-symbols {
@@ -98,7 +99,7 @@ body {
 
 .nav-hero-container {
   background: #0c0024;
-  background-image: url("../assets/home-hero-bg.png");
+  background-image: url("../assets/home-hero-bg.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -283,6 +284,43 @@ h4 {
   font-weight: 500;
 }
 
+/* Cache indicator badge */
+.cache-indicator {
+  display: inline-block;
+  background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
+  color: #0c0024;
+  padding: 0.5em 1em;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9em;
+  margin-bottom: 1em;
+  box-shadow: 0 2px 8px rgba(74, 222, 128, 0.3);
+  animation: slideInFromTop 0.3s ease-out;
+}
+
+.cache-indicator .cache-age {
+  opacity: 0.8;
+  font-weight: 400;
+}
+
+.loading-subtext {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9em;
+  margin-top: 0.5em;
+  margin-bottom: 1.5em;
+}
+
+@keyframes slideInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .aria-error-message {
   position: absolute;
   left: -9999px;
@@ -393,6 +431,9 @@ h4 {
   font-size: 1.2rem;
   background: none;
   outline: none;
+  margin-bottom: 0.5em;
+  display: flex;
+  flex-direction: column;
 }
 
 .input-field:focus {
@@ -585,6 +626,14 @@ ul li a:hover {
   padding-left: 5em;
 }
 
+.ai-mistake-message-container {
+  margin-top: 4em;
+  padding: 1em;
+  text-align: center;
+  color: #d6d6d6;
+  padding-bottom: 0;
+}
+
 .footer {
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(21px);
@@ -593,7 +642,6 @@ ul li a:hover {
   padding-top: 3em;
   padding-bottom: 3em;
   width: 100%;
-  margin-top: 40em;
 }
 
 .footer-content {
@@ -636,13 +684,13 @@ ul li a:hover {
   max-width: 77.4375rem;
   max-height: 69.3125rem;
   width: 50vw;
-  height: 85vh;
+  height: 90vh;
   position: relative;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
   touch-action: none !important;
-  -webkit-overflow-scrolling: none !important;
-  overflow: hidden !important;
-  overscroll-behavior: contain !important;
+  -webkit-overflow-scrolling: none;
+  overflow: hidden;
+  overscroll-behavior: contain;
 }
 
 .modal-close {
@@ -662,6 +710,7 @@ ul li a:hover {
   object-fit: cover;
   padding: 0;
   margin: 0;
+  aspect-ratio: 97 / 149;
 }
 
 .modal-text {
@@ -690,6 +739,165 @@ ul li a:hover {
   color: #f3f3f3;
   margin-bottom: 1em;
   font-weight: 400;
+}
+
+/* Add to Calendar Button Styles */
+.add-to-calendar-container {
+  position: relative;
+  display: inline-block;
+}
+
+.add-to-calendar-button {
+  background: linear-gradient(135deg, #6b4ce6 0%, #8b5cf6 100%);
+  color: #fff;
+  border: none;
+  border-radius: 100px;
+  padding: 0.875rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(107, 76, 230, 0.3);
+  min-width: 1.8em;
+}
+
+.add-to-calendar-button:hover {
+  background: linear-gradient(135deg, #5a3dd5 0%, #7a4be5 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(107, 76, 230, 0.4);
+}
+
+.add-to-calendar-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(107, 76, 230, 0.3);
+}
+
+.dropdown-arrow-down {
+  transition: transform 0.3s ease;
+}
+
+.dropdown-arrow-up {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
+}
+
+.calendar-dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  background: #2a1f47;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  min-width: 200px;
+  overflow: hidden;
+  z-index: 3000;
+  animation: dropdownFadeIn 0.2s ease;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.calendar-option {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: #f3f3f3;
+  padding: 0.875rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.calendar-option:last-child {
+  border-bottom: none;
+}
+
+.calendar-option:hover {
+  background: rgba(107, 76, 230, 0.3);
+}
+
+.calendar-option:active {
+  background: rgba(107, 76, 230, 0.5);
+}
+
+.calendar-icon {
+  margin-right: 0.75rem;
+  font-size: 1.2rem;
+  display: inline-block;
+  width: 1.5rem;
+  text-align: center;
+}
+
+/* Skeleton Loading Styles */
+.skeleton-card {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+  border-radius: 8px;
+}
+
+.skeleton-image {
+  width: 100%;
+  height: 200px;
+  border-radius: 25px 25px 0 0;
+  margin-bottom: 1em;
+}
+
+.skeleton-title {
+  width: 70%;
+  height: 24px;
+  margin-bottom: 0.8em;
+}
+
+.skeleton-date {
+  width: 40%;
+  height: 16px;
+  margin-bottom: 1em;
+}
+
+.skeleton-description {
+  width: 100%;
+  height: 14px;
+  margin-bottom: 0.5em;
+}
+
+.skeleton-description.short {
+  width: 60%;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 /*Loader*/
@@ -740,6 +948,11 @@ ul li a:hover {
 }
 
 @media (max-width: 768px) {
+  .search-results-area {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+
   .logo {
     height: auto;
     width: 4.5em;
@@ -778,8 +991,6 @@ ul li a:hover {
 
   .app {
     width: 100vw;
-    padding-right: 1rem;
-    padding-left: 1rem;
     background-position: center;
   }
 
@@ -821,6 +1032,7 @@ ul li a:hover {
 
   .glass-card {
     width: 90vw;
+    justify-self: center;
     height: auto;
     margin-top: 2rem;
     flex-direction: column;
@@ -837,6 +1049,37 @@ ul li a:hover {
     margin-right: 0em;
     width: 100%;
   }
+
+  .country-select {
+    width: 100%;
+    padding-right: 2.5em;
+    margin-bottom: 1.4em;
+  }
+
+  .month-select {
+    width: 100%;
+    padding-right: 2.5em;
+    margin-bottom: 1.4em;
+  }
+
+  .input-component {
+    width: 100%;
+    padding-right: 2.5em;
+  }
+
+  .input-field {
+    width: 100%;
+  }
+
+  .btn-primary,
+  .btn-primary:disabled {
+    font-size: 1rem;
+    vertical-align: middle;
+  }
+
+  .modal-overlay {
+    overflow-y: scroll;
+  }
 }
 
 @media (max-width: 600px) {
@@ -844,6 +1087,7 @@ ul li a:hover {
     grid-template-columns: 1fr;
     padding: 0rem;
   }
+
   .col-1,
   .col-2,
   .col-3,
@@ -857,5 +1101,117 @@ ul li a:hover {
   .col-11,
   .col-12 {
     grid-column: span 1;
+  }
+
+  .btn-primary,
+  .btn-primary:disabled {
+    margin-top: 1.7em;
+    width: 100%;
+  }
+
+  .glass-card {
+    margin-right: 1em;
+    margin-left: 1em;
+  }
+
+  .form-button-container {
+    margin-right: 1em;
+  }
+
+  .hero-p {
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-top: 0.2em;
+  }
+
+  .ai-mistake-message-container > p {
+    font-size: 0.9rem;
+  }
+
+  .event-card {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    vertical-align: middle;
+  }
+
+  .search-results-area {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+
+  .modal-content {
+    width: 95vw;
+    height: 95vh;
+    overflow-y: scroll;
+  }
+
+  .modal-image {
+    width: 100%;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 901px) {
+  .event-card {
+    grid-column: span 3;
+  }
+
+  .modal-content {
+    width: 70vw;
+    height: 95vh;
+    overflow-y: scroll;
+  }
+
+  .modal-image {
+    width: 100%;
+  }
+
+  .modal-image {
+    width: 100vw;
+  }
+}
+
+@media (min-width: 897px) and (max-width: 1200px) {
+  nav {
+    padding-left: 2em;
+    padding-right: 2em;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .search-results-area {
+    padding-left: 2.1em;
+    padding-right: 2.1em;
+  }
+
+  .col-4 {
+    grid-column: span 6;
+  }
+
+  .gap-3 {
+    gap: 2em;
+  }
+
+  .btn-primary,
+  .btn-primary:disabled {
+    margin-left: 1em;
+    font-size: 1rem;
+  }
+
+  .glass-card {
+    margin-left: 2em;
+    margin-right: 2em;
+    padding-left: 2em;
+    padding-right: 2em;
+  }
+
+  .modal-content {
+    width: 70vw;
+    height: 95vh;
+    overflow-y: hidden;
+  }
+
+  .modal-image {
+    width: 100%;
   }
 }

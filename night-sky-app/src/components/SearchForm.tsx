@@ -121,7 +121,7 @@ export function SearchForm({ onSearch }: SearchFormProps) {
           {errors.year}
         </p>
       </div>
-      <div className="col-3">
+      <div className="col-3 form-button-container">
         <Button
           title="Search"
           disabled={
