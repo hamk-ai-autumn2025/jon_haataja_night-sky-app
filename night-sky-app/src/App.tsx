@@ -4,9 +4,9 @@ import "@fontsource-variable/plus-jakarta-sans";
 import "./styles/App.css";
 import "./styles/index.css";
 import skaiLogo from "./assets/skai-logo.svg";
-import { useCallback, useMemo, useRef, useState } from "react";
+import { lazy, Suspense, useCallback, useMemo, useRef, useState } from "react";
 import { useDebouncedCallback } from "./hooks/useDebounce";
-import Modal from "./components/Modal";
+const Modal = lazy(() => import("./components/Modal"));
 import { SearchForm } from "./components/SearchForm";
 import EventList from "./components/EventList";
 import SortSelect, { SortOption } from "./components/SortSelect";
@@ -279,59 +279,61 @@ function App() {
           <Footer />
         </section>
         {/* Modal for event details */}
-        <Modal isOpen={isModalOpen} onClose={handleModalClose}>
-          {selectedEvent && (
-            <div className="container margin-0">
-              <div className="col-7 modal-text">
-                <h2>{selectedEvent.title}</h2>
-                <div className="container">
-                  <div className="col-6">
-                    <h3 className="modal-subtitle">Date</h3>
-                    <p className="modal-paragraph">
-                      {formatDateForModal(selectedEvent.date)}
-                    </p>
-                  </div>
+        <Suspense fallback={<div />}>
+          <Modal isOpen={isModalOpen} onClose={handleModalClose}>
+            {selectedEvent && (
+              <div className="container margin-0">
+                <div className="col-7 modal-text">
+                  <h2>{selectedEvent.title}</h2>
+                  <div className="container">
+                    <div className="col-6">
+                      <h3 className="modal-subtitle">Date</h3>
+                      <p className="modal-paragraph">
+                        {formatDateForModal(selectedEvent.date)}
+                      </p>
+                    </div>
 
-                  <div className="col-6">
-                    <h3 className="modal-subtitle">Visibility</h3>
-                    <p className="modal-paragraph">
-                      {selectedEvent.visibility === "naked_eye"
-                        ? "Naked Eye"
-                        : "Telescope"}
-                    </p>
-                  </div>
+                    <div className="col-6">
+                      <h3 className="modal-subtitle">Visibility</h3>
+                      <p className="modal-paragraph">
+                        {selectedEvent.visibility === "naked_eye"
+                          ? "Naked Eye"
+                          : "Telescope"}
+                      </p>
+                    </div>
 
-                  <div className="col-12">
-                    <h3 className="modal-subtitle">Description</h3>
-                    <p className="modal-paragraph">
-                      {selectedEvent.description}
-                    </p>
-                  </div>
+                    <div className="col-12">
+                      <h3 className="modal-subtitle">Description</h3>
+                      <p className="modal-paragraph">
+                        {selectedEvent.description}
+                      </p>
+                    </div>
 
-                  <div className="col-12">
-                    <h3 className="modal-subtitle">Tips for Best Viewing</h3>
-                    <p className="modal-paragraph">{selectedEvent.tips}</p>
-                  </div>
+                    <div className="col-12">
+                      <h3 className="modal-subtitle">Tips for Best Viewing</h3>
+                      <p className="modal-paragraph">{selectedEvent.tips}</p>
+                    </div>
 
-                  <div className="col-12">
-                    <AddToCalendar
-                      event={selectedEvent}
-                      location={searchedCountry || "Your location"}
-                    />
+                    <div className="col-12">
+                      <AddToCalendar
+                        event={selectedEvent}
+                        location={searchedCountry || "Your location"}
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="col-5">
-                <img
-                  src={getEventImageTall(selectedEvent.title)}
-                  alt={`Tall ${selectedEvent.title} Image`}
-                  className="modal-image"
-                />
+                <div className="col-5">
+                  <img
+                    src={getEventImageTall(selectedEvent.title)}
+                    alt={`Tall ${selectedEvent.title} Image`}
+                    className="modal-image"
+                  />
+                </div>
               </div>
-            </div>
-          )}
-        </Modal>
+            )}
+          </Modal>
+        </Suspense>
       </main>
     </div>
   );
