@@ -1,0 +1,8 @@
+# robots.txt for Night Sky App
+# Allow all search engines to crawl and index the site
+
+User-agent: *
+Allow: /
+
+# Sitemap location (update with your actual domain when deployed)
+# Sitemap: https://skai-app.netlify.app/sitemap.xml
