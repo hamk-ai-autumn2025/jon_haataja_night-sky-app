@@ -23,7 +23,7 @@ const formatDateForCalendar = (date: Date): string => {
 export const generateGoogleCalendarLink = (event: CalendarEvent): string => {
   const startDate = formatDateForCalendar(event.startDate);
   const endDate = formatDateForCalendar(event.endDate);
-  
+
   const params = new URLSearchParams({
     action: "TEMPLATE",
     text: event.title,
@@ -61,7 +61,7 @@ export const generateOutlookCalendarLink = (event: CalendarEvent): string => {
 export const generateYahooCalendarLink = (event: CalendarEvent): string => {
   const startDate = formatDateForCalendar(event.startDate);
   const endDate = formatDateForCalendar(event.endDate);
-  
+
   const params = new URLSearchParams({
     v: "60",
     title: event.title,
@@ -82,7 +82,7 @@ export const generateYahooCalendarLink = (event: CalendarEvent): string => {
 export const generateICalendarFile = (event: CalendarEvent): string => {
   const startDate = formatDateForCalendar(event.startDate);
   const endDate = formatDateForCalendar(event.endDate);
-  
+
   const icsContent = [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
@@ -119,7 +119,7 @@ export const parseEventDate = (dateStr: string): Date => {
  */
 export const createCalendarEventFromAstronomy = (
   event: { title: string; description: string; tips: string; date: string },
-  location: string
+  location: string,
 ): CalendarEvent => {
   const startDate = parseEventDate(event.date);
   // End date is 3 hours later (good viewing window)

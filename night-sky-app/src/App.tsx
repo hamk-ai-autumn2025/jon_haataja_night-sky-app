@@ -11,7 +11,9 @@ import { SearchForm } from "./components/SearchForm";
 import EventList from "./components/EventList";
 import SortSelect, { SortOption } from "./components/SortSelect";
 import sortEvents from "./components/sortEvents";
-import getAstronomyEvents, { AstronomyEventsResponse } from "./services/openaiService";
+import getAstronomyEvents, {
+  AstronomyEventsResponse,
+} from "./services/openaiService";
 import Footer from "./components/Footer";
 import EyeIcon from "./assets/eye.svg";
 import TelescopeIcon from "./assets/telescope.svg";
@@ -37,14 +39,14 @@ function App() {
   const [searchedCountry, setSearchedCountry] = useState<string>("");
   const [searchedMonth, setSearchedMonth] = useState<string>("");
   const [searchedYear, setSearchedYear] = useState<string>("");
-  
+
   // Cache metadata state
   const [cacheInfo, setCacheInfo] = useState<{
     fromCache: boolean;
     cacheAge?: number;
     source?: string;
   } | null>(null);
-  
+
   // Ref to store the current AbortController
   const abortControllerRef = useRef<AbortController | null>(null);
 
@@ -64,13 +66,10 @@ function App() {
     setSelectedEvent(null);
   };
 
-  const displayedEvents = useMemo(
-    () => {
-      const sorted = sortEvents(events, sort);
-      return sorted;
-    },
-    [events, sort],
-  );
+  const displayedEvents = useMemo(() => {
+    const sorted = sortEvents(events, sort);
+    return sorted;
+  }, [events, sort]);
 
   // Helper to format a date string as DD.MM.YYYY for modal display only
   const formatDateForModal = (dateStr: string | undefined | null) => {
@@ -92,10 +91,10 @@ function App() {
     if (abortControllerRef.current) {
       abortControllerRef.current.abort();
     }
-    
+
     // Create new AbortController for this request
     abortControllerRef.current = new AbortController();
-    
+
     setLoading(true);
     setError("");
     setCacheInfo(null);
@@ -104,32 +103,37 @@ function App() {
     setSearchedYear(year);
     try {
       const response: AstronomyEventsResponse = await getAstronomyEvents(
-        country, 
-        month, 
+        country,
+        month,
         year,
-        abortControllerRef.current.signal
+        abortControllerRef.current.signal,
       );
-      
+
       // Store cache metadata
       setCacheInfo({
         fromCache: response.fromCache,
         cacheAge: response.cacheAge,
-        source: response.source
+        source: response.source,
       });
-      
+
       const data = response.data;
-      
+
       if (Array.isArray(data)) {
         setEvents(data);
-      } else if (data && typeof data === 'object' && 'events' in data && Array.isArray(data.events)) {
+      } else if (
+        data &&
+        typeof data === "object" &&
+        "events" in data &&
+        Array.isArray(data.events)
+      ) {
         setEvents(data.events);
       } else {
         setEvents([]);
       }
     } catch (err: unknown) {
       // Don't show error if request was aborted (user started a new search)
-      if (err instanceof Error && err.name === 'AbortError') {
-        console.log('Search request was cancelled');
+      if (err instanceof Error && err.name === "AbortError") {
+        console.log("Search request was cancelled");
         return;
       }
       console.error(err);
@@ -138,13 +142,13 @@ function App() {
       setLoading(false);
     }
   }
-  
+
   // Create debounced version of handleSearch with 300ms delay
   const debouncedHandleSearch = useDebouncedCallback(
     useCallback((country: string, month: string, year: string) => {
       handleSearch(country, month, year);
     }, []),
-    300
+    300,
   );
 
   return (
@@ -168,9 +172,15 @@ function App() {
                 />
               </svg>
             </div> */}
-            <label className="logo" htmlFor="check">
-              <img src={skaiLogo} alt="Skai Logo" className="logo" />
-            </label>
+            <div className="logo">
+              <img
+                src={skaiLogo}
+                alt="Skai Logo"
+                className="logo"
+                rel="preload"
+                fetchPriority="high"
+              />
+            </div>
           </nav>
 
           <section className="container">
@@ -196,7 +206,6 @@ function App() {
               <div className="col-12">
                 <div className="flex">
                   <div className="col-12 w-100 text-center justify-center align-items-center">
-                    {/* <p className="loading-subtext">Please wait while we fetch astronomy data</p> */}
                     <span className="loader"></span>
                   </div>
                 </div>
@@ -215,12 +224,16 @@ function App() {
                     ⚡ Instant results from cache
                     {cacheInfo.cacheAge && cacheInfo.cacheAge > 0 && (
                       <span className="cache-age">
-                        {" "}• Cached {Math.floor(cacheInfo.cacheAge / 1000 / 60)} minutes ago
+                        {" "}
+                        • Cached {Math.floor(
+                          cacheInfo.cacheAge / 1000 / 60,
+                        )}{" "}
+                        minutes ago
                       </span>
                     )}
                   </div>
                 )}
-                
+
                 <div className="flex">
                   <div className="col-7 w-100">
                     <h2 className="symbols-h2">

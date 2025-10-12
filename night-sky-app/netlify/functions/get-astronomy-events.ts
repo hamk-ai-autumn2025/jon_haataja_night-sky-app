@@ -19,9 +19,7 @@ function getCacheKey(country: string, month: string, year: string): string {
   return `${country}_${month}_${year}`.toLowerCase();
 }
 
-const handler: Handler = async (
-  event: HandlerEvent,
-) => {
+const handler: Handler = async (event: HandlerEvent) => {
   // Enable CORS
   const headers = {
     "Access-Control-Allow-Origin": "*",
@@ -113,7 +111,9 @@ const handler: Handler = async (
     // Clean up old cache entries (keep only last 100)
     if (cache.size > 100) {
       const entries = Array.from(cache.entries());
-      const sortedEntries = entries.sort((a, b) => a[1].timestamp - b[1].timestamp);
+      const sortedEntries = entries.sort(
+        (a, b) => a[1].timestamp - b[1].timestamp,
+      );
       const toDelete = sortedEntries.slice(0, cache.size - 100);
       toDelete.forEach(([key]) => cache.delete(key));
     }

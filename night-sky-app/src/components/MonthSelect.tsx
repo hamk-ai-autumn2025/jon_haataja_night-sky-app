@@ -6,6 +6,7 @@ interface MonthSelectProps {
   onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   label?: string;
   required?: boolean;
+  id?: string;
 }
 
 const MonthSelect: React.FC<MonthSelectProps> = ({
@@ -24,6 +25,7 @@ const MonthSelect: React.FC<MonthSelectProps> = ({
         className="select-field"
         aria-describedby="month-error"
         aria-required="true"
+        id={"monthId"}
       >
         <option value="">Select a month</option>
         {months.map((month) => (

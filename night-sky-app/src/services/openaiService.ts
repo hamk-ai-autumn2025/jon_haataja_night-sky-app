@@ -1,7 +1,8 @@
 import OpenAI from "openai";
 
 // Determine if we should use the serverless function or direct API
-const USE_SERVERLESS = import.meta.env.PROD || import.meta.env.VITE_USE_SERVERLESS === "true";
+const USE_SERVERLESS =
+  import.meta.env.PROD || import.meta.env.VITE_USE_SERVERLESS === "true";
 
 const endpoint = "https://models.github.ai/inference";
 const model = "openai/gpt-4.1-mini";
@@ -25,7 +26,7 @@ export interface AstronomyEventsResponse {
   data: unknown;
   fromCache: boolean;
   cacheAge?: number;
-  source?: 'serverless' | 'direct' | 'localStorage';
+  source?: "serverless" | "direct" | "localStorage";
 }
 
 function getCacheKey(country: string, month: string, year: string): string {
@@ -62,7 +63,12 @@ function getFromCache(
   }
 }
 
-function saveToCache(country: string, month: string, year: string, data: unknown) {
+function saveToCache(
+  country: string,
+  month: string,
+  year: string,
+  data: unknown,
+) {
   try {
     const cacheKey = getCacheKey(country, month, year);
     const cachedData: CachedData = {
@@ -79,7 +85,7 @@ async function fetchFromServerless(
   country: string,
   month: string,
   year: string,
-  signal?: AbortSignal
+  signal?: AbortSignal,
 ): Promise<{ data: unknown; fromServerCache: boolean }> {
   const response = await fetch("/.netlify/functions/get-astronomy-events", {
     method: "POST",
@@ -96,7 +102,7 @@ async function fetchFromServerless(
 
   const data = await response.json();
   const fromServerCache = response.headers.get("X-Cache") === "HIT";
-  
+
   return { data, fromServerCache };
 }
 
@@ -104,25 +110,28 @@ async function fetchFromDirectAPI(
   country: string,
   month: string,
   year: string,
-  signal?: AbortSignal
+  signal?: AbortSignal,
 ) {
-  const response = await client.chat.completions.create({
-    model: model,
-    messages: [
-      {
-        role: "system",
-        content:
-          "Generate astronomy events as JSON. Each event: date, title, description, visibility ('naked_eye' or 'telescope'), tips. Include major events: meteor showers, comets, moon phases, planets, conjunctions, eclipses, solstices/equinoxes.",
-      },
-      {
-        role: "user",
-        content: `List 8-12 notable astronomy events for ${country} in ${month} ${year}. Include: meteor showers, key moon phases, planetary visibility, conjunctions, eclipses, seasonal events.`,
-      },
-    ],
-    response_format: { type: "json_object" },
-  }, {
-    signal, // Pass abort signal to OpenAI client
-  });
+  const response = await client.chat.completions.create(
+    {
+      model: model,
+      messages: [
+        {
+          role: "system",
+          content:
+            "Generate astronomy events as JSON. Each event: date, title, description, visibility ('naked_eye' or 'telescope'), tips. Include major events: meteor showers, comets, moon phases, planets, conjunctions, eclipses, solstices/equinoxes.",
+        },
+        {
+          role: "user",
+          content: `List 8-12 notable astronomy events for ${country} in ${month} ${year}. Include: meteor showers, key moon phases, planetary visibility, conjunctions, eclipses, seasonal events.`,
+        },
+      ],
+      response_format: { type: "json_object" },
+    },
+    {
+      signal, // Pass abort signal to OpenAI client
+    },
+  );
 
   const raw = response.choices[0].message.content ?? "[]";
   return JSON.parse(raw);
@@ -132,7 +141,7 @@ async function getAstronomyEvents(
   country: string,
   month: string,
   year: string,
-  signal?: AbortSignal
+  signal?: AbortSignal,
 ): Promise<AstronomyEventsResponse> {
   // Check localStorage cache first
   const cachedResult = getFromCache(country, month, year);
@@ -141,12 +150,12 @@ async function getAstronomyEvents(
     const cached = localStorage.getItem(cacheKey);
     const cachedData: CachedData = cached ? JSON.parse(cached) : null;
     const cacheAge = cachedData ? Date.now() - cachedData.timestamp : 0;
-    
+
     return {
       data: cachedResult,
       fromCache: true,
       cacheAge,
-      source: 'localStorage'
+      source: "localStorage",
     };
   }
 
@@ -169,7 +178,7 @@ async function getAstronomyEvents(
     data: parsedData,
     fromCache: fromServerCache,
     cacheAge: 0,
-    source: USE_SERVERLESS ? 'serverless' : 'direct'
+    source: USE_SERVERLESS ? "serverless" : "direct",
   };
 }
 

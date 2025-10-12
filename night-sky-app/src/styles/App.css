@@ -431,7 +431,7 @@ h4 {
   font-size: 1.2rem;
   background: none;
   outline: none;
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
   display: flex;
   flex-direction: column;
 }
@@ -444,7 +444,6 @@ h4 {
 input::placeholder {
   color: #ffffff;
 }
-
 
 .select-label {
   font-weight: 500;
@@ -946,12 +945,10 @@ ul li a:hover {
   .col-12 {
     grid-column: span 6;
   }
-
 }
 
 @media (max-width: 768px) {
-
-    .search-results-area {
+  .search-results-area {
     padding-left: 1em;
     padding-right: 1em;
   }
@@ -1056,13 +1053,13 @@ ul li a:hover {
   .country-select {
     width: 100%;
     padding-right: 2.5em;
-   margin-bottom: 1.4em;
+    margin-bottom: 1.4em;
   }
 
   .month-select {
     width: 100%;
     padding-right: 2.5em;
-   margin-bottom: 1.4em;
+    margin-bottom: 1.4em;
   }
 
   .input-component {
@@ -1074,7 +1071,8 @@ ul li a:hover {
     width: 100%;
   }
 
-    .btn-primary, .btn-primary:disabled {
+  .btn-primary,
+  .btn-primary:disabled {
     font-size: 1rem;
     vertical-align: middle;
   }
@@ -1082,11 +1080,9 @@ ul li a:hover {
   .modal-overlay {
     overflow-y: scroll;
   }
-
 }
 
 @media (max-width: 600px) {
-
   .container {
     grid-template-columns: 1fr;
     padding: 0rem;
@@ -1107,7 +1103,8 @@ ul li a:hover {
     grid-column: span 1;
   }
 
-  .btn-primary, .btn-primary:disabled {
+  .btn-primary,
+  .btn-primary:disabled {
     margin-top: 1.7em;
     width: 100%;
   }
@@ -1124,11 +1121,11 @@ ul li a:hover {
   .hero-p {
     margin-left: 2em;
     margin-right: 2em;
-    margin-top: .2em;
+    margin-top: 0.2em;
   }
 
   .ai-mistake-message-container > p {
-    font-size: .9rem;
+    font-size: 0.9rem;
   }
 
   .event-card {
@@ -1138,18 +1135,18 @@ ul li a:hover {
     vertical-align: middle;
   }
 
-    .search-results-area {
+  .search-results-area {
     padding-left: 1em;
     padding-right: 1em;
   }
 
-    .modal-content {
+  .modal-content {
     width: 95vw;
     height: 95vh;
     overflow-y: scroll;
   }
 
-    .modal-image {
+  .modal-image {
     width: 100%;
   }
 }
@@ -1169,13 +1166,12 @@ ul li a:hover {
     width: 100%;
   }
 
-    .modal-image {
+  .modal-image {
     width: 100vw;
   }
-
 }
 
-@media (min-width:897px) and (max-width:1200px) {
+@media (min-width: 897px) and (max-width: 1200px) {
   nav {
     padding-left: 2em;
     padding-right: 2em;
@@ -1196,16 +1192,17 @@ ul li a:hover {
     gap: 2em;
   }
 
-  .btn-primary, .btn-primary:disabled {
+  .btn-primary,
+  .btn-primary:disabled {
     margin-left: 1em;
     font-size: 1rem;
   }
 
   .glass-card {
-      margin-left: 2em;
-      margin-right: 2em;
-      padding-left: 2em;
-      padding-right: 2em;
+    margin-left: 2em;
+    margin-right: 2em;
+    padding-left: 2em;
+    padding-right: 2em;
   }
 
   .modal-content {
@@ -1214,8 +1211,7 @@ ul li a:hover {
     overflow-y: hidden;
   }
 
-    .modal-image {
+  .modal-image {
     width: 100%;
   }
-
 }

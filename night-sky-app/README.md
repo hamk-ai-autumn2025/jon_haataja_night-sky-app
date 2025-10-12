@@ -22,37 +22,42 @@ A React + TypeScript + Vite application that helps you discover astronomy events
 ### Local Development
 
 1. **Clone the repository**
+
    ```bash
    git clone <your-repo-url>
    cd night-sky-app
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Set up environment variables**
-   
+
    Create a `.env` file in the `night-sky-app` directory:
+
    ```env
    VITE_OPENAI_API_KEY=your_github_models_api_key_here
    ```
 
 4. **Run the development server**
-   
+
    For regular Vite development (direct API calls):
+
    ```bash
    npm run dev
    ```
-   
+
    For testing with Netlify Functions locally:
+
    ```bash
    npm run dev:netlify
    ```
 
 5. **Open your browser**
-   
+
    Navigate to `http://localhost:5173` (or the URL shown in your terminal)
 
 ## 📦 Deployment to Netlify
@@ -80,7 +85,7 @@ A React + TypeScript + Vite application that helps you discover astronomy events
    - Select your `night-sky-app` repository
 
 3. **Configure Build Settings**
-   
+
    Netlify should automatically detect settings from `netlify.toml`, but verify:
    - **Base directory**: `night-sky-app`
    - **Build command**: `npm run build`
@@ -92,7 +97,7 @@ A React + TypeScript + Vite application that helps you discover astronomy events
    - Add the following variable:
      - **Key**: `OPENAI_API_KEY`
      - **Value**: Your GitHub Models API key
-   
+
    ⚠️ **Important**: Use `OPENAI_API_KEY` (not `VITE_OPENAI_API_KEY`) for the serverless function
 
 5. **Deploy**
@@ -103,25 +108,29 @@ A React + TypeScript + Vite application that helps you discover astronomy events
 #### Option B: Using Netlify CLI
 
 1. **Install Netlify CLI**
+
    ```bash
    npm install -g netlify-cli
    ```
 
 2. **Login to Netlify**
+
    ```bash
    netlify login
    ```
 
 3. **Initialize your site**
+
    ```bash
    netlify init
    ```
-   
+
    Follow the prompts to:
    - Create a new site or link to an existing one
    - Configure build settings
 
 4. **Set environment variables**
+
    ```bash
    netlify env:set OPENAI_API_KEY "your_github_models_api_key_here"
    ```
@@ -143,12 +152,14 @@ A React + TypeScript + Vite application that helps you discover astronomy events
 ### Environment Variables
 
 #### Development (.env file)
+
 ```env
 VITE_OPENAI_API_KEY=your_api_key        # Used for direct API calls in development
 VITE_USE_SERVERLESS=false               # Optional: Force serverless mode in dev
 ```
 
 #### Production (Netlify Dashboard)
+
 ```env
 OPENAI_API_KEY=your_api_key             # Used by serverless function
 ```
@@ -156,11 +167,13 @@ OPENAI_API_KEY=your_api_key             # Used by serverless function
 ### Caching Configuration
 
 **Client-Side Cache (localStorage)**
+
 - Duration: 24 hours
 - Key format: `astronomy_events_{country}_{month}_{year}`
 - Can be cleared via browser DevTools
 
 **Server-Side Cache (in-memory)**
+
 - Duration: 24 hours
 - Maximum entries: 100 (auto-cleanup)
 - Persists during function warm starts
@@ -168,6 +181,7 @@ OPENAI_API_KEY=your_api_key             # Used by serverless function
 ## 🧪 Testing
 
 Run the test suite:
+
 ```bash
 npm run test
 ```
@@ -193,11 +207,13 @@ night-sky-app/
 ## 🎯 How It Works
 
 ### Development Mode
+
 - Direct API calls to GitHub Models (OpenAI-compatible endpoint)
 - Client-side caching in localStorage
 - Fast development workflow
 
 ### Production Mode (Netlify)
+
 1. User submits search form
 2. Frontend checks localStorage cache
 3. If not cached, calls `/.netlify/functions/get-astronomy-events`
@@ -207,6 +223,7 @@ night-sky-app/
 7. Subsequent identical searches return instantly from cache
 
 ### Cache Strategy
+
 - **First request**: ~5-10 seconds (API call)
 - **Cached requests**: <100ms (instant)
 - **Cache expiry**: 24 hours
@@ -223,16 +240,19 @@ night-sky-app/
 ## 🐛 Troubleshooting
 
 ### Build Fails on Netlify
+
 - Check that `OPENAI_API_KEY` is set in environment variables
 - Verify Node version is 20 or higher
 - Check build logs for specific errors
 
 ### Serverless Function Errors
+
 - Ensure environment variable is named `OPENAI_API_KEY` (not `VITE_OPENAI_API_KEY`)
 - Check function logs in Netlify dashboard
 - Verify API key is valid
 
 ### Caching Issues
+
 - Clear localStorage in browser DevTools
 - Check console for cache status messages
 - Verify timestamps in cached data

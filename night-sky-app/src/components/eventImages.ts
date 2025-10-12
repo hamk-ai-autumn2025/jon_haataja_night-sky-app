@@ -39,8 +39,7 @@ export function getEventImage(title: string): string {
     return SummerSolsticeImage;
   } else if (titleLower.includes("solar eclipse")) {
     return SolarEclipseImage;
-  }
-  else if (titleLower.includes("comet")) {
+  } else if (titleLower.includes("comet")) {
     return CometImage;
   }
 
@@ -72,8 +71,7 @@ export function getEventImageTall(title: string): string {
     return SummerSolsticeImageTall;
   } else if (titleLower.includes("solar eclipse")) {
     return SolarEclipseImageTall;
-  }
-  else if (titleLower.includes("comet")) {
+  } else if (titleLower.includes("comet")) {
     return CometImageTall;
   }
 
