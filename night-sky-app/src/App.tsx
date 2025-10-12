@@ -1,5 +1,4 @@
 // Supports weights 200-800
-//@ts-expect-error ts can't find font but it still works
 import "@fontsource-variable/plus-jakarta-sans";
 import "./styles/App.css";
 import "./styles/index.css";
