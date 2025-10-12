@@ -10,13 +10,13 @@ export default defineConfig({
       output: {
         manualChunks: {
           // Split React and React-DOM into their own chunk
-          'react-vendor': ['react', 'react-dom'],
+          "react-vendor": ["react", "react-dom"],
           // Split OpenAI SDK into its own chunk (largest dependency)
-          'openai-vendor': ['openai'],
+          "openai-vendor": ["openai"],
           // Split world-countries separately (it's quite large)
-          'countries-vendor': ['world-countries'],
+          "countries-vendor": ["world-countries"],
           // Axios in its own chunk
-          'axios-vendor': ['axios'],
+          "axios-vendor": ["axios"],
         },
       },
     },

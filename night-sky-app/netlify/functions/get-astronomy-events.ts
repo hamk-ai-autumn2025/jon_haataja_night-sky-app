@@ -47,7 +47,29 @@ const handler: Handler = async (event: HandlerEvent) => {
 
   try {
     // Parse request body
-    const { country, month, year } = JSON.parse(event.body || "{}");
+    const body = event.body;
+
+    // Validate request body exists
+    if (!body) {
+      return {
+        statusCode: 400,
+        headers,
+        body: JSON.stringify({ error: "Request body is required" }),
+      };
+    }
+
+    let parsedBody;
+    try {
+      parsedBody = JSON.parse(body);
+    } catch {
+      return {
+        statusCode: 400,
+        headers,
+        body: JSON.stringify({ error: "Invalid JSON in request body" }),
+      };
+    }
+
+    const { country, month, year } = parsedBody;
 
     // Validate required parameters
     if (!country || !month || !year) {
@@ -60,8 +82,28 @@ const handler: Handler = async (event: HandlerEvent) => {
       };
     }
 
+    // Sanitize and validate inputs to prevent injection
+    const sanitizedCountry = String(country).trim().substring(0, 100);
+    const sanitizedMonth = String(month).trim().substring(0, 20);
+    const sanitizedYear = String(year).trim().substring(0, 4);
+
+    // Validate year format
+    if (!/^\d{4}$/.test(sanitizedYear)) {
+      return {
+        statusCode: 400,
+        headers,
+        body: JSON.stringify({
+          error: "Year must be a 4-digit number",
+        }),
+      };
+    }
+
     // Check in-memory cache
-    const cacheKey = getCacheKey(country, month, year);
+    const cacheKey = getCacheKey(
+      sanitizedCountry,
+      sanitizedMonth,
+      sanitizedYear,
+    );
     const cached = cache.get(cacheKey);
 
     if (cached && Date.now() - cached.timestamp < CACHE_DURATION) {
@@ -93,7 +135,7 @@ const handler: Handler = async (event: HandlerEvent) => {
         },
         {
           role: "user",
-          content: `List 8-12 notable astronomy events for ${country} in ${month} ${year}. Include: meteor showers, key moon phases, comets, planetary visibility, conjunctions, eclipses, seasonal events.`,
+          content: `List 8-12 notable astronomy events for ${sanitizedCountry} in ${sanitizedMonth} ${sanitizedYear}. Include: meteor showers, key moon phases, comets, planetary visibility, conjunctions, eclipses, seasonal events.`,
         },
       ],
       response_format: { type: "json_object" },

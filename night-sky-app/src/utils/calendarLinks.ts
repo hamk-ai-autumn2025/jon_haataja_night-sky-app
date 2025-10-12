@@ -11,6 +11,18 @@ export interface CalendarEvent {
 }
 
 /**
+ * Sanitize text to prevent injection attacks
+ * Removes potentially dangerous characters while preserving readability
+ */
+const sanitizeText = (text: string): string => {
+  return text
+    .replace(/[<>]/g, "") // Remove angle brackets
+    .replace(/javascript:/gi, "") // Remove javascript: protocol
+    .replace(/on\w+=/gi, "") // Remove event handlers
+    .trim();
+};
+
+/**
  * Formats a date to YYYYMMDDTHHMMSSZ format (UTC)
  */
 const formatDateForCalendar = (date: Date): string => {
@@ -26,9 +38,9 @@ export const generateGoogleCalendarLink = (event: CalendarEvent): string => {
 
   const params = new URLSearchParams({
     action: "TEMPLATE",
-    text: event.title,
-    details: event.description,
-    location: event.location,
+    text: sanitizeText(event.title),
+    details: sanitizeText(event.description),
+    location: sanitizeText(event.location),
     dates: `${startDate}/${endDate}`,
   });
 
@@ -45,9 +57,9 @@ export const generateOutlookCalendarLink = (event: CalendarEvent): string => {
   const params = new URLSearchParams({
     path: "/calendar/action/compose",
     rru: "addevent",
-    subject: event.title,
-    body: event.description,
-    location: event.location,
+    subject: sanitizeText(event.title),
+    body: sanitizeText(event.description),
+    location: sanitizeText(event.location),
     startdt: startDate,
     enddt: endDate,
   });
@@ -64,9 +76,9 @@ export const generateYahooCalendarLink = (event: CalendarEvent): string => {
 
   const params = new URLSearchParams({
     v: "60",
-    title: event.title,
-    desc: event.description,
-    in_loc: event.location,
+    title: sanitizeText(event.title),
+    desc: sanitizeText(event.description),
+    in_loc: sanitizeText(event.location),
     st: startDate,
     et: endDate,
   });
@@ -92,9 +104,9 @@ export const generateICalendarFile = (event: CalendarEvent): string => {
     `DTSTAMP:${formatDateForCalendar(new Date())}`,
     `DTSTART:${startDate}`,
     `DTEND:${endDate}`,
-    `SUMMARY:${event.title}`,
-    `DESCRIPTION:${event.description.replace(/\n/g, "\\n")}`,
-    `LOCATION:${event.location}`,
+    `SUMMARY:${sanitizeText(event.title)}`,
+    `DESCRIPTION:${sanitizeText(event.description).replace(/\n/g, "\\n")}`,
+    `LOCATION:${sanitizeText(event.location)}`,
     "STATUS:CONFIRMED",
     "END:VEVENT",
     "END:VCALENDAR",
