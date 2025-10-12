@@ -7,11 +7,15 @@ const USE_SERVERLESS =
 const endpoint = "https://models.github.ai/inference";
 const model = "openai/gpt-4.1-mini";
 
-const client = new OpenAI({
-  baseURL: endpoint,
-  apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-  dangerouslyAllowBrowser: true,
-});
+// Only initialize client for development (when not using serverless)
+let client: OpenAI | null = null;
+if (!USE_SERVERLESS) {
+  client = new OpenAI({
+    baseURL: endpoint,
+    apiKey: import.meta.env.VITE_OPENAI_API_KEY,
+    dangerouslyAllowBrowser: true,
+  });
+}
 
 // Cache configuration
 const CACHE_PREFIX = "astronomy_events_";
@@ -112,6 +116,12 @@ async function fetchFromDirectAPI(
   year: string,
   signal?: AbortSignal,
 ) {
+  if (!client) {
+    throw new Error(
+      "OpenAI client not initialized. Use serverless function in production.",
+    );
+  }
+
   const response = await client.chat.completions.create(
     {
       model: model,
