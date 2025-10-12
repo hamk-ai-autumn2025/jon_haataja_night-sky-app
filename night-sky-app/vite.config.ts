@@ -27,5 +27,29 @@ export default defineConfig({
     environment: "jsdom",
     setupFiles: ["./setupTests.ts"],
     globals: true,
+    coverage: {
+      provider: "v8",
+      reporter: ["text", "json", "html", "lcov"],
+      exclude: [
+        "node_modules/",
+        "dist/",
+        "**/*.config.{js,ts}",
+        "**/*.d.ts",
+        "**/types/",
+        "**/__tests__/",
+        "setupTests.ts",
+        "src/vite-env.d.ts",
+        "src/main.tsx", // Entry point, typically not tested
+      ],
+      thresholds: {
+        lines: 70,
+        functions: 70,
+        branches: 65,
+        statements: 70,
+      },
+      // Auto-enable coverage when running tests with --coverage flag
+      all: true,
+      include: ["src/**/*.{ts,tsx}"],
+    },
   },
 });

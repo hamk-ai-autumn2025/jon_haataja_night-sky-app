@@ -1,7 +1,7 @@
 // Supports weights 200-800
 import "@fontsource-variable/plus-jakarta-sans";
-import "./styles/App.css";
 import "./styles/index.css";
+import "./styles/App.css";
 import skaiLogo from "./assets/skai-logo.svg";
 import { lazy, Suspense, useCallback, useMemo, useRef, useState } from "react";
 import { useDebouncedCallback } from "./hooks/useDebounce";
