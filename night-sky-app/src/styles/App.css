@@ -646,8 +646,34 @@ ul li a:hover {
 
 .footer-content {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
   justify-content: center;
   text-align: center;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  color: #8b9cff;
+}
+
+.footer-link-button {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0.25rem 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.footer-link-button:hover {
+  color: #8b9cff;
+  text-decoration: none;
 }
 
 .footer-saturn {
