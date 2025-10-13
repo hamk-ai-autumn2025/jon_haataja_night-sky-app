@@ -715,7 +715,6 @@ ul li a:hover {
 
 .modal-text {
   padding: 2rem;
-  overflow-y: auto;
   height: calc(100% - 4rem);
 }
 
@@ -842,6 +841,92 @@ ul li a:hover {
   display: inline-block;
   width: 1.5rem;
   text-align: center;
+}
+
+/* Share Event Button Styles */
+.share-event-container {
+  position: relative;
+  display: inline-block;
+  margin-left: 1.4rem;
+}
+
+.share-event-button {
+  background: linear-gradient(135deg, #e64c8b 0%, #f65c9f 100%);
+  color: #fff;
+  border: none;
+  border-radius: 100px;
+  padding: 0.875rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(230, 76, 139, 0.3);
+  min-width: 1.8em;
+}
+
+.share-event-button:hover {
+  background: linear-gradient(135deg, #d53d7a 0%, #e54b8e 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(230, 76, 139, 0.4);
+}
+
+.share-event-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(230, 76, 139, 0.3);
+}
+
+.share-event-button svg {
+  flex-shrink: 0;
+}
+
+.share-dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  background: #2a1f47;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  min-width: 200px;
+  overflow: hidden;
+  z-index: 3000;
+  animation: dropdownFadeIn 0.2s ease;
+}
+
+.share-dropdown-item {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: #f3f3f3;
+  padding: 0.875rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.share-dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.share-dropdown-item:hover {
+  background: rgba(230, 76, 139, 0.3);
+}
+
+.share-dropdown-item:active {
+  background: rgba(230, 76, 139, 0.5);
+}
+
+.share-dropdown-item svg {
+  flex-shrink: 0;
 }
 
 /* Skeleton Loading Styles */
@@ -1080,6 +1165,22 @@ ul li a:hover {
   .modal-overlay {
     overflow-y: scroll;
   }
+
+  .share-event-container {
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+
+  .share-event-button,
+  .add-to-calendar-button {
+    width: 100%;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
+  .modal-image {
+    display: none;
+  }
 }
 
 @media (max-width: 600px) {
@@ -1147,7 +1248,7 @@ ul li a:hover {
   }
 
   .modal-image {
-    width: 100%;
+    display: none;
   }
 }
 
@@ -1163,11 +1264,12 @@ ul li a:hover {
   }
 
   .modal-image {
-    width: 100%;
+    display: none;
   }
 
-  .modal-image {
-    width: 100vw;
+    .share-event-container {
+      margin-top: 0;
+    margin-left: 1rem;
   }
 }
 
@@ -1214,4 +1316,11 @@ ul li a:hover {
   .modal-image {
     width: 100%;
   }
+
+    .share-event-container {
+    margin-left: 1rem;
+    margin-top: 1.5rem;
+  }
 }
+
+

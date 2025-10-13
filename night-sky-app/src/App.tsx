@@ -19,6 +19,7 @@ import TelescopeIcon from "./assets/telescope.svg";
 
 import { getEventImageTall } from "./components/eventImages";
 import AddToCalendar from "./components/AddToCalendar";
+import ShareEvent from "./components/ShareEvent";
 import SkeletonEventCard from "./components/SkeletonEventCard";
 
 export interface AstronomyEvent {
@@ -315,6 +316,10 @@ function App() {
 
                     <div className="col-12">
                       <AddToCalendar
+                        event={selectedEvent}
+                        location={searchedCountry || "Your location"}
+                      />
+                      <ShareEvent
                         event={selectedEvent}
                         location={searchedCountry || "Your location"}
                       />
