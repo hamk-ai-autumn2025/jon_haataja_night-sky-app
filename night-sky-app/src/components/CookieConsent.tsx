@@ -144,7 +144,7 @@ const CookieConsent: React.FC<CookieConsentProps> = ({ onAccept }) => {
                 Allow Selection
               </button>
               <button
-                className="cookie-btn cookie-btn-accept"
+                className="cookie-btn btn-primary"
                 onClick={handleAcceptAll}
               >
                 Allow All
