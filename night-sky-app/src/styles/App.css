@@ -1323,4 +1323,194 @@ ul li a:hover {
   }
 }
 
+/* Disable animations if user prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  /* Remove all transitions */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+
+  /* Button transitions */
+  .btn-primary {
+    transition: none;
+  }
+  .btn-primary:hover {
+    transform: none;
+    transition: none;
+    transition-delay: 0ms;
+  }
+  .btn-primary:active {
+    transform: none;
+    transition: none;
+  }
+
+  .btn-secondary {
+    transition: none;
+  }
+  .btn-secondary:hover {
+    transform: none;
+    transition: none;
+    transition-delay: 0ms;
+  }
+  .btn-secondary:active {
+    transform: none;
+    transition: none;
+  }
+
+  /* Event card hover effects */
+  .event-card:hover {
+    transform: none;
+    transition: none;
+    transition-delay: 0ms;
+  }
+
+  /* Cache indicator animation */
+  .cache-indicator {
+    animation: none;
+  }
+
+  /* Disable slideInFromTop keyframe animation */
+  @keyframes slideInFromTop {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Select field picker icon rotation */
+  select::picker-icon {
+    transition: none;
+  }
+  .select-field:open::picker-icon {
+    transition: none !important;
+    rotate: 180deg !important;
+  }
+
+  /* Select field transitions */
+  select {
+    transition: none;
+  }
+  option {
+    transition: none;
+  }
+
+  /* Add to Calendar button */
+  .add-to-calendar-button {
+    transition: none;
+  }
+  .add-to-calendar-button:hover {
+    transform: none;
+  }
+  .add-to-calendar-button:active {
+    transform: none;
+  }
+
+  /* Dropdown arrow animations */
+  .dropdown-arrow-down {
+    transition: none;
+  }
+  .dropdown-arrow-up {
+    transform: rotate(180deg);
+    transition: none;
+  }
+
+  /* Calendar dropdown animation */
+  .calendar-dropdown {
+    animation: none;
+  }
+
+  /* Disable dropdownFadeIn keyframe animation */
+  @keyframes dropdownFadeIn {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Calendar option hover */
+  .calendar-option {
+    transition: none;
+  }
+
+  /* Share event button */
+  .share-event-button {
+    transition: none;
+  }
+  .share-event-button:hover {
+    transform: none;
+  }
+  .share-event-button:active {
+    transform: none;
+  }
+
+  /* Share dropdown animation */
+  .share-dropdown {
+    animation: none;
+  }
+
+  /* Share dropdown item */
+  .share-dropdown-item {
+    transition: none;
+  }
+
+  /* Skeleton loading animation */
+  .skeleton {
+    animation: none;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Disable skeleton-loading keyframe animation */
+  @keyframes skeleton-loading {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 0 0;
+    }
+  }
+
+  /* Loader animation */
+  .loader {
+    animation: none;
+    border-top: 4px solid #fff;
+    border-right: 4px solid #fff;
+    border-bottom: 4px solid #ffff00;
+    border-left: 4px solid #ffff00;
+  }
+  .loader::after {
+    animation: none;
+  }
+
+  /* Disable rotation keyframe animation */
+  @keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+
+  /* Navigation transitions */
+  ul {
+    transition: none;
+  }
+  ul li a {
+    transition: none;
+  }
+}
+
 
