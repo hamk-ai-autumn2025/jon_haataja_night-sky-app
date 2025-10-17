@@ -19,7 +19,11 @@ import TelescopeIcon from "./assets/telescope.svg";
 
 import { getEventImageTall } from "./components/eventImages";
 import AddToCalendar from "./components/AddToCalendar";
+import ShareEvent from "./components/ShareEvent";
 import SkeletonEventCard from "./components/SkeletonEventCard";
+import CookieConsent from "./components/CookieConsent";
+import type { CookiePreferences } from "./components/CookieConsent";
+import PrivacyPolicy from "./components/PrivacyPolicy";
 
 export interface AstronomyEvent {
   date: string;
@@ -55,6 +59,9 @@ function App() {
   );
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // Privacy Policy modal state
+  const [isPrivacyPolicyOpen, setIsPrivacyPolicyOpen] = useState(false);
+
   const handleCardClick = (event: AstronomyEvent) => {
     setSelectedEvent(event);
     setIsModalOpen(true);
@@ -63,6 +70,14 @@ function App() {
   const handleModalClose = () => {
     setIsModalOpen(false);
     setSelectedEvent(null);
+  };
+
+  const handlePrivacyPolicyOpen = () => {
+    setIsPrivacyPolicyOpen(true);
+  };
+
+  const handlePrivacyPolicyClose = () => {
+    setIsPrivacyPolicyOpen(false);
   };
 
   const displayedEvents = useMemo(() => {
@@ -83,6 +98,21 @@ function App() {
     const mm = String(date.getMonth() + 1).padStart(2, "0");
     const yyyy = date.getFullYear();
     return `${dd}.${mm}.${yyyy}`;
+  };
+
+  // Handle cookie consent acceptance
+  const handleCookieConsent = (preferences: CookiePreferences) => {
+    console.log("Cookie preferences saved:", preferences);
+    // Here you can implement logic to initialize analytics, marketing scripts, etc.
+    // based on the user's preferences
+    if (preferences.analytics) {
+      // Initialize analytics tracking
+      console.log("Analytics enabled");
+    }
+    if (preferences.marketing) {
+      // Initialize marketing pixels, etc.
+      console.log("Marketing enabled");
+    }
   };
 
   async function handleSearch(country: string, month: string, year: string) {
@@ -275,7 +305,7 @@ function App() {
         </section>
 
         <section className="footer">
-          <Footer />
+          <Footer onPrivacyPolicyClick={handlePrivacyPolicyOpen} />
         </section>
         {/* Modal for event details */}
         <Suspense fallback={<div />}>
@@ -318,6 +348,10 @@ function App() {
                         event={selectedEvent}
                         location={searchedCountry || "Your location"}
                       />
+                      <ShareEvent
+                        event={selectedEvent}
+                        location={searchedCountry || "Your location"}
+                      />
                     </div>
                   </div>
                 </div>
@@ -333,6 +367,12 @@ function App() {
             )}
           </Modal>
         </Suspense>
+        {/* Cookie Consent Banner */}
+        <CookieConsent onAccept={handleCookieConsent} />
+        {/* Privacy Policy Modal */}
+        {isPrivacyPolicyOpen && (
+          <PrivacyPolicy onClose={handlePrivacyPolicyClose} />
+        )}
       </main>
     </div>
   );

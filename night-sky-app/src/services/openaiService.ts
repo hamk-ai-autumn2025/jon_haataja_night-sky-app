@@ -5,7 +5,7 @@ const USE_SERVERLESS =
   import.meta.env.PROD || import.meta.env.VITE_USE_SERVERLESS === "true";
 
 const endpoint = "https://models.github.ai/inference";
-const model = "openai/gpt-4.1-mini";
+const model = "openai/gpt-4.1";
 
 // Only initialize client for development (when not using serverless)
 let client: OpenAI | null = null;

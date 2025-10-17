@@ -2,7 +2,7 @@ import type { Handler, HandlerEvent } from "@netlify/functions";
 import OpenAI from "openai";
 
 const endpoint = "https://models.github.ai/inference";
-const model = "openai/gpt-4.1-mini";
+const model = "openai/gpt-4.1";
 
 // In-memory cache for serverless function
 const cache = new Map<

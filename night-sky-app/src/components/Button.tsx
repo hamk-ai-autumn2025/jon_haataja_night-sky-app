@@ -5,7 +5,7 @@ interface ButtonProps {
   title: string;
   type: "button" | "submit" | "reset";
   disabled: boolean;
-  styleType: "btn-primary" | "btn-secondary";
+  styleType: "btn-primary" | "btn-secondary" | "cookie-btn cookie-btn-save";
 }
 
 export function Button({ title, type, disabled, styleType }: ButtonProps) {

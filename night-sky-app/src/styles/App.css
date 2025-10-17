@@ -646,8 +646,34 @@ ul li a:hover {
 
 .footer-content {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
   justify-content: center;
   text-align: center;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  color: #8b9cff;
+}
+
+.footer-link-button {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0.25rem 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.footer-link-button:hover {
+  color: #8b9cff;
+  text-decoration: none;
 }
 
 .footer-saturn {
@@ -715,7 +741,6 @@ ul li a:hover {
 
 .modal-text {
   padding: 2rem;
-  overflow-y: auto;
   height: calc(100% - 4rem);
 }
 
@@ -842,6 +867,92 @@ ul li a:hover {
   display: inline-block;
   width: 1.5rem;
   text-align: center;
+}
+
+/* Share Event Button Styles */
+.share-event-container {
+  position: relative;
+  display: inline-block;
+  margin-left: 1.4rem;
+}
+
+.share-event-button {
+  background: linear-gradient(135deg, #e64c8b 0%, #f65c9f 100%);
+  color: #fff;
+  border: none;
+  border-radius: 100px;
+  padding: 0.875rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(230, 76, 139, 0.3);
+  min-width: 1.8em;
+}
+
+.share-event-button:hover {
+  background: linear-gradient(135deg, #d53d7a 0%, #e54b8e 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(230, 76, 139, 0.4);
+}
+
+.share-event-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(230, 76, 139, 0.3);
+}
+
+.share-event-button svg {
+  flex-shrink: 0;
+}
+
+.share-dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  background: #2a1f47;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  min-width: 200px;
+  overflow: hidden;
+  z-index: 3000;
+  animation: dropdownFadeIn 0.2s ease;
+}
+
+.share-dropdown-item {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: #f3f3f3;
+  padding: 0.875rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.share-dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.share-dropdown-item:hover {
+  background: rgba(230, 76, 139, 0.3);
+}
+
+.share-dropdown-item:active {
+  background: rgba(230, 76, 139, 0.5);
+}
+
+.share-dropdown-item svg {
+  flex-shrink: 0;
 }
 
 /* Skeleton Loading Styles */
@@ -1080,6 +1191,22 @@ ul li a:hover {
   .modal-overlay {
     overflow-y: scroll;
   }
+
+  .share-event-container {
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+
+  .share-event-button,
+  .add-to-calendar-button {
+    width: 100%;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
+  .modal-image {
+    display: none;
+  }
 }
 
 @media (max-width: 600px) {
@@ -1147,7 +1274,7 @@ ul li a:hover {
   }
 
   .modal-image {
-    width: 100%;
+    display: none;
   }
 }
 
@@ -1163,11 +1290,12 @@ ul li a:hover {
   }
 
   .modal-image {
-    width: 100%;
+    display: none;
   }
 
-  .modal-image {
-    width: 100vw;
+  .share-event-container {
+    margin-top: 0;
+    margin-left: 1rem;
   }
 }
 
@@ -1213,5 +1341,200 @@ ul li a:hover {
 
   .modal-image {
     width: 100%;
+  }
+
+  .share-event-container {
+    margin-left: 1rem;
+    margin-top: 1.5rem;
+  }
+}
+
+/* Disable animations if user prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  /* Remove all transitions */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+
+  /* Button transitions */
+  .btn-primary {
+    transition: none;
+  }
+  .btn-primary:hover {
+    transform: none;
+    transition: none;
+    transition-delay: 0ms;
+  }
+  .btn-primary:active {
+    transform: none;
+    transition: none;
+  }
+
+  .btn-secondary {
+    transition: none;
+  }
+  .btn-secondary:hover {
+    transform: none;
+    transition: none;
+    transition-delay: 0ms;
+  }
+  .btn-secondary:active {
+    transform: none;
+    transition: none;
+  }
+
+  /* Event card hover effects */
+  .event-card:hover {
+    transform: none;
+    transition: none;
+    transition-delay: 0ms;
+  }
+
+  /* Cache indicator animation */
+  .cache-indicator {
+    animation: none;
+  }
+
+  /* Disable slideInFromTop keyframe animation */
+  @keyframes slideInFromTop {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Select field picker icon rotation */
+  select::picker-icon {
+    transition: none;
+  }
+  .select-field:open::picker-icon {
+    transition: none !important;
+    rotate: 180deg !important;
+  }
+
+  /* Select field transitions */
+  select {
+    transition: none;
+  }
+  option {
+    transition: none;
+  }
+
+  /* Add to Calendar button */
+  .add-to-calendar-button {
+    transition: none;
+  }
+  .add-to-calendar-button:hover {
+    transform: none;
+  }
+  .add-to-calendar-button:active {
+    transform: none;
+  }
+
+  /* Dropdown arrow animations */
+  .dropdown-arrow-down {
+    transition: none;
+  }
+  .dropdown-arrow-up {
+    transform: rotate(180deg);
+    transition: none;
+  }
+
+  /* Calendar dropdown animation */
+  .calendar-dropdown {
+    animation: none;
+  }
+
+  /* Disable dropdownFadeIn keyframe animation */
+  @keyframes dropdownFadeIn {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Calendar option hover */
+  .calendar-option {
+    transition: none;
+  }
+
+  /* Share event button */
+  .share-event-button {
+    transition: none;
+  }
+  .share-event-button:hover {
+    transform: none;
+  }
+  .share-event-button:active {
+    transform: none;
+  }
+
+  /* Share dropdown animation */
+  .share-dropdown {
+    animation: none;
+  }
+
+  /* Share dropdown item */
+  .share-dropdown-item {
+    transition: none;
+  }
+
+  /* Skeleton loading animation */
+  .skeleton {
+    animation: none;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Disable skeleton-loading keyframe animation */
+  @keyframes skeleton-loading {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 0 0;
+    }
+  }
+
+  /* Loader animation */
+  .loader {
+    animation: none;
+    border-top: 4px solid #fff;
+    border-right: 4px solid #fff;
+    border-bottom: 4px solid #ffff00;
+    border-left: 4px solid #ffff00;
+  }
+  .loader::after {
+    animation: none;
+  }
+
+  /* Disable rotation keyframe animation */
+  @keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+
+  /* Navigation transitions */
+  ul {
+    transition: none;
+  }
+  ul li a {
+    transition: none;
   }
 }

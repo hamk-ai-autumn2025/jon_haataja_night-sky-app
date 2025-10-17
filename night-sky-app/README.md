@@ -4,12 +4,50 @@ A React + TypeScript + Vite application that helps you discover astronomy events
 
 ## 🌟 Features
 
-- **AI-Powered Event Search**: Get comprehensive astronomy events for any country and month
+### Core Functionality
+
+- **AI-Powered Event Search**: Get comprehensive astronomy events for any country and month using OpenAI
+- **Smart Country Selection**: Searchable dropdown with all world countries
+- **Month & Year Selection**: Easy navigation through astronomy events by time period
+- **Event Sorting**: Multiple sorting options (date, title, visibility requirements)
+- **Responsive Design**: Beautiful glassmorphic UI that works on all devices
+
+### Event Management
+
+- **Detailed Event Cards**: Rich event information with visibility indicators (naked eye 👁️ or telescope 🔭)
+- **Event Modal**: Click any event to view detailed information in an elegant modal
+- **Event Images**: Beautiful astronomy-themed images for different event types
+- **Add to Calendar**: Export events to Google Calendar, Outlook, Yahoo Mail, or iCloud (iCal)
+- **Share Events**: Share astronomy events via:
+  - Native share (mobile devices)
+  - Email
+  - Twitter/X
+  - WhatsApp
+  - Copy to clipboard
+
+### Performance & Caching
+
 - **Client-Side Caching**: Automatic 24-hour localStorage caching to reduce API calls
-- **Serverless Architecture**: Secure API key handling via Netlify Functions
 - **Server-Side Caching**: In-memory caching in serverless functions for improved performance
-- **Event Sorting**: Sort events by date, title, or visibility requirements
-- **Responsive Design**: Beautiful UI that works on all devices
+- **Code Splitting**: Lazy loading of components for faster initial load
+- **Skeleton Loading**: Smooth loading states while fetching data
+
+### Privacy & Compliance
+
+- **Cookie Consent Banner**: GDPR-compliant cookie consent management with:
+  - Necessary cookies (always enabled)
+  - Analytics cookies (optional)
+  - Marketing cookies (optional)
+  - Detailed accordion-style explanations for each category
+  - Persistent settings button for preference updates
+- **Privacy Policy**: Comprehensive privacy policy accessible from footer
+
+### Architecture & Security
+
+- **Serverless Architecture**: Secure API key handling via Netlify Functions
+- **Error Boundary**: Graceful error handling throughout the application
+- **TypeScript**: Full type safety across the codebase
+- **Content Security Policy**: Enhanced security headers
 
 ## 🚀 Quick Start
 
@@ -194,12 +232,42 @@ night-sky-app/
 │   └── functions/
 │       └── get-astronomy-events.ts    # Serverless function
 ├── src/
-│   ├── components/                     # React components
+│   ├── components/
+│   │   ├── AddToCalendar.tsx         # Calendar export functionality
+│   │   ├── Button.tsx                # Reusable button component
+│   │   ├── CookieConsent.tsx         # Cookie consent banner
+│   │   ├── CountrySelect.tsx         # Country selection dropdown
+│   │   ├── ErrorBoundary.tsx         # Error handling wrapper
+│   │   ├── EventCard.tsx             # Event display card
+│   │   ├── EventList.tsx             # Event list container
+│   │   ├── Footer.tsx                # App footer with privacy link
+│   │   ├── Input.tsx                 # Reusable input component
+│   │   ├── Modal.tsx                 # Event detail modal
+│   │   ├── MonthSelect.tsx           # Month selection dropdown
+│   │   ├── PrivacyPolicy.tsx         # Privacy policy modal
+│   │   ├── SearchForm.tsx            # Main search form
+│   │   ├── ShareEvent.tsx            # Social sharing functionality
+│   │   ├── SkeletonEventCard.tsx     # Loading skeleton
+│   │   ├── SortSelect.tsx            # Sort options dropdown
+│   │   ├── eventImages.ts            # Event image mappings
+│   │   ├── months.ts                 # Month data
+│   │   └── sortEvents.ts             # Event sorting logic
+│   ├── hooks/
+│   │   └── useDebounce.ts            # Debounce hook
 │   ├── services/
-│   │   └── openaiService.ts           # API service with caching
-│   ├── styles/                        # CSS files
-│   └── App.tsx                        # Main app component
-├── netlify.toml                       # Netlify configuration
+│   │   └── openaiService.ts          # API service with caching
+│   ├── styles/
+│   │   ├── App.css                   # Main app styles
+│   │   ├── CookieConsent.css         # Cookie banner styles
+│   │   ├── index.css                 # Global styles
+│   │   └── PrivacyPolicy.css         # Privacy policy styles
+│   ├── utils/
+│   │   ├── calendarLinks.ts          # Calendar export utilities
+│   │   └── cookieConsent.ts          # Cookie management utilities
+│   ├── __tests__/                    # Test files
+│   ├── assets/                       # Images and icons
+│   └── App.tsx                       # Main app component
+├── netlify.toml                      # Netlify configuration
 ├── package.json
 └── vite.config.ts
 ```
@@ -264,6 +332,9 @@ night-sky-app/
 - `npm run build` - Build for production
 - `npm run preview` - Preview production build locally
 - `npm run test` - Run tests
+- `npm run test:ui` - Run tests with Vitest UI
+- `npm run test:coverage` - Run tests with coverage report
+- `npm run test:watch` - Run tests in watch mode
 - `npm run lint` - Run ESLint
 - `npm run prettier` - Format code with Prettier
 
@@ -271,12 +342,52 @@ night-sky-app/
 
 The application provides sorting controls above the event list:
 
-- Date (Oldest → Newest)
-- Date (Newest → Oldest)
-- Title (A → Z)
-- Title (Z → A)
-- Visibility (Naked Eye First)
-- Visibility (Telescope First)
+- **Date (Oldest → Newest)**: Chronological order
+- **Date (Newest → Oldest)**: Reverse chronological order
+- **Title (A → Z)**: Alphabetical order
+- **Title (Z → A)**: Reverse alphabetical order
+- **Visibility (Naked Eye First)**: Shows naked-eye events before telescope events
+- **Visibility (Telescope First)**: Shows telescope events before naked-eye events
+
+## 🎨 User Features
+
+### Event Interaction
+
+- **Click to View Details**: Click any event card to open a detailed modal view
+- **Add to Calendar**: Export individual events to your preferred calendar app
+- **Share Events**: Share interesting astronomy events with friends via multiple platforms
+- **Event Images**: Each event type displays a relevant astronomy image
+
+### Privacy Controls
+
+- **Cookie Settings**: Floating cookie icon (🍪) button allows users to update preferences anytime
+- **Privacy Policy**: Accessible via the footer link
+- **Granular Consent**: Choose exactly which cookie categories to enable
+
+## 🧪 Testing
+
+The project includes comprehensive test coverage:
+
+```bash
+# Run tests
+npm run test
+
+# Run tests with UI
+npm run test:ui
+
+# Run tests with coverage report
+npm run test:coverage
+
+# Run tests in watch mode
+npm run test:watch
+```
+
+Test files include:
+
+- Component tests (EventCard, ShareEvent, CookieConsent, etc.)
+- Utility function tests (calendarLinks, sortEvents, etc.)
+- Service tests (openaiService)
+- Hook tests (useDebounce)
 
 ## 📄 License
 
