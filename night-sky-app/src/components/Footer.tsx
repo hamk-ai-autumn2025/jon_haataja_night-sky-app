@@ -12,7 +12,7 @@ const Footer: React.FC<FooterProps> = ({ onPrivacyPolicyClick }) => (
       <a href="https://www.jonhaataja.com">Jon Haataja</a>
     </span>
 
-        <div className="footer-links">
+    <div className="footer-links">
       {onPrivacyPolicyClick && (
         <button
           className="footer-link-button"

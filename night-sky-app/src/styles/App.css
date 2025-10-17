@@ -1293,8 +1293,8 @@ ul li a:hover {
     display: none;
   }
 
-    .share-event-container {
-      margin-top: 0;
+  .share-event-container {
+    margin-top: 0;
     margin-left: 1rem;
   }
 }
@@ -1343,7 +1343,7 @@ ul li a:hover {
     width: 100%;
   }
 
-    .share-event-container {
+  .share-event-container {
     margin-left: 1rem;
     margin-top: 1.5rem;
   }
@@ -1538,5 +1538,3 @@ ul li a:hover {
     transition: none;
   }
 }
-
-

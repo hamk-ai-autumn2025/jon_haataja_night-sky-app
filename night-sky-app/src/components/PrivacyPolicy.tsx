@@ -76,8 +76,8 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onClose }) => {
               <li>
                 <strong>OpenAI API:</strong> Your search queries are sent to
                 OpenAI's API (via GitHub Models) to generate astronomy event
-                information. We process this through secure serverless
-                functions to protect API credentials.
+                information. We process this through secure serverless functions
+                to protect API credentials.
               </li>
               <li>
                 <strong>Calendar Integration:</strong> When you add events to
@@ -371,10 +371,7 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onClose }) => {
               By using Skai, you acknowledge that you have read and understood
               this Privacy Policy and agree to its terms.
             </p>
-            <button
-              className="privacy-btn-close"
-              onClick={onClose}
-            >
+            <button className="privacy-btn-close" onClick={onClose}>
               Close
             </button>
           </div>

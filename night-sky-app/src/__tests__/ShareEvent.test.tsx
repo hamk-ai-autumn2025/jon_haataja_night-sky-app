@@ -124,7 +124,9 @@ describe("ShareEvent Component", () => {
     });
 
     // Verify the copied text contains event details
-    const mockClipboard = navigator.clipboard.writeText as ReturnType<typeof vi.fn>;
+    const mockClipboard = navigator.clipboard.writeText as ReturnType<
+      typeof vi.fn
+    >;
     const copiedText = mockClipboard.mock.calls[0][0];
     expect(copiedText).toContain("Leonid Meteor Shower");
     expect(copiedText).toContain("Finland");
@@ -200,9 +202,13 @@ describe("ShareEvent Component", () => {
 
     // Verify the date is formatted
     await waitFor(() => {
-      const mockClipboard = navigator.clipboard.writeText as ReturnType<typeof vi.fn>;
+      const mockClipboard = navigator.clipboard.writeText as ReturnType<
+        typeof vi.fn
+      >;
       const copiedText = mockClipboard.mock.calls[0][0];
-      expect(copiedText).toMatch(/Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday/);
+      expect(copiedText).toMatch(
+        /Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday/,
+      );
       expect(copiedText).toContain("2025");
     });
   });

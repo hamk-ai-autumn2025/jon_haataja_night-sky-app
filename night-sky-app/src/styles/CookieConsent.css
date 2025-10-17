@@ -18,7 +18,9 @@
   justify-content: center;
   z-index: 9999;
   transition: all 0.3s ease;
-  animation: fadeIn 0.3s ease-out, pulse 2s ease-in-out infinite;
+  animation:
+    fadeIn 0.3s ease-out,
+    pulse 2s ease-in-out infinite;
 }
 
 .cookie-settings-button:hover {
@@ -42,7 +44,8 @@
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
   }
   50% {

@@ -5,6 +5,7 @@ A React + TypeScript + Vite application that helps you discover astronomy events
 ## 🌟 Features
 
 ### Core Functionality
+
 - **AI-Powered Event Search**: Get comprehensive astronomy events for any country and month using OpenAI
 - **Smart Country Selection**: Searchable dropdown with all world countries
 - **Month & Year Selection**: Easy navigation through astronomy events by time period
@@ -12,6 +13,7 @@ A React + TypeScript + Vite application that helps you discover astronomy events
 - **Responsive Design**: Beautiful glassmorphic UI that works on all devices
 
 ### Event Management
+
 - **Detailed Event Cards**: Rich event information with visibility indicators (naked eye 👁️ or telescope 🔭)
 - **Event Modal**: Click any event to view detailed information in an elegant modal
 - **Event Images**: Beautiful astronomy-themed images for different event types
@@ -24,12 +26,14 @@ A React + TypeScript + Vite application that helps you discover astronomy events
   - Copy to clipboard
 
 ### Performance & Caching
+
 - **Client-Side Caching**: Automatic 24-hour localStorage caching to reduce API calls
 - **Server-Side Caching**: In-memory caching in serverless functions for improved performance
 - **Code Splitting**: Lazy loading of components for faster initial load
 - **Skeleton Loading**: Smooth loading states while fetching data
 
 ### Privacy & Compliance
+
 - **Cookie Consent Banner**: GDPR-compliant cookie consent management with:
   - Necessary cookies (always enabled)
   - Analytics cookies (optional)
@@ -39,6 +43,7 @@ A React + TypeScript + Vite application that helps you discover astronomy events
 - **Privacy Policy**: Comprehensive privacy policy accessible from footer
 
 ### Architecture & Security
+
 - **Serverless Architecture**: Secure API key handling via Netlify Functions
 - **Error Boundary**: Graceful error handling throughout the application
 - **TypeScript**: Full type safety across the codebase
@@ -347,12 +352,14 @@ The application provides sorting controls above the event list:
 ## 🎨 User Features
 
 ### Event Interaction
+
 - **Click to View Details**: Click any event card to open a detailed modal view
 - **Add to Calendar**: Export individual events to your preferred calendar app
 - **Share Events**: Share interesting astronomy events with friends via multiple platforms
 - **Event Images**: Each event type displays a relevant astronomy image
 
 ### Privacy Controls
+
 - **Cookie Settings**: Floating cookie icon (🍪) button allows users to update preferences anytime
 - **Privacy Policy**: Accessible via the footer link
 - **Granular Consent**: Choose exactly which cookie categories to enable
@@ -376,6 +383,7 @@ npm run test:watch
 ```
 
 Test files include:
+
 - Component tests (EventCard, ShareEvent, CookieConsent, etc.)
 - Utility function tests (calendarLinks, sortEvents, etc.)
 - Service tests (openaiService)
