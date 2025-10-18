@@ -697,6 +697,7 @@ ul li a:hover {
   -webkit-overflow-scrolling: none !important;
   overflow: hidden !important;
   overscroll-behavior: contain !important;
+  z-index: 10000;
 }
 
 .modal-overlay:focus {
