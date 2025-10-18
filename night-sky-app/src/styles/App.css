@@ -692,12 +692,9 @@ ul li a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 2000;
-  touch-action: none !important;
-  -webkit-overflow-scrolling: none !important;
-  overflow: hidden !important;
-  overscroll-behavior: contain !important;
   z-index: 10000;
+  overflow: hidden;
+  overscroll-behavior: contain;
 }
 
 .modal-overlay:focus {
@@ -714,10 +711,7 @@ ul li a:hover {
   height: 90vh;
   position: relative;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-  touch-action: none !important;
-  -webkit-overflow-scrolling: none;
   overflow: hidden;
-  overscroll-behavior: contain;
 }
 
 .modal-close {
@@ -738,6 +732,7 @@ ul li a:hover {
   padding: 0;
   margin: 0;
   aspect-ratio: 97 / 149;
+  overflow: hidden;
 }
 
 .modal-text {
@@ -1271,7 +1266,9 @@ ul li a:hover {
   .modal-content {
     width: 95vw;
     height: 95vh;
-    overflow-y: scroll;
+    max-height: 95vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .modal-image {
@@ -1287,7 +1284,9 @@ ul li a:hover {
   .modal-content {
     width: 70vw;
     height: 95vh;
-    overflow-y: scroll;
+    max-height: 95vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .modal-image {
@@ -1297,6 +1296,20 @@ ul li a:hover {
   .share-event-container {
     margin-top: 0;
     margin-left: 1rem;
+  }
+}
+
+@media (min-width: 897px) and (max-width: 1500px) {
+  .modal-content {
+    width: 70vw;
+    height: 95vh;
+    max-height: 95vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .modal-image {
+    height: 100vh;
   }
 }
 
@@ -1337,7 +1350,6 @@ ul li a:hover {
   .modal-content {
     width: 70vw;
     height: 95vh;
-    overflow-y: hidden;
   }
 
   .modal-image {
